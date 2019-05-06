@@ -6,10 +6,10 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 })
 
-var db = admin.firestore()
+var firebaseDB = admin.firestore()
 
 //adding data
-var docRef = db.collection('users').doc('alovelace')
+var docRef = firebaseDB.collection('users').doc('alovelace')
 
 var setAda = docRef.set({
   first: 'Ada',
@@ -18,3 +18,17 @@ var setAda = docRef.set({
 })
 
 console.log('reached firebaseDB')
+
+firebaseDB
+  .collection('users')
+  .get()
+  .then(snapshot => {
+    snapshot.forEach(doc => {
+      console.log(doc.id, '=>', doc.data())
+    })
+  })
+  .catch(err => {
+    console.log('Error getting documents', err)
+  })
+
+module.exports = firebaseDB
