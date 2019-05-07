@@ -1,7 +1,8 @@
 const db = require('./db')
-const firebaseDB = require('../firebaseDB/firebaseDB')
+// const firebaseDB = require('../firebaseDB/firebaseDB')
 
 // register models
 require('./models')
 
-module.exports = {db, firebaseDB}
+module.exports = db
+

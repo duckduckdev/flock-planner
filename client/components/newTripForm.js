@@ -1,5 +1,5 @@
 import React from 'react'
-import firebaseDB from '../../server/db'
+import firebase from '../firebase'
 /**
  * COMPONENT
  */
@@ -24,9 +24,8 @@ class NewTripForm extends React.Component {
 
     // adding data to databse
 
-    firebaseDB.settings({
-      timestampsInSnapshots: true
-    })
+    const firebaseDB = firebase.firestore()
+
     const tripRef = firebaseDB.collection('trips').add({
       tripName: this.state.tripName,
       destination: this.state.destination,
