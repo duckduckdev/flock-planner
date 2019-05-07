@@ -6,12 +6,12 @@ class TripPrefForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstChoiceDestination: '',
-      secondChoiceDestination: '',
-      thirdChoiceDestination: '',
-      firstChoiceDateRange: '',
-      secondChoiceDateRange: '',
-      thirdChoiceDateRange: '',
+      firstLocation: '',
+      secondLocation: '',
+      thirdLocation: '',
+      firstDates: '',
+      secondDates: '',
+      thirdDates: '',
       budget: ''
     }
     this.handleOptionChange = this.handleOptionChange.bind(this)
@@ -33,12 +33,12 @@ class TripPrefForm extends Component {
     event.preventDefault()
     this.props.add(this.state)
     this.setState({
-      firstChoiceDestination: '',
-      secondChoiceDestination: '',
-      thirdChoiceDestination: '',
-      firstChoiceDateRange: '',
-      secondChoiceDateRange: '',
-      thirdChoiceDateRange: '',
+      firstLocation: '',
+      secondLocation: '',
+      thirdLocation: '',
+      firstDates: '',
+      secondDates: '',
+      thirdDates: '',
       budget: ''
     })
   }
@@ -53,8 +53,8 @@ class TripPrefForm extends Component {
               First Choice:
               <input
                 type="text"
-                name="firstChoiceDestination"
-                value={this.state.firstChoiceDestination}
+                name="firstLocation"
+                value={this.state.firstLocation}
                 onChange={this.handleChange}
               />
             </label>
@@ -62,8 +62,8 @@ class TripPrefForm extends Component {
               Second Choice:
               <input
                 type="text"
-                name="secondChoiceDestination"
-                value={this.state.secondChoiceDestination}
+                name="secondLocation"
+                value={this.state.secondLocation}
                 onChange={this.handleChange}
               />
             </label>
@@ -71,8 +71,8 @@ class TripPrefForm extends Component {
               Third Choice:
               <input
                 type="text"
-                name="thirdChoiceDestination"
-                value={this.state.thirdChoiceDestination}
+                name="thirdLocation"
+                value={this.state.thirdLocation}
                 onChange={this.handleChange}
               />
             </label>
@@ -83,8 +83,8 @@ class TripPrefForm extends Component {
               First Choice:
               <input
                 type="text"
-                name="firstChoiceDateRange"
-                value={this.state.firstChoiceDateRange}
+                name="firstDates"
+                value={this.state.firstDates}
                 onChange={this.handleChange}
               />
             </label>
@@ -92,8 +92,8 @@ class TripPrefForm extends Component {
               Second Choice:
               <input
                 type="text"
-                name="secondChoiceDateRange"
-                value={this.state.secondChoiceDateRange}
+                name="secondDates"
+                value={this.state.secondDates}
                 onChange={this.handleChange}
               />
             </label>
@@ -101,8 +101,8 @@ class TripPrefForm extends Component {
               Third Choice:
               <input
                 type="text"
-                name="thirdChoiceDateRange"
-                value={this.state.thirdChoiceDateRange}
+                name="thirdDates"
+                value={this.state.thirdDates}
                 onChange={this.handleChange}
               />
             </label>

@@ -94,12 +94,12 @@ const answerReducer = (state = initialState, action) => {
     case ADD_ANSWER:
       const newAnswer = {
         id: action.id,
-        firstChoiceDestination: action.firstChoiceDestination,
-        secondChoiceDestination: action.secondChoiceDestination,
-        thirdChoiceDestination: action.thirdChoiceDestination,
-        firstChoiceDateRange: action.firstChoiceDateRange,
-        secondChoiceDateRange: action.secondChoiceDateRange,
-        thirdChoiceDateRange: action.thirdChoiceDateRange,
+        firstLocation: action.firstLocation,
+        secondLocation: action.secondLocation,
+        thirdLocation: action.thirdLocation,
+        firstDates: action.firstDates,
+        secondDates: action.secondDates,
+        thirdDates: action.thirdDates,
         budget: action.budget
       }
       return {...state, all: [...state.all, newAnswer]}
