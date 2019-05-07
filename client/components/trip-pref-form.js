@@ -77,7 +77,7 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
-          <h2>What dates do you prefer?</h2>
+          <h2>Which dates do you prefer?</h2>
           <div className="answer">
             <label>
               First Choice:
