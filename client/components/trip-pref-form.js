@@ -9,7 +9,6 @@ class TripPrefForm extends Component {
       firstChoiceDestination: '',
       secondChoiceDestination: '',
       thirdChoiceDestination: '',
-      length: '',
       firstChoiceDateRange: '',
       secondChoiceDateRange: '',
       thirdChoiceDateRange: '',
