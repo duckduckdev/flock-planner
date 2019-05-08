@@ -1,15 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { auth } from '../store'
-import firebase from '../firebase'
-
+import {auth} from '../store'
+import FirebaseAuthForm from './firebaseAuthForm'
 /**
  * COMPONENT
  */
+
 class AuthForm extends React.Component {
   render() {
-    const { name, displayName, handleSubmit, error } = this.props
+    const {name, displayName, handleSubmit, error} = this.props
 
     return (
       <div>
@@ -31,11 +31,7 @@ class AuthForm extends React.Component {
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
-        {
-          user
-            ? <button type="button" onClick={signOut}>Sign Out</button>
-            : <button type="button" onClick={signInWithGoogle}>Sign in with Google</button>
-        }
+        <FirebaseAuthForm />
       </div>
     )
   }
