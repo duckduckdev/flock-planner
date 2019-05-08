@@ -41,6 +41,13 @@ class TripPrefForm extends Component {
       budget: this.state.budget
     })
 
+    const tripRef = firebaseDB.collection('trip')
+
+    // tripRef.doc("
+    // kg3HRRO9zC343gJ6XY5h").set({travelerPreferences:preferencesRef}, )
+
+    console.log('tripRef', tripRef)
+
     console.log('checking preferencesRef', preferencesRef)
 
     this.setState({
@@ -52,6 +59,8 @@ class TripPrefForm extends Component {
       thirdDates: '',
       budget: ''
     })
+
+    this.props.props.history.push('/visual')
   }
 
   render() {
