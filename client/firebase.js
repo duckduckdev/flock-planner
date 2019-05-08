@@ -7,7 +7,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 // Initialize Cloud Firestore through Firebase
-firebase.initializeApp(config)
+export const firebaseApp = firebase.initializeApp(config)
 
 // var db = firebase.firestore()
 
