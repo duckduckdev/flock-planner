@@ -45,17 +45,15 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <div>
-            <PrivateRoute
-              exact
-              path="/"
-              component={UserHome}
-              authenticated={authenticated}
-              currentUser={currentUser}
-            />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={SignUp} />
-          </div>
+          <PrivateRoute
+            exact
+            path="/"
+            component={UserHome}
+            authenticated={authenticated}
+            currentUser={currentUser}
+          />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
         </Switch>
       </BrowserRouter>
     )
