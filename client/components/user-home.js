@@ -1,15 +1,13 @@
 import React from 'react'
 import TripPrefForm from './trip-pref-form'
-import firebase from '../firebase'
+import {firebaseApp} from '../firebase'
 
-const user = firebase.auth().currentUser
+const user = firebaseApp.auth().currentUser
 
 export const UserHome = () => {
-  const {email} = user
-
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome!</h3>
       <TripPrefForm />
     </div>
   )

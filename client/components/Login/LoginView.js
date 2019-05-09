@@ -1,8 +1,9 @@
 import React from 'react'
 import FirebaseAuthForm from '../firebaseAuthForm'
+import {Redirect} from 'react-router'
 
 const LoginView = ({onSubmit, user}) => {
-  return (
+  return !user ? (
     <div>
       <h1>Login</h1>
       <form onSubmit={onSubmit}>
@@ -18,6 +19,8 @@ const LoginView = ({onSubmit, user}) => {
       </form>
       <FirebaseAuthForm user={user} />
     </div>
+  ) : (
+    <Redirect to="/" />
   )
 }
 
