@@ -11,6 +11,7 @@ class FirbaseAuthForm extends React.Component {
   render() {
     const {user, signOut, signInWithGoogle} = this.props
     return (
+
       <div>
         {user ? <p>Hello, {user.displayName}</p> : <p>Please sign in.</p>}
         {user ? (
