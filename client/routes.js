@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {authenticated, loading} = this.state
+    const {authenticated, loading, currentUser} = this.state
 
     if (loading) {
       return <p>Loading...</p>
@@ -50,6 +50,7 @@ class App extends React.Component {
             path="/"
             component={UserHome}
             authenticated={authenticated}
+            currentUser={currentUser}
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
