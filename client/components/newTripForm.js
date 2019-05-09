@@ -27,7 +27,7 @@ class NewTripForm extends React.Component {
 
   updateTravelerInput = event => {
     this.setState({
-      fellowTravelers: event.target.value
+      fellowTravelers: [...this.state.fellowTravelers, event.target.value]
     })
   }
 
@@ -54,7 +54,7 @@ class NewTripForm extends React.Component {
       tripName: '',
       finalDestination: '',
       finalDates: '',
-      fellowTravelers: '',
+      fellowTravelers: [],
       tripAddedFlag: false
     }
 
