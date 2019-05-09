@@ -13,8 +13,8 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      {/* <NewTripForm /> */}
-      <TripPrefForm props={props} />
+      <NewTripForm props={props} />
+      {/* <TripPrefForm props={props} /> */}
     </div>
   )
 }

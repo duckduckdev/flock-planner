@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, Visual} from './components'
 import {me} from './store'
+import TripPrefForm from './components/trip-pref-form'
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/preference" component={TripPrefForm} />
             <Route path="/visual" component={Visual} />
           </Switch>
         )}

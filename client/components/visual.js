@@ -22,6 +22,8 @@ class Visual extends React.Component {
       })
   }
 
+  // const tripRef = firebaseDB.collection('trip').doc()
+
   render() {
     return (
       <div>
