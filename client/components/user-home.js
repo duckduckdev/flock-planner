@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import NewTripForm from './newTripForm'
-import TripPrefForm from './trip-pref-form'
+import NewTripForm from './NewTripForm'
 
 /**
  * COMPONENT
@@ -13,8 +12,10 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      {/* <NewTripForm /> */}
-      <TripPrefForm />
+      {/* need conditional logic here - if user has no trips, show them the form to create one
+      if they DO have trips, show them the trips they're on
+      maybe with a button to add a new trip or something */}
+      <NewTripForm />
     </div>
   )
 }

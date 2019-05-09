@@ -19,34 +19,55 @@ class NewTripForm extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  addTrip = event => {
+  addTrip = async event => {
     event.preventDefault()
 
     // adding data to databse
 
-    const firebaseDB = firebase.firestore()
+    //how can we know who the user is?
+    // we're adding a dummy user id right now - eventually this will come from state (or something)
+    const userId = 14
 
-    const tripRef = firebaseDB.collection('trips').add({
+    const firebaseDB = await firebase.firestore()
+
+    const tripRef = await firebaseDB.collection('trips').add({
       tripName: this.state.tripName,
+      ownerId: userId,
       destination: this.state.destination,
       dates: this.state.dates
     })
 
-    this.setState = {
+    //this reference will have an id that will uniquely identify the trip. 
+    //but how can we know what the id is later?
+    console.log(tripRef.id)
+
+    let tripId = tripRef.id
+
+    //do we also want to add the trip to the owner's data object?
+    //or maybe
+    const tripTravelers = await firebaseDB.collection('tripTravelers').add({
+      [tripId]: [userId]
+    })
+
+    console.log(tripTravelers)
+
+    //then I want to add preferences to this later?
+    //this is getting a bit messy    
+
+    //resets the form after adding the data
+    this.setState({
       tripName: '',
       destination: '',
       dates: ''
-    }
+    })
   }
 
   render() {
     return (
       <div>
+        <h3>Name Your Trip</h3>
         <form onSubmit={this.addTrip}>
           <div>
-            <label htmlFor="tripName">
-              <small>Name Your Trip</small>
-            </label>
             <input
               name="tripName"
               type="text"
@@ -55,29 +76,7 @@ class NewTripForm extends React.Component {
             />
           </div>
           <div>
-            <label htmlFor="destination">
-              <small>Destination</small>
-            </label>
-            <input
-              name="destination"
-              type="text"
-              onChange={this.updateInput}
-              value={this.state.destination}
-            />
-          </div>
-          <div>
-            <label htmlFor="dates">
-              <small>Dates</small>
-            </label>
-            <input
-              name="dates"
-              type="text"
-              onChange={this.updateInput}
-              value={this.state.dates}
-            />
-          </div>
-          <div>
-            <button type="submit">SUBMIT</button>
+            <button type="submit">NEXT</button>
           </div>
         </form>
       </div>
