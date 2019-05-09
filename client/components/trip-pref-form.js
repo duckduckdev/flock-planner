@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchAddAnswer} from '../store/tripPrefAnswers'
+import firebase from '../firebase'
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -16,22 +15,69 @@ class TripPrefForm extends Component {
     }
     this.handleOptionChange = this.handleOptionChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.addPreferences = this.addPreferences.bind(this)
   }
 
-  handleChange(event) {
+  handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  handleOptionChange(changeEvent) {
-    this.setState({
-      budget: changeEvent.target.value
-    })
+  handleOptionChange(event) {
+    this.setState({budget: event.target.value})
   }
 
-  handleSubmit(event) {
+  addPreferences(event) {
     event.preventDefault()
-    this.props.add(this.state)
+
+    const firebaseDB = firebase.firestore()
+
+    const preferencesRef = firebaseDB.collection('preferences').add({
+      firstLocation: this.state.firstLocation,
+      secondLocation: this.state.secondLocation,
+      thirdLocation: this.state.thirdLocation,
+      firstDates: this.state.firstDates,
+      secondDates: this.state.secondDates,
+      thirdDates: this.state.thirdDates,
+      budget: this.state.budget
+    })
+
+ //two approaches - get user email and query trip-fellowTravelers using email
+ 
+    // console.log('checking current User', firebase.auth().currentUser)
+    // var tripRef = db.collection('trips')
+    // tripRef.where('fellowTravelers', 'array-contains', 'west_coast')
+
+    const tripRef = firebaseDB
+      .collection('trips')
+      .doc('Meow')
+      .set(
+        {
+          preferences: {
+            firstLocation: this.state.firstLocation,
+            secondLocation: this.state.secondLocation,
+            thirdLocation: this.state.thirdLocation,
+            firstDates: this.state.firstDates,
+            secondDates: this.state.secondDates,
+            thirdDates: this.state.thirdDates,
+            budget: this.state.budget
+          }
+        },
+        {merge: true}
+      )
+      .then(function() {
+        console.log('Document successfully written!')
+      })
+      .catch(function(error) {
+        console.error('Error writing document: ', error)
+      })
+
+    // tripRef.doc("
+    // kg3HRRO9zC343gJ6XY5h").set({travelerPreferences:preferencesRef}, )
+
+    console.log('tripRef', tripRef)
+
+    console.log('checking preferencesRef', preferencesRef)
+
     this.setState({
       firstLocation: '',
       secondLocation: '',
@@ -41,12 +87,15 @@ class TripPrefForm extends Component {
       thirdDates: '',
       budget: ''
     })
+
+    console.log('checking trip pref props', this.props)
+    this.props.history.push('/visual')
   }
 
   render() {
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.addPreferences}>
           <h2>Where do you want to go?</h2>
           <div className="answer">
             <label>
@@ -176,12 +225,4 @@ class TripPrefForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    add: obj => {
-      dispatch(fetchAddAnswer(obj))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(TripPrefForm)
+export default TripPrefForm
