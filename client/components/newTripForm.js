@@ -38,17 +38,15 @@ class NewTripForm extends React.Component {
 
   handleAddTraveler = event => {
     event.preventDefault()
-    const tripName = this.state.tripName
+
     const firebaseDB = firebase.firestore()
 
-    const tripRef = firebaseDB
-      .collection('trips')
-      .doc(tripName)
-      .set({
-        finalDestination: this.state.finalDestination,
-        finalDates: this.state.finalDates,
-        fellowTravelers: this.state.fellowTravelers
-      })
+    const tripRef = firebaseDB.collection('trips').add({
+      tripName: this.state.tripName,
+      finalDestination: this.state.finalDestination,
+      finalDates: this.state.finalDates,
+      fellowTravelers: this.state.fellowTravelers
+    })
 
     this.setState = {
       tripName: '',

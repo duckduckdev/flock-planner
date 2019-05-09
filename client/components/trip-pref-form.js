@@ -41,13 +41,8 @@ class TripPrefForm extends Component {
       budget: this.state.budget
     })
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        window.alert(user.uid)
-      } else {
-        window.alert('No USER')
-      }
-    })
+ //two approaches - get user email and query trip-fellowTravelers using email
+ 
     // console.log('checking current User', firebase.auth().currentUser)
     // var tripRef = db.collection('trips')
     // tripRef.where('fellowTravelers', 'array-contains', 'west_coast')
