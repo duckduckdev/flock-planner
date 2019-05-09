@@ -6,6 +6,8 @@ import UserHome from './components/user-home'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import {firebaseApp} from './firebase'
+import TripPrefForm from './components/trip-pref-form'
+import Visual from './components/visual'
 
 class App extends React.Component {
   constructor() {
@@ -54,6 +56,8 @@ class App extends React.Component {
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/preference" component={TripPrefForm} />
+          <Route exact path="/visual" component={Visual} />
         </Switch>
       </BrowserRouter>
     )

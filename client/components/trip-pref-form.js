@@ -41,6 +41,41 @@ class TripPrefForm extends Component {
       budget: this.state.budget
     })
 
+ //two approaches - get user email and query trip-fellowTravelers using email
+ 
+    // console.log('checking current User', firebase.auth().currentUser)
+    // var tripRef = db.collection('trips')
+    // tripRef.where('fellowTravelers', 'array-contains', 'west_coast')
+
+    const tripRef = firebaseDB
+      .collection('trips')
+      .doc('Meow')
+      .set(
+        {
+          preferences: {
+            firstLocation: this.state.firstLocation,
+            secondLocation: this.state.secondLocation,
+            thirdLocation: this.state.thirdLocation,
+            firstDates: this.state.firstDates,
+            secondDates: this.state.secondDates,
+            thirdDates: this.state.thirdDates,
+            budget: this.state.budget
+          }
+        },
+        {merge: true}
+      )
+      .then(function() {
+        console.log('Document successfully written!')
+      })
+      .catch(function(error) {
+        console.error('Error writing document: ', error)
+      })
+
+    // tripRef.doc("
+    // kg3HRRO9zC343gJ6XY5h").set({travelerPreferences:preferencesRef}, )
+
+    console.log('tripRef', tripRef)
+
     console.log('checking preferencesRef', preferencesRef)
 
     this.setState({
@@ -52,6 +87,9 @@ class TripPrefForm extends Component {
       thirdDates: '',
       budget: ''
     })
+
+    console.log('checking trip pref props', this.props)
+    this.props.history.push('/visual')
   }
 
   render() {
