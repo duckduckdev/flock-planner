@@ -1,7 +1,7 @@
 import React from 'react'
 import FirebaseAuthForm from '../firebaseAuthForm'
 
-const LoginView = ({onSubmit}) => {
+const LoginView = ({onSubmit, user}) => {
   return (
     <div>
       <h1>Login</h1>
@@ -16,7 +16,7 @@ const LoginView = ({onSubmit}) => {
         </label>
         <button type="submit">Login</button>
       </form>
-      <FirebaseAuthForm />
+      <FirebaseAuthForm user={user} />
     </div>
   )
 }

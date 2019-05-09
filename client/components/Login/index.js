@@ -19,7 +19,7 @@ class LoginViewContainer extends Component {
   }
 
   render() {
-    return <LoginView onSubmit={this.handleLogin} />
+    return <LoginView onSubmit={this.handleLogin} user={this.user} />
   }
 }
 

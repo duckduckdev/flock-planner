@@ -19,7 +19,7 @@ class SignUpContainer extends Component {
   }
 
   render() {
-    return <SignUpView onSubmit={this.handleSignUp} />
+    return <SignUpView onSubmit={this.handleSignUp} user={this.user} />
   }
 }
 
