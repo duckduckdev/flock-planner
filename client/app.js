@@ -3,7 +3,7 @@ import Routes from './routes'
 
 const App = () => {
   return (
-    <div>
+    <div id="root">
       <Routes />
     </div>
   )

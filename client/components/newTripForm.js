@@ -4,57 +4,85 @@ import firebase from '../firebase'
  * COMPONENT
  */
 class NewTripForm extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
+      // tripAddedFlag: false,
       tripName: '',
-      destination: '',
-      dates: ''
+      finalDestination: '',
+      finalDates: '',
+      // fellowTravelers: []
     }
     this.updateInput = this.updateInput.bind(this)
     this.addTrip = this.addTrip.bind(this)
+
+    // this.updateTravelerInput = this.updateTravelerInput.bind(this)
+    // this.switchFlag = this.switchFlag.bind(this)
+    // this.handleAddTraveler = this.handleAddTraveler.bind(this)
   }
 
   updateInput = event => {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  addTrip = event => {
+  // updateTravelerInput = event => {
+  //   this.setState({
+  //     fellowTravelers: [...this.state.fellowTravelers, event.target.value]
+  //   })
+  // }
+
+  // switchFlag = event => {
+  //   event.preventDefault()
+  //   this.setState({tripAddedFlag: true})
+  // }
+
+  addTrip = async event => {
     event.preventDefault()
 
-    // adding data to databse
+    const firebaseDB = await firebase.firestore()
 
-    const firebaseDB = firebase.firestore()
-
-    const tripRef = firebaseDB.collection('trips').add({
+    const tripRef = await firebaseDB.collection('trips').add({
       tripName: this.state.tripName,
-      destination: this.state.destination,
-      dates: this.state.dates
+      finalDestination: this.state.finalDestination,
+      finalDates: this.state.finalDates,
     })
 
-    this.setState = {
+    //this reference will have an id that will uniquely identify the trip. 
+    //but how can we know what the id is later?
+    console.log(tripRef.id)
+
+    //then I want to add preferences to this later?
+    //this is getting a bit messy    
+
+    //resets the form after adding the data
+    this.setState({
       tripName: '',
-      destination: '',
-      dates: ''
-    }
+      finalDestination: '',
+      finalDates: ''
+    })
+
+    this.props.props.history.push('./addTravelers')
+    console.log('this is working', this.props)
+    
   }
+  
 
   render() {
     return (
       <div>
-        <form onSubmit={this.addTrip}>
-          <div>
-            <label htmlFor="tripName">
-              <small>Name Your Trip</small>
-            </label>
-            <input
-              name="tripName"
-              type="text"
-              onChange={this.updateInput}
-              value={this.state.tripName}
-            />
-          </div>
-          <div>
+          <form onSubmit={this.addTrip}>
+            <div>
+              <label htmlFor="tripName">
+                <small>Name Your Trip</small>
+              </label>
+              <input
+                name="tripName"
+                type="text"
+                onChange={this.updateInput}
+                value={this.state.tripName}
+              />
+            </div>
+            {/* <div>
             <label htmlFor="destination">
               <small>Destination</small>
             </label>
@@ -75,14 +103,17 @@ class NewTripForm extends React.Component {
               onChange={this.updateInput}
               value={this.state.dates}
             />
-          </div>
-          <div>
-            <button type="submit">SUBMIT</button>
-          </div>
-        </form>
-      </div>
+          </div> */}
+            <div>
+              <button type="submit" >
+                Add Trip
+              </button>
+            </div>
+          </form>
+    </div>
     )
-  }
-}
+    }
 
+
+}
 export default NewTripForm
