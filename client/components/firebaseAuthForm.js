@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase, {firebaseApp} from '../firebase'
 import withFirebaseAuth from 'react-with-firebase-auth'
+import {Redirect} from 'react-router'
 
 const firebaseAppAuth = firebaseApp.auth()
 const providers = {
@@ -9,13 +10,11 @@ const providers = {
 
 class FirbaseAuthForm extends React.Component {
   render() {
-    const {user, signOut, signInWithGoogle} = this.props
+    const {user, signInWithGoogle} = this.props
     return (
       <div>
         {user ? (
-          <button type="button" onClick={signOut}>
-            Sign Out
-          </button>
+          <Redirect to="/" />
         ) : (
           <button type="button" onClick={signInWithGoogle}>
             Sign in with Google
