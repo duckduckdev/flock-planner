@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
-
+import {Navbar} from './components'
 import UserHome from './components/user-home'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
@@ -44,6 +44,7 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
+        <Navbar />
         <Switch>
           <PrivateRoute
             exact
