@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 
 import UserHome from './components/user-home'
@@ -43,19 +43,21 @@ class App extends React.Component {
     }
 
     return (
-      <Router>
-        <div>
-          <PrivateRoute
-            exact
-            path="/"
-            component={UserHome}
-            authenticated={authenticated}
-            currentUser={currentUser}
-          />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
-        </div>
-      </Router>
+      <BrowserRouter>
+        <Switch>
+          <div>
+            <PrivateRoute
+              exact
+              path="/"
+              component={UserHome}
+              authenticated={authenticated}
+              currentUser={currentUser}
+            />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+          </div>
+        </Switch>
+      </BrowserRouter>
     )
   }
 }
