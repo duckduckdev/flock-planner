@@ -7,63 +7,69 @@ class NewTripForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tripAddedFlag: false,
+      // tripAddedFlag: false,
       tripName: '',
       finalDestination: '',
       finalDates: '',
-      fellowTravelers: []
+      // fellowTravelers: []
     }
     this.updateInput = this.updateInput.bind(this)
-    // this.addTrip = this.addTrip.bind(this)
+    this.addTrip = this.addTrip.bind(this)
 
-    this.updateTravelerInput = this.updateTravelerInput.bind(this)
-    this.switchFlag = this.switchFlag.bind(this)
-    this.handleAddTraveler = this.handleAddTraveler.bind(this)
+    // this.updateTravelerInput = this.updateTravelerInput.bind(this)
+    // this.switchFlag = this.switchFlag.bind(this)
+    // this.handleAddTraveler = this.handleAddTraveler.bind(this)
   }
 
   updateInput = event => {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  updateTravelerInput = event => {
-    this.setState({
-      fellowTravelers: [...this.state.fellowTravelers, event.target.value]
-    })
-  }
+  // updateTravelerInput = event => {
+  //   this.setState({
+  //     fellowTravelers: [...this.state.fellowTravelers, event.target.value]
+  //   })
+  // }
 
-  switchFlag = event => {
+  // switchFlag = event => {
+  //   event.preventDefault()
+  //   this.setState({tripAddedFlag: true})
+  // }
+
+  addTrip = async event => {
     event.preventDefault()
-    this.setState({tripAddedFlag: true})
-  }
 
-  handleAddTraveler = event => {
-    event.preventDefault()
+    const firebaseDB = await firebase.firestore()
 
-    const firebaseDB = firebase.firestore()
-
-    const tripRef = firebaseDB.collection('trips').add({
+    const tripRef = await firebaseDB.collection('trips').add({
       tripName: this.state.tripName,
       finalDestination: this.state.finalDestination,
       finalDates: this.state.finalDates,
-      fellowTravelers: this.state.fellowTravelers
     })
 
-    this.setState = {
+    //this reference will have an id that will uniquely identify the trip. 
+    //but how can we know what the id is later?
+    console.log(tripRef.id)
+
+    //then I want to add preferences to this later?
+    //this is getting a bit messy    
+
+    //resets the form after adding the data
+    this.setState({
       tripName: '',
       finalDestination: '',
-      finalDates: '',
-      fellowTravelers: [],
-      tripAddedFlag: false
-    }
+      finalDates: ''
+    })
 
-    this.props.props.history.push('./preference')
+    this.props.props.history.push('./addTravelers')
     console.log('this is working', this.props)
+    
   }
+  
 
   render() {
     return (
       <div>
-        {!this.state.tripAddedFlag && (
           <form onSubmit={this.addTrip}>
             <div>
               <label htmlFor="tripName">
@@ -99,33 +105,15 @@ class NewTripForm extends React.Component {
             />
           </div> */}
             <div>
-              <button type="submit" onClick={this.switchFlag}>
+              <button type="submit" >
                 Add Trip
               </button>
             </div>
           </form>
-        )}
-        {this.state.tripAddedFlag && (
-          <form onSubmit={this.handleAddTraveler}>
-            <div>
-              <label htmlFor="fellowTravelers">
-                <small>Add Emails</small>
-              </label>
-              <input
-                name="fellowTravelers"
-                type="email"
-                onChange={this.updateTravelerInput}
-                value={this.state.fellowTravelers}
-              />
-            </div>
-            <div>
-              <button type="submit">Add Traveler</button>
-            </div>
-          </form>
-        )}
-      </div>
+    </div>
     )
-  }
-}
+    }
 
+
+}
 export default NewTripForm

@@ -1,13 +1,16 @@
 import React from 'react'
 import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
-
-import UserHome from './components/user-home'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import {firebaseApp} from './firebase'
-import TripPrefForm from './components/trip-pref-form'
-import Visual from './components/visual'
+import {
+  Navbar,
+  NewTripForm,
+  AddTravelers,
+  TripPrefForm,
+  Visual
+} from './components'
 
 class App extends React.Component {
   constructor() {
@@ -46,6 +49,7 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
+        <Navbar />
         <Switch>
           <PrivateRoute
             exact
@@ -58,6 +62,8 @@ class App extends React.Component {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/preference" component={TripPrefForm} />
           <Route exact path="/visual" component={Visual} />
+          <Route exact path="/createTrip" component={NewTripForm} />
+          <Route exact path="/addTravelers" component={AddTravelers} />
         </Switch>
       </BrowserRouter>
     )

@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+//import {connect} from 'react-redux'
 import TripPrefForm from './trip-pref-form'
 import {firebaseApp} from '../firebase'
 import NewTripForm from './newTripForm'
