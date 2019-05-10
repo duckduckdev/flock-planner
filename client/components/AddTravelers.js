@@ -59,8 +59,20 @@ class AddTravelers extends React.Component {
     // how can I do this?
     // REDUX
 
+    const user = firebase.auth().currentUser
+    const userName = user.displayName? user.displayName : user.email
+    console.log(userName)
+
+    // const firebaseDB = await firebase.firestore()
+    // const userObj = await firebaseDB
+    // .collection('users')
+    // .where('trip', '==', this.props.currentUser)
+    // .get()
+
     let data = {
-      emails: this.state.emails
+      emails: this.state.emails,
+      url: `http://localhost:8080/preference/${this.props.match.params.tripId}`,
+      userName: userName
     }
 
     await axios.post('/send', data)
@@ -71,6 +83,7 @@ class AddTravelers extends React.Component {
         email1: ''
       }
     })
+
     this.props.history.push(`/preference/${this.props.match.params.tripId}`)
   }
 
