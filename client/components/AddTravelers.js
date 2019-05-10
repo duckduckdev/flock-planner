@@ -58,10 +58,6 @@ class AddTravelers extends React.Component {
     this.setState({
       email1: ''
     })
-    console.log(
-      'this.props.match.params.tripId',
-      this.props.match.params.tripId
-    )
     this.props.history.push(`/preference/${this.props.match.params.tripId}`)
   }
 

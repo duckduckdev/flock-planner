@@ -7,22 +7,37 @@ class Visual extends React.Component {
   getData(event) {
     event.preventDefault()
 
-    console.log('was this hit')
     const firebaseDB = firebase.firestore()
-    // const preferenceRef = firebaseDB.collection('preferences')
 
-    firebaseDB
+    // firebaseDB
+    //   .collection('trips')
+    //   .get(this.props.match.params.tripId)
+    //   .then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //       // doc.data() is never undefined for query doc snapshots
+    //       console.log(doc.id, ' => ', doc.data())
+    //     })
+    //   })
+
+    var docRef = firebaseDB
+      .collection('trips')
+      .doc(this.props.match.params.tripId)
       .collection('preferences')
+
+    docRef
       .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, ' => ', doc.data())
-        })
+      .then(function(doc) {
+        if (doc.exists) {
+          console.log('Document data:', doc.data())
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!')
+        }
+      })
+      .catch(function(error) {
+        console.log('Error getting document:', error)
       })
   }
-
-  // const tripRef = firebaseDB.collection('trip').doc()
 
   render() {
     return (

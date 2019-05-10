@@ -50,30 +50,22 @@ class TripPrefForm extends Component {
     const tripRef = firebaseDB
       .collection('trips')
       .doc(this.props.match.params.tripId)
-      .set(
-        {
-          preferences: {
-            firstLocation: this.state.firstLocation,
-            secondLocation: this.state.secondLocation,
-            thirdLocation: this.state.thirdLocation,
-            firstDates: this.state.firstDates,
-            secondDates: this.state.secondDates,
-            thirdDates: this.state.thirdDates,
-            budget: this.state.budget
-          }
-        },
-        {merge: true}
-      )
+      .collection('preferences')
+      .add({
+        firstLocation: this.state.firstLocation,
+        secondLocation: this.state.secondLocation,
+        thirdLocation: this.state.thirdLocation,
+        firstDates: this.state.firstDates,
+        secondDates: this.state.secondDates,
+        thirdDates: this.state.thirdDates,
+        budget: this.state.budget
+      })
       .then(function() {
         console.log('Document successfully written!')
       })
       .catch(function(error) {
         console.error('Error writing document: ', error)
       })
-
-    console.log('tripRef', tripRef)
-
-    console.log('checking preferencesRef', preferencesRef)
 
     this.setState({
       firstLocation: '',
@@ -85,7 +77,6 @@ class TripPrefForm extends Component {
       budget: ''
     })
 
-    console.log('checking trip pref props', this.props)
     this.props.history.push(`/visual/${this.props.match.params.tripId}`)
   }
 

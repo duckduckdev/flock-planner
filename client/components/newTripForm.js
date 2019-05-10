@@ -11,7 +11,6 @@ class NewTripForm extends React.Component {
       tripName: '',
       finalDestination: '',
       finalDates: ''
-      // fellowTravelers: []
     }
     this.updateInput = this.updateInput.bind(this)
     this.addTrip = this.addTrip.bind(this)
@@ -62,7 +61,6 @@ class NewTripForm extends React.Component {
     })
 
     this.props.props.history.push(`./addTravelers/${tripRef.id}`)
-    console.log('this is working', this.props)
   }
 
   render() {
