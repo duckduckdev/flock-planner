@@ -9,7 +9,8 @@ import {
   NewTripForm,
   AddTravelers,
   TripPrefForm,
-  Visual
+  Visual,
+  UserHome
 } from './components'
 
 class App extends React.Component {

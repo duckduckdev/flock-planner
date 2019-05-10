@@ -1,5 +1,6 @@
 import React from 'react'
 import firebase from '../firebase'
+import axios from 'axios'
 
 class AddTravelers extends React.Component {
   constructor() {
@@ -10,23 +11,23 @@ class AddTravelers extends React.Component {
       },
       numEmails: 1
     }
-    this.updateInput = this.updateInput.bind(this)
+    // this.updateInput = this.updateInput.bind(this)
     this.addFriend = this.addFriend.bind(this)
-    this.addEmail = this.addEmail.bind(this)
+    this.addEmailField = this.addEmailField.bind(this)
     this.updateEmail = this.updateEmail.bind(this)
   }
 
-  updateInput = event => {
-    this.setState({[event.target.name]: event.target.value})
-  }
+  // updateInput = event => {
+  //   this.setState({[event.target.name]: event.target.value})
+  // }
 
   updateEmail = event => {
-    console.log('event.target is', event.target)
-    console.log('event.target.name is', event.target.name)
+    // console.log('event.target is', event.target)
+    // console.log('event.target.name is', event.target.name)
     event.persist()
     this.setState(prevState => {
-      console.log('event is', event)
-      console.log('event.target is now', event.target)
+      // console.log('event is', event)
+      // console.log('event.target is now', event.target)
       return {
         emails: {
           ...prevState.emails,
@@ -36,9 +37,8 @@ class AddTravelers extends React.Component {
     })
   }
 
-  addEmail = async () => {
+  addEmailField = async () => {
     // when this number increments, the state will change
-    // which will trigger... what?
     // we want it to trigger the render of a new line on the form
     //I guess the emails could be an array
     //or an object
@@ -61,15 +61,26 @@ class AddTravelers extends React.Component {
     //add a new email key to the state
   }
 
-  addFriend = event => {
+  addFriend = async event => {
     event.preventDefault()
 
-    //how can I make this form send someone an email on submit?
+    // I also want to know the trip id so I can include it in the link that I send in the body of the email
+    // how can I do this?
+    // REDUX
+
+    let data = {
+      emails: this.state.emails
+    }
+
+    await axios.post('/send', data)
 
     //resets the form after adding the data
     this.setState({
-      email1: ''
+      emails: {
+        email1: ''
+      }
     })
+
     this.props.history.push('/preference')
   }
 
@@ -91,7 +102,7 @@ class AddTravelers extends React.Component {
             )
           })}
           <div>
-            <button type="button" id="addEmail" onClick={this.addEmail}>
+            <button type="button" id="addEmail" onClick={this.addEmailField}>
               +
             </button>
           </div>
