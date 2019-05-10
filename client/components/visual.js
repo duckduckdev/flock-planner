@@ -44,9 +44,9 @@ class Visual extends React.Component {
       return (
         <div>
           <h1>Trip Preferences:</h1>
-          <h2>Options for Destinations</h2>
+          <h2>Options for Destinations:</h2>
           <LocationList arrayPrefs={this.state.arrayPrefs} />
-          <h2>Options for Dates</h2>
+          <h2>Options for Dates:</h2>
           <DateList arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
           <BudgetChart arrayPrefs={this.state.arrayPrefs} />
