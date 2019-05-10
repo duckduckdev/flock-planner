@@ -22,17 +22,8 @@ class AddTravelers extends React.Component {
   // }
 
   updateEmail = event => {
-<<<<<<< HEAD
-    // console.log('event.target is', event.target)
-    // console.log('event.target.name is', event.target.name)
     event.persist()
     this.setState(prevState => {
-      // console.log('event is', event)
-      // console.log('event.target is now', event.target)
-=======
-    event.persist()
-    this.setState(prevState => {
->>>>>>> master
       return {
         emails: {
           ...prevState.emails,
@@ -64,7 +55,6 @@ class AddTravelers extends React.Component {
   addFriend = async event => {
     event.preventDefault()
 
-<<<<<<< HEAD
     // I also want to know the trip id so I can include it in the link that I send in the body of the email
     // how can I do this?
     // REDUX
@@ -76,19 +66,12 @@ class AddTravelers extends React.Component {
     await axios.post('/send', data)
 
     //resets the form after adding the data
-=======
->>>>>>> master
     this.setState({
       emails: {
         email1: ''
       }
     })
-<<<<<<< HEAD
-
-    this.props.history.push('/preference')
-=======
     this.props.history.push(`/preference/${this.props.match.params.tripId}`)
->>>>>>> master
   }
 
   render() {
