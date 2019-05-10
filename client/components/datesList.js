@@ -8,13 +8,19 @@ class DateList extends React.Component {
           return (
             <div key={userPref.id}>
               <li>
-                <font color="gold">{userPref.firstDates}</font>
+                <font color="gold">
+                  <b>{userPref.firstDates}</b>
+                </font>
               </li>
               <li>
-                <font color="silver">{userPref.secondDates}</font>
+                <font color="silver">
+                  <b>{userPref.secondDates}</b>
+                </font>
               </li>
               <li>
-                <font color="bronze">{userPref.thirdDates}</font>
+                <font color="bronze">
+                  <b>{userPref.thirdDates}</b>
+                </font>
               </li>
             </div>
           )
