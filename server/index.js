@@ -10,6 +10,8 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const nodemailer = require('nodemailer')
+const password = require('./password')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -66,6 +68,42 @@ const createApp = () => {
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
+
+  // send an email!!
+  app.post('/send', function(req, res, next) {
+    console.log('we\'re in the post request!')
+    console.log('request body', req.body)
+
+    // create a transporter object with the information for our email account
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'flock.travel.planner@gmail.com', 
+        pass: password 
+      }
+    })
+
+    // turn the emails into an array
+    let emails = Object.values(req.body.emails)
+
+    // for each email in the array, send an email
+    emails.forEach(async (email) => {
+      let info = await transporter.sendMail({
+        from: '"Flock Travel 🦆" <flock.travel.planner@gmail.com.com>', // sender address
+        to: email, // list of receivers
+        subject: "Come Fly With Us!", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>" // html body
+      });
+    
+      console.log("Message sent: %s", info.messageId)
+    }
+    )
+
+    res.json('emails sent')
+  })
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
