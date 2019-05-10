@@ -38,34 +38,9 @@ class TripPrefForm extends Component {
       firstDates: this.state.firstDates,
       secondDates: this.state.secondDates,
       thirdDates: this.state.thirdDates,
-      budget: this.state.budget
+      budget: this.state.budget,
+      trip: this.props.match.params.tripId
     })
-
-    //two approaches - get user email and query trip-fellowTravelers using email
-
-    // console.log('checking current User', firebase.auth().currentUser)
-    // var tripRef = db.collection('trips')
-    // tripRef.where('fellowTravelers', 'array-contains', 'west_coast')
-
-    const tripRef = firebaseDB
-      .collection('trips')
-      .doc(this.props.match.params.tripId)
-      .collection('preferences')
-      .add({
-        firstLocation: this.state.firstLocation,
-        secondLocation: this.state.secondLocation,
-        thirdLocation: this.state.thirdLocation,
-        firstDates: this.state.firstDates,
-        secondDates: this.state.secondDates,
-        thirdDates: this.state.thirdDates,
-        budget: this.state.budget
-      })
-      .then(function() {
-        console.log('Document successfully written!')
-      })
-      .catch(function(error) {
-        console.error('Error writing document: ', error)
-      })
 
     this.setState({
       firstLocation: '',
