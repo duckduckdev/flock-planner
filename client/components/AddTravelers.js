@@ -21,12 +21,8 @@ class AddTravelers extends React.Component {
   }
 
   updateEmail = event => {
-    console.log('event.target is', event.target)
-    console.log('event.target.name is', event.target.name)
     event.persist()
     this.setState(prevState => {
-      console.log('event is', event)
-      console.log('event.target is now', event.target)
       return {
         emails: {
           ...prevState.emails,
@@ -54,23 +50,15 @@ class AddTravelers extends React.Component {
         }
       }
     })
-
-    console.log('num emails is now', this.state.numEmails)
-    console.log(this.state)
-
-    //add a new email key to the state
   }
 
   addFriend = event => {
     event.preventDefault()
 
-    //how can I make this form send someone an email on submit?
-
-    //resets the form after adding the data
     this.setState({
       email1: ''
     })
-    this.props.history.push('/preference')
+    this.props.history.push(`/preference/${this.props.match.params.tripId}`)
   }
 
   render() {
