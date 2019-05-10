@@ -2,12 +2,26 @@ import React, { PureComponent } from 'react'
 import { PieChart, Pie, Sector, Cell } from 'recharts'
 
 const data = [
-  { name: '<150', value: 1 },
-  { name: '150-500', value: 3 },
-  { name: '500-1000', value: 4 },
-  { name: '1000-1500', value: 2 },
-  { name: '>1500', value: 100 }
+  { name: '<150', value: 0 },
+  { name: '150-500', value: 0 },
+  { name: '500-1000', value: 0 },
+  { name: '1000-1500', value: 0 },
+  { name: '>1500', value: 0 }
 ];
+
+prefs.map(prefObj => prefObj.budget).forEach(budgetRange => {
+  if (budgetRange === data[0].name) {
+    data[0].value++
+  } else if (budgetRange === data[1].name) {
+    data[1].value++
+  } else if (budgetRange === data[2].name) {
+    data[2].value++
+  } else if (budgetRange === data[3].name) {
+    data[3].value++
+  } else {
+    data[4].value++
+  }
+})
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#00B22E'];
 
