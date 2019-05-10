@@ -1,9 +1,7 @@
 body {
   font-family: sans-serif;
-}
-
-#root {
-  background-image: url('https://images.unsplash.com/photo-1474059060963-44710306956c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1955&q=80')
+  min-height: 100vh;
+  background-image: url('https://cdn.dribbble.com/users/2234174/screenshots/5499433/tropical-birds-dribbble.gif');
 }
 
 a {
@@ -16,7 +14,6 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 1em;
 }
 
 form div {

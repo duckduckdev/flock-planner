@@ -10,7 +10,8 @@ import {
   AddTravelers,
   TripPrefForm,
   Visual,
-  UserHome
+  UserHome,
+  Map
 } from './components'
 
 class App extends React.Component {
@@ -86,6 +87,14 @@ class App extends React.Component {
             exact
             path="/addTravelers/:tripId"
             component={AddTravelers}
+            authenticated={authenticated}
+            currentUser={currentUser}
+          />
+
+          <PrivateRoute
+            exact
+            path="/map"
+            component={Map}
             authenticated={authenticated}
             currentUser={currentUser}
           />

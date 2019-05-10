@@ -46,7 +46,7 @@ class Navbar extends React.Component {
 
     return (
       <div>
-        <h1>BOILERMAKER</h1>
+        <h1>Flock</h1>
         <nav>
           {this.state.currentUser ? (
             <div>

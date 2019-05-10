@@ -9,11 +9,11 @@ const LoginView = ({onSubmit, user}) => {
       <form onSubmit={onSubmit}>
         <label>
           Email:
-          <input name="email" type="email" placeholder="Email" />
+          <input name="email" type="email" />
         </label>
         <label>
           Password:
-          <input name="password" type="password" placeholder="Password" />
+          <input name="password" type="password" />
         </label>
         <button type="submit">Login</button>
       </form>
