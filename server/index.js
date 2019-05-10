@@ -87,18 +87,31 @@ const createApp = () => {
 
     // turn the emails into an array
     let emails = Object.values(req.body.emails)
+    let url = req.body.url
+    let userName = req.body.userName
+    // console.log('url is', url)
 
     // for each email in the array, send an email
     emails.forEach(async (email) => {
-      let info = await transporter.sendMail({
+      try {
+        if (email) {
+        let info = await transporter.sendMail({
         from: '"Flock Travel 🦆" <flock.travel.planner@gmail.com.com>', // sender address
         to: email, // list of receivers
-        subject: "Come Fly With Us!", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>" // html body
-      });
-    
+        subject: `${userName} has invited you on a trip!`, // Subject line
+        text: `Your friend ${userName} has invited you on a trip! Go here to set your preferences: ${url}`, // plain text body
+        html: `<p>Your friend ${userName} has invited you on a trip! <a href="${url}">Go here</a> to set your preferences.</p>` // html body
+      })
+
       console.log("Message sent: %s", info.messageId)
+      }
+
+      }
+
+      catch(error) {
+        console.log(error)
+      }
+      
     }
     )
 
