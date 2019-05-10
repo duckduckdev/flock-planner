@@ -41,15 +41,15 @@ class TripPrefForm extends Component {
       budget: this.state.budget
     })
 
- //two approaches - get user email and query trip-fellowTravelers using email
- 
+    //two approaches - get user email and query trip-fellowTravelers using email
+
     // console.log('checking current User', firebase.auth().currentUser)
     // var tripRef = db.collection('trips')
     // tripRef.where('fellowTravelers', 'array-contains', 'west_coast')
 
     const tripRef = firebaseDB
       .collection('trips')
-      .doc('Meow')
+      .doc(this.props.match.params.tripId)
       .set(
         {
           preferences: {
@@ -71,9 +71,6 @@ class TripPrefForm extends Component {
         console.error('Error writing document: ', error)
       })
 
-    // tripRef.doc("
-    // kg3HRRO9zC343gJ6XY5h").set({travelerPreferences:preferencesRef}, )
-
     console.log('tripRef', tripRef)
 
     console.log('checking preferencesRef', preferencesRef)
@@ -89,7 +86,7 @@ class TripPrefForm extends Component {
     })
 
     console.log('checking trip pref props', this.props)
-    this.props.history.push('/visual')
+    this.props.history.push(`/visual/${this.props.match.params.tripId}`)
   }
 
   render() {
