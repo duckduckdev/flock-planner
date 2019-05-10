@@ -2,9 +2,11 @@
 
 import firebase from '../firebase'
 import React from 'react'
+
 import BudgetChart from './BudgetChart'
 import LocationList from './locationList'
 import DateList from './datesList'
+
 
 class Visual extends React.Component {
   constructor() {

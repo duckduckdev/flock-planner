@@ -8,8 +8,10 @@ export {default as UserHome} from './user-home'
 export {default as NewTripForm} from './newTripForm'
 export {default as TripPrefForm} from './trip-pref-form'
 export {default as AddTravelers} from './AddTravelers'
+export {default as BudgetChart} from './budgetChart'
 
 export {default as Visual} from './visual'
+export {default as Map} from './map'
 
 export {default as LoginView} from './Login/LoginView'
 export {default as SignUpView} from './SignUp/SignUpView'
