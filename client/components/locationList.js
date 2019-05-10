@@ -8,13 +8,19 @@ class LocationList extends React.Component {
           return (
             <div key={userPref.id}>
               <li>
-                <font color="gold">{userPref.firstLocation}</font>
+                <font color="gold">
+                  <b>{userPref.firstLocation}</b>
+                </font>
               </li>
               <li>
-                <font color="silver">{userPref.secondLocation}</font>
+                <font color="silver">
+                  <b>{userPref.secondLocation}</b>
+                </font>
               </li>
               <li>
-                <font color="bronze">{userPref.thirdLocation}</font>
+                <font color="bronze">
+                  <b>{userPref.thirdLocation}</b>
+                </font>
               </li>
             </div>
           )
