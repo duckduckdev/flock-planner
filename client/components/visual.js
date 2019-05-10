@@ -2,7 +2,7 @@
 
 import firebase from '../firebase'
 import React from 'react'
-import BudgetChart from './BudgetChart'
+import BudgetChart from './budgetChart'
 
 class Visual extends React.Component {
   constructor() {
@@ -19,28 +19,25 @@ class Visual extends React.Component {
         .collection('preferences')
         .where('trip', '==', this.props.match.params.tripId)
         .get()
-        .then(function (querySnapshot) {
-          querySnapshot.forEach(function (doc) {
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
             data.push(doc.data())
           })
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log('Error getting documents: ', error)
         })
       await this.setState({
         arrayPrefs: [...data]
       })
     })
-
   }
   componentDidMount() {
     this.getData()
   }
   render() {
     if (this.state.arrayPrefs.length < 1) {
-      return (
-        <div>Loading...</div>
-      )
+      return <div>Loading...</div>
     } else {
       return (
         <div>
