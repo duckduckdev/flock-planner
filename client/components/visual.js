@@ -2,35 +2,33 @@
 
 import firebase from '../firebase'
 import React from 'react'
+// import BudgetChart from './BudgetChart'
 
 class Visual extends React.Component {
-  getData(event) {
-    event.preventDefault()
-
-    console.log('was this hit')
+  componentDidMount() {
+    let arrayPrefs = []
     const firebaseDB = firebase.firestore()
-    // const preferenceRef = firebaseDB.collection('preferences')
-
     firebaseDB
       .collection('preferences')
+      .where('trip', '==', this.props.match.params.tripId)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, ' => ', doc.data())
+          arrayPrefs.push(doc.data())
         })
       })
+      .catch(function(error) {
+        console.log('Error getting documents: ', error)
+      })
+    console.log(arrayPrefs)
   }
 
-  // const tripRef = firebaseDB.collection('trip').doc()
-
   render() {
+    console.log(this.arrayPrefs)
     return (
       <div>
-        <h1>Should be data visualization here</h1>
-        <button type="submit" onClick={this.getData.bind(this)}>
-          Fetch Data From Firebase
-        </button>
+        <h1>Trip Preferences:</h1>
+        {/* <BudgetChart arrayPrefs={this.arrayPrefs} /> */}
       </div>
     )
   }
