@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'test') {
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-// if (process.env.NODE_ENV !== 'production') require('../secrets')
+if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
@@ -71,17 +71,17 @@ const createApp = () => {
 
   // send an email!!
   app.post('/send', function(req, res, next) {
-    console.log('we\'re in the post request!')
+    console.log("we're in the post request!")
     console.log('request body', req.body)
 
     // create a transporter object with the information for our email account
     let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
+      host: 'smtp.gmail.com',
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: 'flock.travel.planner@gmail.com', 
-        pass: password 
+        user: 'flock.travel.planner@gmail.com',
+        pass: password
       }
     })
 
@@ -92,28 +92,23 @@ const createApp = () => {
     // console.log('url is', url)
 
     // for each email in the array, send an email
-    emails.forEach(async (email) => {
+    emails.forEach(async email => {
       try {
         if (email) {
-        let info = await transporter.sendMail({
-        from: '"Flock Travel 🦆" <flock.travel.planner@gmail.com.com>', // sender address
-        to: email, // list of receivers
-        subject: `${userName} has invited you on a trip!`, // Subject line
-        text: `Your friend ${userName} has invited you on a trip! Go here to set your preferences: ${url}`, // plain text body
-        html: `<p>Your friend ${userName} has invited you on a trip! <a href="${url}">Go here</a> to set your preferences.</p>` // html body
-      })
+          let info = await transporter.sendMail({
+            from: '"Flock Travel 🦆" <flock.travel.planner@gmail.com.com>', // sender address
+            to: email, // list of receivers
+            subject: `${userName} has invited you on a trip!`, // Subject line
+            text: `Your friend ${userName} has invited you on a trip! Go here to set your preferences: ${url}`, // plain text body
+            html: `<p>Your friend ${userName} has invited you on a trip! <a href="${url}">Go here</a> to set your preferences.</p>` // html body
+          })
 
-      console.log("Message sent: %s", info.messageId)
-      }
-
-      }
-
-      catch(error) {
+          console.log('Message sent: %s', info.messageId)
+        }
+      } catch (error) {
         console.log(error)
       }
-      
-    }
-    )
+    })
 
     res.json('emails sent')
   })
