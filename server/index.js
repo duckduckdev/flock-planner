@@ -65,10 +65,6 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  // auth and api routes
-  app.use('/auth', require('./auth'))
-  app.use('/api', require('./api'))
-
   // send an email!!
   app.post('/send', function(req, res, next) {
     console.log("we're in the post request!")
