@@ -13,5 +13,5 @@ export {default as BudgetChart} from './budgetChart'
 export {default as Visual} from './visual'
 export {default as Map} from './map'
 
-export {default as LoginView} from './Login/LoginView'
-export {default as SignUpView} from './SignUp/SignUpView'
+export {default as Login} from './login'
+export {default as Signup} from './signup'
