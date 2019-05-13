@@ -37,7 +37,6 @@ export class UserHome extends React.Component {
   }
 
   render() {
-    console.log('this.state.trips', this.state.trips)
     return this.state.loading ? (
       'this is still loading'
     ) : (

@@ -31,18 +31,12 @@ class Visual extends React.Component {
         console.log('Error getting documents: ', error)
       })
 
-    console.log('data', data)
-    // await this.setState({
-    //     arrayPrefs: [...data]
-    // })
-
     const doc = await firebaseDB
       .collection('locationPrefs')
       .doc(this.props.match.params.tripId)
       .get()
 
     let locationPrefs = doc.data()
-    console.log('location prefs from visual', locationPrefs)
 
     await this.setState({
       locationPrefs: locationPrefs,
