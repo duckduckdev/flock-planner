@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import firebase from '../firebase'
-import Calendar from 'rc-calendar'
+import Calendar from './CalendarTest'
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -143,6 +143,7 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
+          <Calendar />
           <h2>Which dates do you prefer?</h2>
           <div className="answer">
             <label>
@@ -173,7 +174,6 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
-          <Calendar />
           <h2>How much do you want to spend overall on the trip?</h2>
           <div className="radio">
             <label>

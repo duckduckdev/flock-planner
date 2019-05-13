@@ -15,3 +15,7 @@ export {default as Map} from './map/map'
 
 export {default as Login} from './login'
 export {default as Signup} from './signup'
+export {default as CalendarTest} from './CalendarTest'
+export {default as CalendarTest2} from './CalendarTest2'
+export {default as CalendarTest3} from './CalendarTest3'
+export {default as CalendarTest4} from './CalendarTest4'
