@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
+import Calendar from './CalendarTest'
 import firebase, {firebaseApp} from '../firebase'
-import Calendar from 'rc-calendar'
 import {TripsLayer} from 'deck.gl'
 
 class TripPrefForm extends Component {
@@ -154,6 +154,7 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
+          <Calendar />
           <h2>Which dates do you prefer?</h2>
           <div className="answer">
             <label>
@@ -184,7 +185,6 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
-          <Calendar />
           <h2>How much do you want to spend overall on the trip?</h2>
           <div className="radio">
             <label>
