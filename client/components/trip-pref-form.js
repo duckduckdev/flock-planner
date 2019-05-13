@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import firebase from '../firebase'
+import Calendar from 'rc-calendar'
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -26,8 +27,13 @@ class TripPrefForm extends Component {
     this.setState({budget: event.target.value})
   }
 
-  addPreferences(event) {
+  async addPreferences(event) {
     event.preventDefault()
+
+    let tripId = this.props.match.params.tripId
+
+    // we will replace with an actual user Id once we figure out how to do this
+    let userId = 'guest'
 
     const firebaseDB = firebase.firestore()
 
@@ -41,6 +47,54 @@ class TripPrefForm extends Component {
       budget: this.state.budget,
       trip: this.props.match.params.tripId
     })
+
+    //initialize values for locationPrefs and voted
+    let locationPrefs = {}
+    let voted = []
+
+    // if this data already exists in firestore (meaning the trip already has preferences from other users)
+    // then replace the newly initialized prefs and voted with data from the firstore
+    let doc = await firebaseDB
+    .collection('locationPrefs')
+    .doc(tripId)
+    .get()
+
+    // let data = doc.data()
+    // console.log('data from doc', data)
+
+    if (doc.exists) {
+      locationPrefs = doc.data().prefs
+      voted = doc.data().voted
+    }
+
+    console.log('locationPrefs', locationPrefs)
+
+    // now add the new location data to the location prefs object
+    let locationArray = [this.state.firstLocation, this.state.secondLocation, this.state.thirdLocation]
+    
+    locationArray.forEach(location => {
+      if (locationPrefs.hasOwnProperty(location)) {
+        locationPrefs[location]++
+      }
+      else {
+        locationPrefs[location] = 1
+      }
+    }
+    )
+
+    console.log('location prefs is now', locationPrefs)
+
+    // and record that the person with this user Id has already voted
+    voted.push(userId)
+
+    // and overwrite the data on the firestore
+    await firebaseDB
+      .collection('locationPrefs')
+      .doc(tripId)
+      .set({
+        prefs: locationPrefs,
+        voted: voted
+      })
 
     this.setState({
       firstLocation: '',
@@ -119,6 +173,7 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
+          <Calendar />
           <h2>How much do you want to spend overall on the trip?</h2>
           <div className="radio">
             <label>
