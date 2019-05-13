@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import firebase from '../firebase'
 import Calendar from './CalendarTest'
+import firebase, {firebaseApp} from '../firebase'
+import Calendar from 'rc-calendar'
+import {TripsLayer} from 'deck.gl'
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -12,7 +14,8 @@ class TripPrefForm extends Component {
       firstDates: '',
       secondDates: '',
       thirdDates: '',
-      budget: ''
+      budget: '',
+      tripName: ''
     }
     this.handleOptionChange = this.handleOptionChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -29,13 +32,25 @@ class TripPrefForm extends Component {
 
   async addPreferences(event) {
     event.preventDefault()
-
+    const firebaseDB = firebase.firestore()
     let tripId = this.props.match.params.tripId
 
-    // we will replace with an actual user Id once we figure out how to do this
-    let userId = 'guest'
+    const tripRef = await firebaseDB.collection('trips')
+    let trip = {}
+    await tripRef
+      .doc(tripId)
+      .get()
+      .then(doc => (trip = doc.data()))
+      .catch(function(error) {
+        console.log('Error getting documents: ', error)
+      })
 
-    const firebaseDB = firebase.firestore()
+    console.log('tripppp', trip)
+
+    const user = firebaseApp.auth().currentUser
+    // we will replace with an actual user Id once we figure out how to do this
+
+    let userId = user.email
 
     const preferencesRef = firebaseDB.collection('preferences').add({
       firstLocation: this.state.firstLocation,
@@ -45,7 +60,9 @@ class TripPrefForm extends Component {
       secondDates: this.state.secondDates,
       thirdDates: this.state.thirdDates,
       budget: this.state.budget,
-      trip: this.props.match.params.tripId
+      trip: trip,
+      tripId: tripId,
+      user: userId
     })
 
     //initialize values for locationPrefs and voted
@@ -55,34 +72,29 @@ class TripPrefForm extends Component {
     // if this data already exists in firestore (meaning the trip already has preferences from other users)
     // then replace the newly initialized prefs and voted with data from the firstore
     let doc = await firebaseDB
-    .collection('locationPrefs')
-    .doc(tripId)
-    .get()
-
-    // let data = doc.data()
-    // console.log('data from doc', data)
+      .collection('locationPrefs')
+      .doc(tripId)
+      .get()
 
     if (doc.exists) {
       locationPrefs = doc.data().prefs
       voted = doc.data().voted
     }
 
-    console.log('locationPrefs', locationPrefs)
-
     // now add the new location data to the location prefs object
-    let locationArray = [this.state.firstLocation, this.state.secondLocation, this.state.thirdLocation]
-    
+    let locationArray = [
+      this.state.firstLocation,
+      this.state.secondLocation,
+      this.state.thirdLocation
+    ]
+
     locationArray.forEach(location => {
       if (locationPrefs.hasOwnProperty(location)) {
         locationPrefs[location]++
-      }
-      else {
+      } else {
         locationPrefs[location] = 1
       }
-    }
-    )
-
-    console.log('location prefs is now', locationPrefs)
+    })
 
     // and record that the person with this user Id has already voted
     voted.push(userId)

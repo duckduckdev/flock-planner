@@ -1,20 +1,61 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-//import {connect} from 'react-redux'
-import TripPrefForm from './trip-pref-form'
-import {firebaseApp} from '../firebase'
 import NewTripForm from './newTripForm'
+import firebase, {firebaseApp} from '../firebase'
 
-const user = firebaseApp.auth().currentUser
+export class UserHome extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      trips: [],
+      loading: true
+    }
+  }
 
-export const UserHome = props => {
-  return (
-    <div>
-      <h3>Welcome</h3>
-      <NewTripForm props={props} />
-      {/* <TripPrefForm props={props} /> */}
-    </div>
-  )
+  async componentDidMount() {
+    const user = await firebaseApp.auth().currentUser
+    const firebaseDB = await firebase.firestore()
+
+    const tripPref = await firebaseDB.collection('preferences')
+    const data = []
+
+    await tripPref
+      .where('user', '==', user.email)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          data.push(doc.data())
+        })
+      })
+      .catch(function(error) {
+        console.log('Error getting documents: ', error)
+      })
+
+    await this.setState({
+      trips: data,
+      loading: false
+    })
+  }
+
+  render() {
+    return this.state.loading ? (
+      'this is still loading'
+    ) : (
+      <div>
+        <h3>Welcome</h3>
+        <ul>
+          {this.state.trips.map(tripObj => (
+            <li key={tripObj.trip.tripName}>
+              <a href={`/visual/:${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+            </li>
+          ))}
+        </ul>
+
+        <h1>Create a new trip:</h1>
+        <NewTripForm props={this.props} />
+        <a href="/map/:tripId">Take me to map</a>
+      </div>
+    )
+  }
 }
 
 export default UserHome

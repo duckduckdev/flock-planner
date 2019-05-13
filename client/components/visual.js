@@ -20,21 +20,16 @@ class Visual extends React.Component {
     const firebaseDB = await firebase.firestore()
     await firebaseDB
       .collection('preferences')
-      .where('trip', '==', this.props.match.params.tripId)
+      .where('tripId', '==', this.props.match.params.tripId)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           data.push(doc.data())
-          })
         })
-        .catch(function(error) {
-          console.log('Error getting documents: ', error)
-        })
-
-    console.log('data', data)    
-    // await this.setState({
-    //     arrayPrefs: [...data]
-    // })
+      })
+      .catch(function(error) {
+        console.log('Error getting documents: ', error)
+      })
 
     const doc = await firebaseDB
       .collection('locationPrefs')
@@ -42,13 +37,11 @@ class Visual extends React.Component {
       .get()
 
     let locationPrefs = doc.data()
-    console.log('location prefs from visual', locationPrefs)
 
     await this.setState({
       locationPrefs: locationPrefs,
       arrayPrefs: [...data]
     })
-
   }
 
   componentDidMount() {
@@ -62,8 +55,11 @@ class Visual extends React.Component {
         <div>
           <h1>Trip Preferences:</h1>
           <h2>Options for Destinations:</h2>
-          <LocationList arrayPrefs={this.state.arrayPrefs} locationPrefs={this.state.locationPrefs}
-          tripId={this.props.match.params.tripId}/>
+          <LocationList
+            arrayPrefs={this.state.arrayPrefs}
+            locationPrefs={this.state.locationPrefs}
+            tripId={this.props.match.params.tripId}
+          />
           <h2>Options for Dates:</h2>
           <DateList arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
@@ -71,7 +67,7 @@ class Visual extends React.Component {
         </div>
       )
     }
-}
+  }
 }
 
 export default Visual

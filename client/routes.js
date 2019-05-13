@@ -99,7 +99,7 @@ class App extends React.Component {
 
           <PrivateRoute
             exact
-            path="/map"
+            path="/map/:tripId"
             component={Map}
             authenticated={authenticated}
             currentUser={currentUser}
