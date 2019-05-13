@@ -12,7 +12,7 @@ export const UserHome = props => {
     <div>
       <h3>Welcome</h3>
       <NewTripForm props={props} />
-      {/* <TripPrefForm props={props} /> */}
+      <a href="/map/:tripId">Take me to map</a>
     </div>
   )
 }
