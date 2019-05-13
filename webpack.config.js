@@ -28,13 +28,8 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-<<<<<<< HEAD
-        test:/\.css$/,
-        use:['style-loader','css-loader']
-=======
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
->>>>>>> master
       }
     ]
   }

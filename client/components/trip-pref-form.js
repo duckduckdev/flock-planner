@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Calendar from './CalendarTest'
 import firebase, {firebaseApp} from '../firebase'
-import Calendar from 'rc-calendar'
 import {TripsLayer} from 'deck.gl'
 
 class TripPrefForm extends Component {
