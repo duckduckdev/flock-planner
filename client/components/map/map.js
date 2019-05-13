@@ -7,6 +7,7 @@ import DeckGL, {GeoJsonLayer} from 'deck.gl'
 import Geocoder from 'react-map-gl-geocoder'
 import Pin from './pin'
 import PlaceInfo from './placeInfo'
+// import Loader from 'react-loader-spinner'
 
 // Please be a decent human and don't abuse my Mapbox API token.
 // If you fork this sandbox, replace my API token with your own.
@@ -27,7 +28,8 @@ class Map extends Component {
         zoom: 8
       },
       searchResultLayer: null,
-      popupInfo: null
+      popupInfo: null,
+      loading: true
     }
   }
 
@@ -36,6 +38,7 @@ class Map extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.resize)
     this.resize()
+    this.setState({loading: false})
   }
 
   componentWillUnmount() {
@@ -132,7 +135,10 @@ class Map extends Component {
   render() {
     const {viewport, searchResultLayer} = this.state
 
-    return (
+    return this.state.loading ? (
+      // <Loader type="Grid" color="#00BFFF" height="100" width="100" />
+      <h6>Loading...</h6>
+    ) : (
       <MapGL
         ref={this.mapRef}
         {...viewport}
