@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import firebase, {firebaseApp} from '../firebase'
 import Calendar from 'rc-calendar'
+import {TripsLayer} from 'deck.gl'
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class TripPrefForm extends Component {
       firstDates: '',
       secondDates: '',
       thirdDates: '',
-      budget: ''
+      budget: '',
+      tripName: ''
     }
     this.handleOptionChange = this.handleOptionChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -29,14 +31,25 @@ class TripPrefForm extends Component {
 
   async addPreferences(event) {
     event.preventDefault()
+    const firebaseDB = firebase.firestore()
     let tripId = this.props.match.params.tripId
+
+    const tripRef = await firebaseDB.collection('trips')
+    let trip = {}
+    await tripRef
+      .doc(tripId)
+      .get()
+      .then(doc => (trip = doc.data()))
+      .catch(function(error) {
+        console.log('Error getting documents: ', error)
+      })
+
+    console.log('tripppp', trip)
 
     const user = firebaseApp.auth().currentUser
     // we will replace with an actual user Id once we figure out how to do this
 
     let userId = user.email
-
-    const firebaseDB = firebase.firestore()
 
     const preferencesRef = firebaseDB.collection('preferences').add({
       firstLocation: this.state.firstLocation,
@@ -46,7 +59,7 @@ class TripPrefForm extends Component {
       secondDates: this.state.secondDates,
       thirdDates: this.state.thirdDates,
       budget: this.state.budget,
-      trip: tripId,
+      trip: trip,
       user: userId
     })
 

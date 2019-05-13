@@ -8,7 +8,7 @@ export class UserHome extends React.Component {
     super(props)
     this.state = {
       trips: [],
-      loading: false
+      loading: true
     }
   }
 
@@ -17,9 +17,7 @@ export class UserHome extends React.Component {
     const firebaseDB = await firebase.firestore()
 
     const tripPref = await firebaseDB.collection('preferences')
-    const trips = await firebaseDB.collection('trips')
     const data = []
-    const tripData = []
 
     await tripPref
       .where('user', '==', user.email)
@@ -33,43 +31,23 @@ export class UserHome extends React.Component {
         console.log('Error getting documents: ', error)
       })
 
-    console.log('alltripPrefs', data)
-
-    await data.map(tripId => {
-      trips
-        .doc(tripId)
-        .get()
-        .then(function(doc) {
-          if (doc.exists) {
-            tripData.push(doc.data().tripName)
-            console.log('Document data:', doc.data())
-          } else {
-            // doc.data() will be undefined in this case
-            console.log('No such document!')
-          }
-        })
-        .catch(function(error) {
-          console.log('Error getting document:', error)
-        })
-    })
-    console.log('tripdata', tripData)
-    // return tripData
-    this.setState({
-      trips: tripData,
-      loading: true
+    await this.setState({
+      trips: data,
+      loading: false
     })
   }
 
   render() {
-    // const allTripNames = this.getAllTrips()
-    console.log('ALLTRIPANMES', this.state.trips)
-
-    return this.loading ? (
+    return this.state.loading ? (
       'this is still loading'
     ) : (
       <div>
         <h3>Welcome</h3>
-        <h6> {this.state.trips[0]}</h6>
+        <ul>
+          {this.state.trips.map(tripObj => (
+            <li key={tripObj.tripName}>{tripObj.tripName}</li>
+          ))}
+        </ul>
 
         <h1>Create a new trip:</h1>
         <NewTripForm props={this.props} />
