@@ -1,8 +1,6 @@
 import React from 'react'
 import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
 import {firebaseApp} from './firebase'
 import {
   Navbar,
@@ -11,7 +9,9 @@ import {
   TripPrefForm,
   Visual,
   UserHome,
-  Map
+  Map,
+  Login,
+  Signup
 } from './components'
 
 class App extends React.Component {
@@ -61,7 +61,7 @@ class App extends React.Component {
             currentUser={currentUser}
           />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/signup" component={Signup} />
           <Route
             exact
             path="/preference/:tripId"
