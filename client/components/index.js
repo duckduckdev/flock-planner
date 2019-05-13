@@ -11,7 +11,7 @@ export {default as AddTravelers} from './AddTravelers'
 export {default as BudgetChart} from './budgetChart'
 
 export {default as Visual} from './visual'
-export {default as Map} from './map'
+export {default as Map} from './map/map'
 
 export {default as Login} from './login'
 export {default as Signup} from './signup'
