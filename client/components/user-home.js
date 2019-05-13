@@ -1,7 +1,6 @@
 import React from 'react'
 import NewTripForm from './newTripForm'
 import firebase, {firebaseApp} from '../firebase'
-import {Renderbuffer} from '@luma.gl/core'
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ export class UserHome extends React.Component {
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          data.push(doc.data().trip)
+          data.push(doc.data())
         })
       })
       .catch(function(error) {
@@ -38,6 +37,7 @@ export class UserHome extends React.Component {
   }
 
   render() {
+    console.log('this.state.trips', this.state.trips)
     return this.state.loading ? (
       'this is still loading'
     ) : (
@@ -45,7 +45,9 @@ export class UserHome extends React.Component {
         <h3>Welcome</h3>
         <ul>
           {this.state.trips.map(tripObj => (
-            <li key={tripObj.tripName}>{tripObj.tripName}</li>
+            <li key={tripObj.trip.tripName}>
+              <a href={`/visual/:${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+            </li>
           ))}
         </ul>
 

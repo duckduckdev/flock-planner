@@ -60,6 +60,7 @@ class TripPrefForm extends Component {
       thirdDates: this.state.thirdDates,
       budget: this.state.budget,
       trip: trip,
+      tripId: tripId,
       user: userId
     })
 
