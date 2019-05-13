@@ -1,70 +1,12 @@
-// import React from 'react'
-// import ReactMapGL, {Marker} from 'react-map-gl'
-// import Geocoder from 'react-map-gl-geocoder'
-// // import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-
-// // import Dropdown from './dropdown.tsx'
-
-// class Map extends React.Component {
-//   state = {
-//     viewport: {
-//       width: 700,
-//       height: 700,
-//       latitude: 40.7308,
-//       longitude: -73.99733,
-//       zoom: 12
-//     }
-//   }
-
-//   mapRef = React.createRef()
-
-//   render() {
-//     const TOKEN =
-//       'pk.eyJ1Ijoia2ltbWExMjYxIiwiYSI6ImNqdDRqeW0yeDFiN2w0M21qYWZ1bnBzZWoifQ.O-7JvQWK8pqXWgSiwIN8tQ'
-//     return (
-//       <ReactMapGL
-//         mapboxApiAccessToken={TOKEN}
-//         {...this.state.viewport}
-//         onViewportChange={viewport => this.setState({viewport})}
-//       >
-//         {/* <Dropdown
-//           onSearch={this.onSearch}
-//           onSelectItem={this.onSelectItem}
-//           options={options}
-//         /> */}
-//         <Geocoder
-//           mapRef={this.mapRef}
-//           onViewportChange={viewport => this.setState({viewport})}
-//           mapboxApiAccessToken={TOKEN}
-//           position="top-left"
-//         />
-
-//         <Marker
-//           latitude={40.7308}
-//           longitude={-73.99733}
-//           offsetLeft={-20}
-//           offsetTop={-10}
-//         >
-//           {/* <div>You are here</div> */}
-//           <img
-//             src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
-//             height="20"
-//             width="20"
-//           />
-//         </Marker>
-//       </ReactMapGL>
-//     )
-//   }
-// }
-
 //TODO: testing sandbox
-// import 'mapbox-gl/dist/mapbox-gl.css'
-// import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+
 import React, {Component} from 'react'
 
 import MapGL, {Marker, Popup} from 'react-map-gl'
 import DeckGL, {GeoJsonLayer} from 'deck.gl'
 import Geocoder from 'react-map-gl-geocoder'
+import Pin from './pin'
+import PlaceInfo from './placeInfo'
 
 // Please be a decent human and don't abuse my Mapbox API token.
 // If you fork this sandbox, replace my API token with your own.
@@ -73,16 +15,20 @@ const MAPBOX_TOKEN =
   'pk.eyJ1Ijoia2ltbWExMjYxIiwiYSI6ImNqdDRqeW0yeDFiN2w0M21qYWZ1bnBzZWoifQ.O-7JvQWK8pqXWgSiwIN8tQ'
 
 class Map extends Component {
-  state = {
-    viewport: {
-      width: 400,
-      height: 400,
-      latitude: 37.7577,
-      longitude: -122.4376,
-      zoom: 8
-    },
-    searchResultLayer: null,
-    showPopup: false
+  constructor() {
+    super()
+
+    this.state = {
+      viewport: {
+        width: 400,
+        height: 400,
+        latitude: 37.7577,
+        longitude: -122.4376,
+        zoom: 8
+      },
+      searchResultLayer: null,
+      popupInfo: null
+    }
   }
 
   mapRef = React.createRef()
@@ -121,29 +67,49 @@ class Map extends Component {
     })
   }
 
-  handleOnResult = async event => {
+  handleOnResult = event => {
     console.log(event.result)
 
-    const newSearchResultLayer = new GeoJsonLayer({
-      id: 'search-result',
-      data: event.result.geometry,
-      getFillColor: [255, 0, 0, 128],
-      getRadius: 1000,
-      pointRadiusMinPixels: 10,
-      pointRadiusMaxPixels: 10
-    })
     this.setState({
-      searchResultLayer: newSearchResultLayer
+      searchResultLayer: new GeoJsonLayer({
+        id: 'search-result',
+        data: event.result.geometry,
+        getFillColor: [255, 0, 0, 128],
+        getRadius: 1000,
+        pointRadiusMinPixels: 10,
+        pointRadiusMaxPixels: 10
+      })
     })
+
     console.log(
       'HII checking newSearchResultLayer',
       this.state.searchResultLayer
     )
   }
 
-  handleMarkerClick = event => {
-    event.preventDefault()
+  _renderPlaceMarker = () => {
+    return (
+      <Marker
+        // key={`marker-${index}`}
+        longitude={this.state.searchResultLayer.props.data.coordinates[0]}
+        latitude={this.state.searchResultLayer.props.data.coordinates[1]}
+      >
+        <Pin
+          size={20}
+          onClick={() =>
+            this.setState({
+              popupInfo: {
+                placeName: 'PlaceHolder Name',
+                address: '101 Grace Street - Place Holder Address'
+              }
+            })
+          }
+        />
+      </Marker>
+    )
+  }
 
+  _renderPopup() {
     const {popupInfo} = this.state
 
     return (
@@ -153,11 +119,11 @@ class Map extends Component {
           anchor="top"
           longitude={this.state.searchResultLayer.props.data.coordinates[0]}
           latitude={this.state.searchResultLayer.props.data.coordinates[1]}
-          // closeOnClick={false}
-          // onClose={() => this.setState({popupInfo: null})}
+          closeOnClick={false}
+          onClose={() => this.setState({popupInfo: null})}
         >
-          <div>hi im here!</div>
-          {/* <CityInfo info={popupInfo} /> */}
+          <PlaceInfo info={popupInfo} />
+          <p>hi pop up is working!</p>
         </Popup>
       )
     )
@@ -181,28 +147,9 @@ class Map extends Component {
           position="top-left"
         />
         {/* <DeckGL {...viewport} layers={[searchResultLayer]} /> */}
-        {this.state.searchResultLayer && (
-          <Marker
-            latitude={this.state.searchResultLayer.props.data.coordinates[1]}
-            longitude={this.state.searchResultLayer.props.data.coordinates[0]}
-            offsetLeft={-20}
-            offsetTop={-10}
-            onClick={this.handleMarkerClick}
-          >
-            <img
-              src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
-              height="30"
-              width="30"
-            />
-          </Marker>
-        )}
-        {/* {this.showPopup && (
-          <Popup
-            coordinates={this.state.searchResultLayer.props.data.coordinates}
-          >
-            <div>hi im here!</div>
-          </Popup>
-        )} */}
+
+        {this.state.searchResultLayer && this._renderPlaceMarker()}
+        {this.state.searchResultLayer && this._renderPopup()}
       </MapGL>
     )
   }
