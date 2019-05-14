@@ -4,20 +4,24 @@ import 'react-tabs/style/react-tabs.css'
 import Map from './map/map'
 import Visual from './visual'
 
-const MapVisualTabs = () => (
-  <Tabs>
-    <TabList>
-      <Tab>Preference Breakdown</Tab>
-      <Tab>Interactive Map</Tab>
-    </TabList>
+class MapVisualTabs extends React.Component {
+  render() {
+    return (
+      <Tabs>
+        <TabList>
+          <Tab>Preference Breakdown</Tab>
+          <Tab>Interactive Map</Tab>
+        </TabList>
 
-    <TabPanel>
-      <Visual />
-    </TabPanel>
-    <TabPanel>
-      <Map />
-    </TabPanel>
-  </Tabs>
-)
+        <TabPanel>
+          <Visual trip={this.props.match.params.tripId} />
+        </TabPanel>
+        <TabPanel>
+          <Map />
+        </TabPanel>
+      </Tabs>
+    )
+  }
+}
 
 export default MapVisualTabs
