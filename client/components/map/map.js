@@ -38,7 +38,7 @@ class Map extends Component {
     window.addEventListener('resize', this.resize)
     this.resize()
     //subscribe to map firebase
-    let tripId = this.props.match.params.tripId
+    let tripId = this.props.trip
 
     const firebaseDB = firebase.firestore()
 
@@ -97,7 +97,7 @@ class Map extends Component {
     const category = event.result.properties.category
     const coordinates = event.result.geometry.coordinates
     //write map locations to firebase
-    let tripId = this.props.match.params.tripId
+    let tripId = this.props.trip
 
     const firebaseDB = firebase.firestore()
 
