@@ -173,7 +173,6 @@ class Map extends Component {
           onClose={() => this.setState({popupInfo: null})}
         >
           <PlaceInfo info={popupInfo} />
-          <p>hi pop up is working!</p>
         </Popup>
       )
     )

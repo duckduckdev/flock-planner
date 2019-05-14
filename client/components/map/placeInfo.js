@@ -2,13 +2,12 @@ import React, {PureComponent} from 'react'
 
 export default class PlaceInfo extends PureComponent {
   render() {
-    const {info} = this.props
-    const displayName = info.placeName
+    console.log('PROPS', this.props)
+    const {name, category} = this.props.info
 
     return (
       <div>
-        <p>{displayName}</p>
-        <p>{info.address}</p>
+        <p>{name}</p>
       </div>
     )
   }
