@@ -47,7 +47,7 @@ class Visual extends React.Component {
   }
   render() {
     const tripId = this.props.trip
-    console.log('this.props', this.props)
+
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>
     } else {
@@ -64,10 +64,10 @@ class Visual extends React.Component {
           <DateList arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
           <BudgetChart arrayPrefs={this.state.arrayPrefs} />
-          <h1>
+          <p>
             Once your group has made a decision as to where to go and for which
             dates:
-          </h1>
+          </p>
           <button
             type="button"
             onClick={() => this.props.history.push(`/finalizeTrip/${tripId}`)}

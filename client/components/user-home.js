@@ -1,7 +1,5 @@
 import React from 'react'
-import NewTripForm from './newTripForm'
 import firebase, {firebaseApp} from '../firebase'
-import MapVisualTabs from './mapVisualTabs'
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -46,7 +44,7 @@ export class UserHome extends React.Component {
         <ul>
           {this.state.trips.length ? (
             this.state.trips.map(tripObj => (
-              <li key={tripObj.trip.tripName}>
+              <li key={tripObj.tripId}>
                 <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
               </li>
             ))
