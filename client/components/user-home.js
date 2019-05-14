@@ -45,7 +45,7 @@ export class UserHome extends React.Component {
         <ul>
           {this.state.trips.map(tripObj => (
             <li key={tripObj.trip.tripName}>
-              <a href={`/visual/:${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+              <a href={`/visual/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
             </li>
           ))}
         </ul>
