@@ -1,5 +1,9 @@
 import React from 'react'
 import firebase from '../firebase'
+import Calendar from './Calendar'
+/**
+ * COMPONENT
+ */
 
 class NewTripForm extends React.Component {
   constructor(props) {
@@ -52,6 +56,9 @@ class NewTripForm extends React.Component {
               value={this.state.tripName}
             />
           </div>
+          <Calendar />
+          <Calendar />
+          <Calendar />
           <div>
             <button type="submit">Add Trip</button>
           </div>
