@@ -32,7 +32,8 @@ export default class Calendar extends Component {
     const range = DateUtils.addDayToRange(day, this.state)
     this.setState(range)
 
-    console.log(range)
+    // console.log(range)
+    this.props.getDates(range)
   }
 
   handleResetClick() {
@@ -69,6 +70,7 @@ export default class Calendar extends Component {
         <button type="button" className="link" onClick={this.handleResetClick}>
                 Reset
               </button>
+        <button type="submit" >Add Dates</button>
         <Helmet>
           <style>{`
   .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
