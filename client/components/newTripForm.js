@@ -1,9 +1,6 @@
 import React from 'react'
 import firebase from '../firebase'
 import Calendar from './Calendar'
-/**
- * COMPONENT
- */
 
 class NewTripForm extends React.Component {
   constructor(props) {
@@ -15,7 +12,7 @@ class NewTripForm extends React.Component {
     }
     this.updateInput = this.updateInput.bind(this)
     this.addTrip = this.addTrip.bind(this)
-  }
+  } 
 
   updateInput = event => {
     this.setState({[event.target.name]: event.target.value})
@@ -38,7 +35,7 @@ class NewTripForm extends React.Component {
       finalDates: ''
     })
 
-    this.props.props.history.push(`/addTravelers/${tripRef.id}`)
+    this.props.history.push(`/addDates/${tripRef.id}`)
   }
 
   render() {
@@ -56,9 +53,6 @@ class NewTripForm extends React.Component {
               value={this.state.tripName}
             />
           </div>
-          <Calendar />
-          <Calendar />
-          <Calendar />
           <div>
             <button type="submit">Add Trip</button>
           </div>
@@ -67,4 +61,5 @@ class NewTripForm extends React.Component {
     )
   }
 }
+
 export default NewTripForm
