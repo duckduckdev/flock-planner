@@ -4,37 +4,22 @@ import Calendar from './Calendar'
 /**
  * COMPONENT
  */
+
 class NewTripForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // tripAddedFlag: false,
       tripName: '',
       finalDestination: '',
       finalDates: ''
     }
     this.updateInput = this.updateInput.bind(this)
     this.addTrip = this.addTrip.bind(this)
-
-    // this.updateTravelerInput = this.updateTravelerInput.bind(this)
-    // this.switchFlag = this.switchFlag.bind(this)
-    // this.handleAddTraveler = this.handleAddTraveler.bind(this)
   }
 
   updateInput = event => {
     this.setState({[event.target.name]: event.target.value})
   }
-
-  // updateTravelerInput = event => {
-  //   this.setState({
-  //     fellowTravelers: [...this.state.fellowTravelers, event.target.value]
-  //   })
-  // }
-
-  // switchFlag = event => {
-  //   event.preventDefault()
-  //   this.setState({tripAddedFlag: true})
-  // }
 
   addTrip = async event => {
     event.preventDefault()
@@ -47,21 +32,13 @@ class NewTripForm extends React.Component {
       finalDates: this.state.finalDates
     })
 
-    //this reference will have an id that will uniquely identify the trip.
-    //but how can we know what the id is later?
-    console.log(tripRef.id)
-
-    //then I want to add preferences to this later?
-    //this is getting a bit messy
-
-    //resets the form after adding the data
     this.setState({
       tripName: '',
       finalDestination: '',
       finalDates: ''
     })
 
-    this.props.props.history.push(`./addTravelers/${tripRef.id}`)
+    this.props.props.history.push(`/addTravelers/${tripRef.id}`)
   }
 
   render() {

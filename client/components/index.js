@@ -9,6 +9,7 @@ export {default as NewTripForm} from './newTripForm'
 export {default as TripPrefForm} from './trip-pref-form'
 export {default as AddTravelers} from './AddTravelers'
 export {default as BudgetChart} from './budgetChart'
+export {default as FinalizeTripForm} from './finalizeTripForm'
 
 export {default as Visual} from './visual'
 export {default as Map} from './map/map'

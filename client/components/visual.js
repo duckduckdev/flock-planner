@@ -48,6 +48,7 @@ class Visual extends React.Component {
     this.getData()
   }
   render() {
+    const tripId = this.props.match.params.tripId
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>
     } else {
@@ -64,6 +65,11 @@ class Visual extends React.Component {
           <DateList arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
           <BudgetChart arrayPrefs={this.state.arrayPrefs} />
+          <h1>
+            Once your group has made a decision as to where to go and for what
+            dates:
+          </h1>
+          <a href={`/finalizeTrip/${tripId}`}>Click Here</a>
         </div>
       )
     }
