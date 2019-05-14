@@ -1,23 +1,22 @@
 import React from 'react'
-import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
-import 'react-tabs/style/react-tabs.css'
+import {Tabs, Tab, TabPanel, TabList} from 'react-web-tabs'
 import Map from './map/map'
 import Visual from './visual'
+import 'react-web-tabs/dist/react-web-tabs.css'
 
 class MapVisualTabs extends React.Component {
   render() {
     return (
-      <Tabs>
+      <Tabs defaultTab="preferences">
         <TabList>
-          <Tab>Preference Breakdown</Tab>
-          <Tab>Interactive Map</Tab>
+          <Tab tabFor="preferences">Preference Breakdown</Tab>
+          <Tab tabFor="map">Interactive Map</Tab>
         </TabList>
-
-        <TabPanel>
+        <TabPanel tabId="preferences">
           <Visual trip={this.props.match.params.tripId} />
         </TabPanel>
-        <TabPanel>
-          <Map />
+        <TabPanel tabId="map">
+          <Map trip={this.props.match.params.tripId} />
         </TabPanel>
       </Tabs>
     )
