@@ -34,7 +34,7 @@ class NewTripForm extends React.Component {
       finalDates: ''
     })
 
-    this.props.props.history.push(`./addTravelers/${tripRef.id}`)
+    this.props.props.history.push(`/addTravelers/${tripRef.id}`)
   }
 
   render() {
