@@ -47,25 +47,25 @@ class FinalizeTripForm extends React.Component {
       <div>
         <form onSubmit={this.updateTrip}>
           <div>
-            <label htmlFor="destination">
+            <label htmlFor="finalDestination">
               <small>Destination</small>
             </label>
             <input
-              name="destination"
+              name="finalDestination"
               type="text"
               onChange={this.updateInput}
-              value={this.state.destination}
+              value={this.state.finalDestination}
             />
           </div>
           <div>
-            <label htmlFor="dates">
+            <label htmlFor="finalDates">
               <small>Dates</small>
             </label>
             <input
-              name="dates"
+              name="finalDates"
               type="text"
               onChange={this.updateInput}
-              value={this.state.dates}
+              value={this.state.finalDates}
             />
           </div>
           <div>
