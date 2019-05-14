@@ -6,8 +6,8 @@ import LocationList from './locationList'
 import DateList from './datesList'
 
 class Visual extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       arrayPrefs: [],
       locationPrefs: {}
@@ -47,6 +47,7 @@ class Visual extends React.Component {
   }
   render() {
     const tripId = this.props.trip
+    console.log('this.props', this.props)
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>
     } else {
@@ -57,17 +58,22 @@ class Visual extends React.Component {
           <LocationList
             arrayPrefs={this.state.arrayPrefs}
             locationPrefs={this.state.locationPrefs}
-            tripId={this.props.trip}
+            tripId={tripId}
           />
           <h2>Options for Dates:</h2>
           <DateList arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
           <BudgetChart arrayPrefs={this.state.arrayPrefs} />
           <h1>
-            Once your group has made a decision as to where to go and for what
+            Once your group has made a decision as to where to go and for which
             dates:
           </h1>
-          <a href={`/finalizeTrip/${tripId}`}>Click Here</a>
+          <button
+            type="button"
+            onClick={() => this.props.history.push(`/finalizeTrip/${tripId}`)}
+          >
+            Finalize Trip Destination and Dates
+          </button>
         </div>
       )
     }
