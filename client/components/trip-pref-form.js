@@ -117,7 +117,7 @@ class TripPrefForm extends Component {
       budget: ''
     })
 
-    this.props.history.push(`/visual/${this.props.match.params.tripId}`)
+    this.props.history.push(`/trip/${this.props.match.params.tripId}`)
   }
 
   render() {

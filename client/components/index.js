@@ -13,6 +13,7 @@ export {default as FinalizeTripForm} from './finalizeTripForm'
 
 export {default as Visual} from './visual'
 export {default as Map} from './map/map'
+export {default as MapVisualTabs} from './mapVisualTabs'
 
 export {default as Login} from './login'
 export {default as Signup} from './signup'

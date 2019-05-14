@@ -67,6 +67,7 @@
     "react-range-picker": "^0.6.1",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
+    "react-web-tabs": "^1.0.1",
     "react-with-firebase-auth": "^1.0.2",
     "recharts": "^1.5.0",
     "redux": "^4.0.1",

@@ -1,5 +1,3 @@
-//TODO:render out three lists of preferences
-
 import firebase from '../firebase'
 import React from 'react'
 
@@ -20,7 +18,7 @@ class Visual extends React.Component {
     const firebaseDB = await firebase.firestore()
     await firebaseDB
       .collection('preferences')
-      .where('tripId', '==', this.props.match.params.tripId)
+      .where('tripId', '==', this.props.trip)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -33,7 +31,7 @@ class Visual extends React.Component {
 
     const doc = await firebaseDB
       .collection('locationPrefs')
-      .doc(this.props.match.params.tripId)
+      .doc(this.props.trip)
       .get()
 
     let locationPrefs = doc.data()
@@ -48,7 +46,7 @@ class Visual extends React.Component {
     this.getData()
   }
   render() {
-    const tripId = this.props.match.params.tripId
+    const tripId = this.props.trip
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>
     } else {
@@ -59,7 +57,7 @@ class Visual extends React.Component {
           <LocationList
             arrayPrefs={this.state.arrayPrefs}
             locationPrefs={this.state.locationPrefs}
-            tripId={this.props.match.params.tripId}
+            tripId={this.props.trip}
           />
           <h2>Options for Dates:</h2>
           <DateList arrayPrefs={this.state.arrayPrefs} />
