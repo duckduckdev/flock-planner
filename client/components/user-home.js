@@ -43,16 +43,17 @@ export class UserHome extends React.Component {
       <div>
         <h3>Welcome</h3>
         <ul>
-          {this.state.trips.map(tripObj => (
+          {this.state.trips.length? 
+            this.state.trips.map(tripObj => (
             <li key={tripObj.trip.tripName}>
-              <a href={`/visual/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
-            </li>
-          ))}
+              <a href={`/visual/:${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+            </li> 
+          )) :
+          <p>You are not curently part of any trips. Why not create a new one?</p>}
         </ul>
 
-        <h1>Create a new trip:</h1>
-        <NewTripForm props={this.props} />
-        <a href="/map/:tripId">Take me to map</a>
+        <button type="button" onClick={() => this.props.history.push('/createTrip')}>
+        Create New Trip</button>
       </div>
     )
   }

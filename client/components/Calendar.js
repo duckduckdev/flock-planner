@@ -45,7 +45,7 @@ export default class Calendar extends Component {
 
     return (
       <div className="RangeExample">
-        <p>
+        {/* <p>
           {!from && !to && 'Please select the first day.'}
           {from && !to && 'Please select the last day.'}
           {from &&
@@ -58,7 +58,7 @@ export default class Calendar extends Component {
                 Reset
               </button>
             )}
-        </p>
+        </p> */}
         <DayPicker
           className="Selectable"
           numberOfMonths={this.props.numberOfMonths}
@@ -66,6 +66,9 @@ export default class Calendar extends Component {
           modifiers={modifiers}
           onDayClick={this.handleDayClick}
         />
+        <button type="button" className="link" onClick={this.handleResetClick}>
+                Reset
+              </button>
         <Helmet>
           <style>{`
   .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {

@@ -15,7 +15,6 @@ import {
   CalendarTest,
   CalendarTest2,
   CalendarTest3,
-  CalendarTest4,
   FinalizeTripForm
 } from './components'
 
@@ -68,9 +67,8 @@ class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/calendar" component={CalendarTest} />
-          <Route exact path="/calendar3" component={CalendarTest2} />
+          <Route exact path="/calendar2" component={CalendarTest2} />
           <Route exact path="/calendar3" component={CalendarTest3} />
-          <Route exact path="/calendar4" component={CalendarTest4} />
           <Route
             exact
             path="/preference/:tripId"
