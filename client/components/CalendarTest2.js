@@ -1,3 +1,5 @@
+// I'm going to try to make it automatically pick a range
+
 import React, {Component} from 'react'
 import DayPicker, {DateUtils} from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
@@ -19,6 +21,7 @@ export default class Calendar extends Component {
 
         // this is the day that's being selected
         console.log('day is', day)
+        console.log(typeof day)
         // this property tells you whether the day is already selected or not 
         console.log('selected is', selected)
 

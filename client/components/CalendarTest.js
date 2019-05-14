@@ -1,3 +1,5 @@
+// this one selects multiple days
+
 import React, {Component} from 'react'
 import DayPicker, {DateUtils} from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
