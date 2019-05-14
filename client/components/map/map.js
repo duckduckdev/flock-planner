@@ -41,7 +41,6 @@ class Map extends Component {
     let tripId = this.props.match.params.tripId
 
     const firebaseDB = firebase.firestore()
-    console.log('WATS DAT', this)
 
     const updateMapPins = pin => {
       this.setState({mapPins: pin})
@@ -58,7 +57,6 @@ class Map extends Component {
       })
 
     this.setState({loading: false})
-    await console.log('checking mapPins state', this.state.mapPins)
   }
 
   componentWillUnmount() {
@@ -91,7 +89,7 @@ class Map extends Component {
   }
 
   handleOnResult = event => {
-    console.log(event.result)
+    console.log('eventresult', event.result)
 
     const placeId = event.result.id
     const name = event.result.place_name
@@ -100,8 +98,6 @@ class Map extends Component {
     const coordinates = event.result.geometry.coordinates
     //write map locations to firebase
     let tripId = this.props.match.params.tripId
-
-    console.log('tripID in map', tripId)
 
     const firebaseDB = firebase.firestore()
 
@@ -132,15 +128,9 @@ class Map extends Component {
         pointRadiusMaxPixels: 10
       })
     })
-
-    console.log(
-      'HII checking newSearchResultLayer',
-      this.state.searchResultLayer
-    )
   }
 
   _renderPlaceMarker = (place, index) => {
-    console.log('did this EVER HAPPEN checking place', place.coordinates)
     return (
       <Marker
         key={`marker-${index}`}
