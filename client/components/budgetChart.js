@@ -40,7 +40,7 @@ export default class BudgetChart extends PureComponent {
       budgetPrefs: [
         {name: '< $150', value: 0},
         {name: '$150-$500', value: 0},
-        {name: '$500 - $1000', value: 0},
+        {name: '$500-$1000', value: 0},
         {name: '$1000-$1500', value: 0},
         {name: '$1500+', value: 0}
       ]
@@ -49,7 +49,6 @@ export default class BudgetChart extends PureComponent {
   componentDidMount() {
     setTimeout(async () => {
       const data = [...this.state.budgetPrefs]
-      console.log('array of preferences', this.props.arrayPrefs)
       this.props.arrayPrefs
         .map(prefObj => prefObj.budget)
         .forEach(budgetRange => {
@@ -89,21 +88,26 @@ export default class BudgetChart extends PureComponent {
           ))}
         </Pie>
         <Legend verticalAlign="top" height={36} />
-        <Line name="< $150" type="monotone" dataKey="pv" stroke="#8884d8" />
-        <Line name="$150-$500" type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line name="< $150" type="monotone" dataKey="value" stroke="#8884d8" />
         <Line
-          name="$500 - $1000"
+          name="$150-$500"
           type="monotone"
-          dataKey="uv"
+          dataKey="value"
+          stroke="#82ca9d"
+        />
+        <Line
+          name="$500-$1000"
+          type="monotone"
+          dataKey="value"
           stroke="#82ca9d"
         />
         <Line
           name="$1000-$1500"
           type="monotone"
-          dataKey="uv"
+          dataKey="value"
           stroke="#82ca9d"
         />
-        <Line name="$1500+" type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line name="$1500+" type="monotone" dataKey="value" stroke="#82ca9d" />
       </PieChart>
     )
   }
