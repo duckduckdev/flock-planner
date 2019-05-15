@@ -5,10 +5,33 @@ class LocationList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      votes: 1
+      votes: {},
+      loading: true
     }
 
     this.addVote = this.addVote.bind(this)
+  }
+
+  async componentDidMount() {
+    const tripId = this.props.tripId
+    const firebaseDB = await firebase.firestore()
+
+    const updateVotes = newVotes => {
+      this.setState({votes: newVotes})
+    }
+    await firebaseDB
+      .collection('locationPrefs')
+      .doc(tripId)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          let data = doc.data().prefs
+          console.log('HII', data)
+          updateVotes(data)
+        })
+      })
+
+    this.setState({loading: false})
   }
 
   async addVote(location) {
@@ -47,7 +70,7 @@ class LocationList extends React.Component {
       .collection('locationPrefs')
       .doc(tripId)
       .onSnapshot(function(doc) {
-        const newVotes = doc.data().prefs[location]
+        const newVotes = doc.data().prefs
         // const pinArr = Object.keys(fbPins).map(key => fbPins[key])
 
         updateVotes(newVotes)
@@ -66,13 +89,14 @@ class LocationList extends React.Component {
     )
 
     console.log('sorted Locations', sortedLocations)
-
+    console.log('this.stateeeeeeeeeeeeee', this.state)
+    if (this.state.loading) return 'Loadinggg'
     return (
       <div>
         {sortedLocations.map(location => {
           return (
             <div key={location}>
-              {`${location} ${this.state.votes}`}
+              {`${location} ${this.state.votes[location]}`}
               <button type="button" onClick={() => this.addVote(location)}>
                 ❤️
               </button>
