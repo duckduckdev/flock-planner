@@ -1,6 +1,7 @@
 import React from 'react'
 import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
+import PrivateRoute2 from './components/PrivateRoute2'
 import {firebaseApp} from './firebase'
 import {
   Navbar,
@@ -71,11 +72,12 @@ class App extends React.Component {
           <Route exact path="/calendar" component={CalendarTest} />
           <Route exact path="/calendar2" component={CalendarTest2} />
           <Route exact path="/calendar3" component={CalendarTest3} />
-          <Route
+          <PrivateRoute2
             exact
             path="/preference/:tripId"
             component={TripPrefForm}
             currentUser={currentUser}
+            authenticated={authenticated}
           />
           <Route
             exact
