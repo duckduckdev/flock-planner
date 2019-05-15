@@ -19,6 +19,7 @@ import {
   MapVisualTabs,
   AddDates
 } from './components'
+import Yelp from './components/map/YelpTest'
 
 class App extends React.Component {
   constructor() {
@@ -71,6 +72,7 @@ class App extends React.Component {
           <Route exact path="/calendar" component={CalendarTest} />
           <Route exact path="/calendar2" component={CalendarTest2} />
           <Route exact path="/calendar3" component={CalendarTest3} />
+          {/* <Route exact path="/yelp" component={Yelp} /> */}
           <Route
             exact
             path="/preference/:tripId"
