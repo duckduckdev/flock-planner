@@ -1,5 +1,6 @@
 import React from 'react'
 import firebase from '../firebase'
+import '../style/finalize.css'
 
 class FinalizeTripForm extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class FinalizeTripForm extends React.Component {
   }
 
   updateInput = event => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   updateTrip = async event => {
@@ -44,7 +45,7 @@ class FinalizeTripForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="finalizeBody">
         <form onSubmit={this.updateTrip}>
           <div>
             <label htmlFor="finalDestination">

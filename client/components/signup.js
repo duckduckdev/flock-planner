@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
-import {withRouter, Redirect} from 'react-router'
-import firebase, {firebaseApp} from '../firebase'
+import React, { Component } from 'react'
+import { withRouter, Redirect } from 'react-router'
+import firebase, { firebaseApp } from '../firebase'
 import FirebaseAuthForm from './firebaseAuthForm'
+import '../style/signUp.css'
 
 class SignUp extends Component {
   handleSignUp = async event => {
     event.preventDefault()
-    const {email, password} = event.target.elements
+    const { email, password } = event.target.elements
     try {
       const user = await firebaseApp
         .auth()
@@ -18,10 +19,10 @@ class SignUp extends Component {
         .collection('users')
         .doc(email.value)
         .set({})
-        .then(function() {
+        .then(function () {
           console.log('Document successfully written!')
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error('Error writing document: ', error)
         })
 
@@ -32,7 +33,7 @@ class SignUp extends Component {
   }
   render() {
     return !this.user ? (
-      <div>
+      <div className="signUpBody">
         <h1>Sign up</h1>
         <form onSubmit={this.handleSignUp}>
           <label>
@@ -48,8 +49,8 @@ class SignUp extends Component {
         <FirebaseAuthForm user={this.user} />
       </div>
     ) : (
-      <Redirect to="/" />
-    )
+        <Redirect to="/" />
+      )
   }
 }
 
