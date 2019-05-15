@@ -1,7 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import axios from 'axios'
-import SimpleSnackbar from './snackBar'
+
 
 class AddTravelers extends React.Component {
   constructor() {
@@ -91,7 +91,6 @@ class AddTravelers extends React.Component {
   render() {
     return (
       <div>
-        <SimpleSnackbar />
         <h3>Add Your Friends!</h3>
         <form onSubmit={this.addFriend}>
           {Object.keys(this.state.emails).map(key => {

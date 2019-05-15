@@ -20,6 +20,7 @@ import {
   MapVisualTabs,
   AddDates
 } from './components'
+import Yelp from './components/map/YelpTest'
 
 class App extends React.Component {
   constructor() {

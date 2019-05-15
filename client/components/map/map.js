@@ -6,7 +6,7 @@ import MapGL, {Marker, Popup} from 'react-map-gl'
 import DeckGL, {GeoJsonLayer} from 'deck.gl'
 import Geocoder from 'react-map-gl-geocoder'
 import Pin from './pin'
-import PlaceInfo from './placeInfo'
+import PlaceInfo from './YelpTest'
 import firebase from '../../firebase'
 import Loader from 'react-loader-spinner'
 
@@ -19,11 +19,11 @@ class Map extends Component {
 
     this.state = {
       viewport: {
-        width: 400,
-        height: 400,
+        width: 2000,
+        height: 2000,
         latitude: 40.7793195,
         longitude: -73.96354299999999,
-        zoom: 8
+        zoom: 12
       },
       searchResultLayer: null,
       popupInfo: null,
@@ -65,10 +65,10 @@ class Map extends Component {
 
   resize = () => {
     this.handleViewportChange({
-      // width: window.innerWidth,
-      // height: window.innerHeight
-      width: 1000,
-      height: 1000
+      width: window.innerWidth,
+      height: window.innerHeight,
+      width: 2000,
+      height: 2000
     })
   }
 
@@ -96,6 +96,8 @@ class Map extends Component {
     const address = event.result.properties.address
     const category = event.result.properties.category
     const coordinates = event.result.geometry.coordinates
+    const text = event.result.text
+
     //write map locations to firebase
     let tripId = this.props.trip
 
@@ -110,7 +112,8 @@ class Map extends Component {
             name: name,
             address: address,
             category: category,
-            coordinates: coordinates
+            coordinates: coordinates,
+            text: text
           }
         },
         {
@@ -138,7 +141,7 @@ class Map extends Component {
         latitude={place.coordinates[1]}
       >
         <Pin
-          size={20}
+          size={30}
           onClick={() =>
             this.setState({
               popupInfo: place
@@ -156,10 +159,10 @@ class Map extends Component {
       popupInfo && (
         <Popup
           tipSize={5}
-          anchor="top"
+          anchor="bottom"
           longitude={popupInfo.coordinates[0]}
           latitude={popupInfo.coordinates[1]}
-          closeOnClick={false}
+          closeOnClick={true}
           onClose={() => this.setState({popupInfo: null})}
         >
           <PlaceInfo info={popupInfo} />
