@@ -14,7 +14,10 @@ class MapVisualTabs extends React.Component {
         </TabList>
 
         <TabPanel tabId="preferences">
-          <Visual trip={this.props.match.params.tripId} />
+          <Visual
+            trip={this.props.match.params.tripId}
+            history={this.props.history}
+          />
         </TabPanel>
         <TabPanel tabId="map">
           <Map trip={this.props.match.params.tripId} />

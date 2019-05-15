@@ -42,6 +42,9 @@ export default class Calendar extends Component {
   render() {
     const { from, to } = this.state
     const modifiers = { start: from, end: to }
+    console.log('modifiers are', modifiers)
+
+    console.log('selected days', [from, { from, to }])
 
     return (
       <div className="RangeExample">
