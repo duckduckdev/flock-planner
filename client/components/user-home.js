@@ -1,8 +1,12 @@
 import React from 'react'
+<<<<<<< HEAD
 import NewTripForm from './newTripForm'
 import firebase, { firebaseApp } from '../firebase'
 import MapVisualTabs from './mapVisualTabs'
 import '../style/user-home.css'
+=======
+import firebase, {firebaseApp} from '../firebase'
+>>>>>>> master
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -42,6 +46,7 @@ export class UserHome extends React.Component {
     return this.state.loading ? (
       'this is still loading'
     ) : (
+<<<<<<< HEAD
         <div className="homeBody">
           <h3 className="welcomeHeader">Welcome!</h3>
           <h4 className="yourTrips">These your trips:</h4>
@@ -55,6 +60,20 @@ export class UserHome extends React.Component {
             ) : (
                 <p>
                   You are not curently part of any trips. Why not create a new one?
+=======
+      <div>
+        <h3>Welcome</h3>
+        <ul>
+          {this.state.trips.length ? (
+            this.state.trips.map(tripObj => (
+              <li key={tripObj.tripId}>
+                <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+              </li>
+            ))
+          ) : (
+            <p>
+              You are not curently part of any trips. Why not create a new one?
+>>>>>>> master
             </p>
               )}
           </ul>

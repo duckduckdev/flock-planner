@@ -36,7 +36,7 @@ class FinalizeTripForm extends React.Component {
         finalDates: ''
       })
 
-      this.props.history.push(`/map/${tripId}`)
+      this.props.history.push(`/trip/${tripId}`)
     } catch (error) {
       console.log(error)
     }
