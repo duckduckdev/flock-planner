@@ -28,3 +28,8 @@ form div {
   padding: 20px;
   border-radius: 20px;
 }
+
+#title {
+  font-family: monospace;
+  text-align: center;
+}
