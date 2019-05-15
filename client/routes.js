@@ -16,6 +16,7 @@ import {
   CalendarTest2,
   CalendarTest3,
   FinalizeTripForm,
+  MapVisualTabs,
   AddDates
 } from './components'
 
@@ -115,6 +116,13 @@ class App extends React.Component {
             exact
             path="/finalizeTrip/:tripId"
             component={FinalizeTripForm}
+            authenticated={authenticated}
+            currentUser={currentUser}
+          />
+          <PrivateRoute
+            exact
+            path="/trip/:tripId"
+            component={MapVisualTabs}
             authenticated={authenticated}
             currentUser={currentUser}
           />

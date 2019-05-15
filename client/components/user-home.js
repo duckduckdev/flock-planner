@@ -1,5 +1,4 @@
 import React from 'react'
-import NewTripForm from './newTripForm'
 import firebase, {firebaseApp} from '../firebase'
 
 export class UserHome extends React.Component {
@@ -43,17 +42,25 @@ export class UserHome extends React.Component {
       <div>
         <h3>Welcome</h3>
         <ul>
-          {this.state.trips.length? 
+          {this.state.trips.length ? (
             this.state.trips.map(tripObj => (
-            <li key={tripObj.trip.tripName}>
-              <a href={`/visual/:${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
-            </li> 
-          )) :
-          <p>You are not curently part of any trips. Why not create a new one?</p>}
+              <li key={tripObj.tripId}>
+                <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+              </li>
+            ))
+          ) : (
+            <p>
+              You are not curently part of any trips. Why not create a new one?
+            </p>
+          )}
         </ul>
 
-        <button type="button" onClick={() => this.props.history.push('/createTrip')}>
-        Create New Trip</button>
+        <button
+          type="button"
+          onClick={() => this.props.history.push('/createTrip')}
+        >
+          Create New Trip
+        </button>
       </div>
     )
   }

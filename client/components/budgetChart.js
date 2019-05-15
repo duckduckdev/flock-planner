@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import {PieChart, Pie, Sector, Cell} from 'recharts'
+import {PieChart, Pie, Sector, Cell, Legend, Line} from 'recharts'
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#00B22E']
 
@@ -11,22 +11,25 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-  index
+  index,
+  name
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5
   const x = cx + radius * Math.cos(-midAngle * RADIAN)
   const y = cy + radius * Math.sin(-midAngle * RADIAN)
 
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? 'start' : 'end'}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
+    <g>
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? 'start' : 'end'}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    </g>
   )
 }
 
@@ -37,7 +40,7 @@ export default class BudgetChart extends PureComponent {
       budgetPrefs: [
         {name: '< $150', value: 0},
         {name: '$150-$500', value: 0},
-        {name: '$500 - $1000', value: 0},
+        {name: '$500-$1000', value: 0},
         {name: '$1000-$1500', value: 0},
         {name: '$1500+', value: 0}
       ]
@@ -46,7 +49,6 @@ export default class BudgetChart extends PureComponent {
   componentDidMount() {
     setTimeout(async () => {
       const data = [...this.state.budgetPrefs]
-      console.log('array of preferences', this.props.arrayPrefs)
       this.props.arrayPrefs
         .map(prefObj => prefObj.budget)
         .forEach(budgetRange => {
@@ -69,35 +71,44 @@ export default class BudgetChart extends PureComponent {
   }
   render() {
     return (
-      <div>
-        <PieChart width={600} height={600}>
-          <Pie
-            data={this.state.budgetPrefs}
-            cx={200}
-            cy={200}
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={200}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {this.state.budgetPrefs.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-        <div>
-          <h1>Legend for Pie Chart</h1>
-          <p>Blue Slice: Less Than $150</p>
-          <p>Slice of Blueish/Green/LakeWaterTypeColor:</p>
-          <p>Yellow Slice: $500-$1000</p>
-          <p>Orange Slice: $1000-$1500</p>
-          <p>Green Slice: Greater Than Fifteen-Hundo</p>
-        </div>
-      </div>
+      <PieChart width={600} height={600}>
+        <Pie
+          data={this.state.budgetPrefs}
+          cx={200}
+          cy={200}
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={200}
+          fill="#8884d8"
+          dataKey="value"
+          nameKey="name"
+        >
+          {this.state.budgetPrefs.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Legend verticalAlign="top" height={36} />
+        <Line name="< $150" type="monotone" dataKey="value" stroke="#8884d8" />
+        <Line
+          name="$150-$500"
+          type="monotone"
+          dataKey="value"
+          stroke="#82ca9d"
+        />
+        <Line
+          name="$500-$1000"
+          type="monotone"
+          dataKey="value"
+          stroke="#82ca9d"
+        />
+        <Line
+          name="$1000-$1500"
+          type="monotone"
+          dataKey="value"
+          stroke="#82ca9d"
+        />
+        <Line name="$1500+" type="monotone" dataKey="value" stroke="#82ca9d" />
+      </PieChart>
     )
   }
 }

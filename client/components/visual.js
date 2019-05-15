@@ -1,5 +1,3 @@
-//TODO:render out three lists of preferences
-
 import firebase from '../firebase'
 import React from 'react'
 
@@ -8,8 +6,8 @@ import LocationList from './locationList'
 import DateList from './datesList'
 
 class Visual extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       arrayPrefs: [],
       locationPrefs: {}
@@ -20,7 +18,7 @@ class Visual extends React.Component {
     const firebaseDB = await firebase.firestore()
     await firebaseDB
       .collection('preferences')
-      .where('tripId', '==', this.props.match.params.tripId)
+      .where('tripId', '==', this.props.trip)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -33,7 +31,7 @@ class Visual extends React.Component {
 
     const doc = await firebaseDB
       .collection('locationPrefs')
-      .doc(this.props.match.params.tripId)
+      .doc(this.props.trip)
       .get()
 
     let locationPrefs = doc.data()
@@ -48,7 +46,8 @@ class Visual extends React.Component {
     this.getData()
   }
   render() {
-    const tripId = this.props.match.params.tripId
+    const tripId = this.props.trip
+
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>
     } else {
@@ -59,17 +58,22 @@ class Visual extends React.Component {
           <LocationList
             arrayPrefs={this.state.arrayPrefs}
             locationPrefs={this.state.locationPrefs}
-            tripId={this.props.match.params.tripId}
+            tripId={tripId}
           />
           <h2>Options for Dates:</h2>
           <DateList arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
           <BudgetChart arrayPrefs={this.state.arrayPrefs} />
-          <h1>
-            Once your group has made a decision as to where to go and for what
+          <p>
+            Once your group has made a decision as to where to go and for which
             dates:
-          </h1>
-          <a href={`/finalizeTrip/${tripId}`}>Click Here</a>
+          </p>
+          <button
+            type="button"
+            onClick={() => this.props.history.push(`/finalizeTrip/${tripId}`)}
+          >
+            Finalize Trip Destination and Dates
+          </button>
         </div>
       )
     }

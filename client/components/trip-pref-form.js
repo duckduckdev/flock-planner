@@ -67,10 +67,7 @@ class TripPrefForm extends Component {
         console.log('Error getting documents: ', error)
       })
 
-    console.log('tripppp', trip)
-
     const user = firebaseApp.auth().currentUser
-    // we will replace with an actual user Id once we figure out how to do this
 
     let userId = user.email
 
@@ -140,7 +137,7 @@ class TripPrefForm extends Component {
       budget: ''
     })
 
-    this.props.history.push(`/visual/${this.props.match.params.tripId}`)
+    this.props.history.push(`/trip/${this.props.match.params.tripId}`)
   }
 
   render() {
@@ -261,8 +258,8 @@ class TripPrefForm extends Component {
               <input
                 type="radio"
                 name="budget"
-                value="$500 - $1000"
-                checked={this.state.budget === '$500 - $1000'}
+                value="$500-$1000"
+                checked={this.state.budget === '$500-$1000'}
                 onChange={this.handleOptionChange}
               />
               $500 - $1000
