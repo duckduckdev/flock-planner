@@ -5,6 +5,7 @@ class LocationList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      votes: 1
     }
 
     this.addVote = this.addVote.bind(this)
@@ -20,9 +21,10 @@ class LocationList extends React.Component {
     const firebaseDB = await firebase.firestore()
 
     // find the thing where the votes for that location are stored
-    const doc = await firebaseDB.collection('locationPrefs')
-    .doc(tripId)
-    .get()
+    const doc = await firebaseDB
+      .collection('locationPrefs')
+      .doc(tripId)
+      .get()
 
     let prefs = doc.data().prefs
     console.log('prefs is', prefs)
@@ -32,10 +34,24 @@ class LocationList extends React.Component {
     console.log('prefs is now', prefs)
 
     //this works but now we need to reset the firestore
-    await firebaseDB.collection('locationPrefs')
-    .doc(tripId)
-    .set({prefs: prefs}, {merge: true})
+    await firebaseDB
+      .collection('locationPrefs')
+      .doc(tripId)
+      .set({prefs: prefs}, {merge: true})
 
+    const updateVotes = newVotes => {
+      this.setState({votes: newVotes})
+    }
+
+    await firebaseDB
+      .collection('locationPrefs')
+      .doc(tripId)
+      .onSnapshot(function(doc) {
+        const newVotes = doc.data().prefs[location]
+        // const pinArr = Object.keys(fbPins).map(key => fbPins[key])
+
+        updateVotes(newVotes)
+      })
   }
 
   render() {
@@ -45,19 +61,21 @@ class LocationList extends React.Component {
     let locations = this.props.locationPrefs.prefs
 
     // ok we want to sort the location prefs by whichever one is most popular
-    let sortedLocations = Object.keys(locations)
-    .sort((a,b) => (locations[b]-locations[a]))
+    let sortedLocations = Object.keys(locations).sort(
+      (a, b) => locations[b] - locations[a]
+    )
 
     console.log('sorted Locations', sortedLocations)
 
     return (
-
       <div>
         {sortedLocations.map(location => {
           return (
             <div key={location}>
-            {`${location} (${locations[location]})`}
-            <button type='button' onClick={() => this.addVote(location)}>❤️</button>
+              {`${location} ${this.state.votes}`}
+              <button type="button" onClick={() => this.addVote(location)}>
+                ❤️
+              </button>
             </div>
           )
         })}
