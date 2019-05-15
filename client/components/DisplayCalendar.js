@@ -1,4 +1,6 @@
-// this one selects the range
+// I want to set this up to just display the options for dates so I don't really care about the picker
+// this will take in two dates (as strings)
+// and an array of user Ids from people who have voted on the dates shown
 
 /* eslint-disable complexity */
 import React, {Component} from 'react'
@@ -14,54 +16,24 @@ export default class Calendar extends Component {
 
   constructor(props) {
     super(props)
-    this.state = this.getInitialState()
-
-    this.handleDayClick = this.handleDayClick.bind(this)
-    this.handleResetClick = this.handleResetClick.bind(this)
+    this.state = {}
     
-  }
-
-  getInitialState() {
-    return {
-      from: undefined,
-      to: undefined,
-    }
-  }
-
-  handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state)
-    this.setState(range)
-
-    console.log(range)
-  }
-
-  handleResetClick() {
-    this.setState(this.getInitialState())
   }
   
   render() {
-    const { from, to } = this.state
-    const modifiers = { start: from, end: to }
-    console.log('modifiers are', modifiers)
+    console.log('range', this.props.range)
 
-    console.log('selected days', [from, { from, to }])
+    // we've got to add .toDate because firebase always turns date objects to timestamps, apparently
+    const from = this.props.range.dates.from.toDate()
+    const to = this.props.range.dates.to.toDate()
+    console.log('from is', from)
+    console.log('to is', to)
+    const modifiers = { start: from, end: to }
+
+    
 
     return (
       <div className="RangeExample">
-        <p>
-          {!from && !to && 'Please select the first day.'}
-          {from && !to && 'Please select the last day.'}
-          {from &&
-            to &&
-            `Selected from ${from.toLocaleDateString()} to
-                ${to.toLocaleDateString()}`}{' '}
-          {from &&
-            to && (
-              <button type="button" className="link" onClick={this.handleResetClick}>
-                Reset
-              </button>
-            )}
-        </p>
         <DayPicker
           className="Selectable"
           numberOfMonths={this.props.numberOfMonths}
