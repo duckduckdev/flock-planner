@@ -16,21 +16,6 @@ class LocationList extends React.Component {
     const tripId = this.props.tripId
     const firebaseDB = await firebase.firestore()
 
-    const updateVotes = newVotes => {
-      this.setState({votes: newVotes})
-    }
-    // await firebaseDB
-    //   .collection('locationPrefs')
-    //   .doc(tripId)
-    //   .get()
-    //   .then(function(querySnapshot) {
-    //     querySnapshot.forEach(function(doc) {
-    //       let data = doc.data().prefs
-
-    //       updateVotes(data)
-    //     })
-    //   })
-
     const updateVotesFirstTime = newVotes => {
       this.setState({votes: newVotes})
     }
@@ -43,7 +28,15 @@ class LocationList extends React.Component {
 
         updateVotesFirstTime(newVotes)
       })
+
     this.setState({loading: false})
+  }
+
+  async renderHeart(num) {
+    while (num > 0) {
+      num--
+      return '❤'
+    }
   }
 
   async addVote(location) {
@@ -89,9 +82,6 @@ class LocationList extends React.Component {
   }
 
   render() {
-    // console.log(this.props.arrayPrefs)
-    console.log('location prefs', this.props.locationPrefs)
-
     let locations = this.props.locationPrefs.prefs
 
     // ok we want to sort the location prefs by whichever one is most popular
@@ -99,22 +89,35 @@ class LocationList extends React.Component {
       (a, b) => locations[b] - locations[a]
     )
 
-    console.log('sorted Locations', sortedLocations)
-    console.log('this.stateeeeeeeeeeeeee', this.state)
     if (this.state.loading) return 'Loadinggg'
     return (
-      <div>
-        {sortedLocations.map(location => {
-          return (
-            <div key={location}>
-              {`${location} ${this.state.votes[location]}`}
-              <button type="button" onClick={() => this.addVote(location)}>
-                ❤️
-              </button>
-            </div>
-          )
-        })}
-      </div>
+      <table>
+        <div>
+          {sortedLocations.map(location => {
+            let votes = this.state.votes[location]
+            let hearts = '❤️'
+            while (votes > 0) {
+              hearts += '❤️'
+              votes--
+            }
+            console.log(hearts, 'hearts')
+
+            return (
+              <tr key={location}>
+                <td>{location}</td>
+                <td> {this.state.votes[location]}</td>
+                <td>
+                  <button type="button" onClick={() => this.addVote(location)}>
+                    ❤️
+                  </button>
+                </td>
+
+                <td>{hearts}</td>
+              </tr>
+            )
+          })}
+        </div>
+      </table>
     )
   }
 }
