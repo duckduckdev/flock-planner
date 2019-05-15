@@ -42,6 +42,8 @@ export default class Calendar extends Component {
   
   render() {
     const { from, to } = this.state
+    // console.log('from is', from)
+    // console.log('to is', to)
     const modifiers = { start: from, end: to }
 
     return (
@@ -70,7 +72,6 @@ export default class Calendar extends Component {
         <button type="button" className="link" onClick={this.handleResetClick}>
                 Reset
               </button>
-        <button type="submit" >Add Dates</button>
         <Helmet>
           <style>{`
   .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {

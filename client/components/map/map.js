@@ -8,7 +8,7 @@ import Geocoder from 'react-map-gl-geocoder'
 import Pin from './pin'
 import PlaceInfo from './YelpTest'
 import firebase from '../../firebase'
-// import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner'
 
 const MAPBOX_TOKEN =
   'pk.eyJ1Ijoia2ltbWExMjYxIiwiYSI6ImNqdDRqeW0yeDFiN2w0M21qYWZ1bnBzZWoifQ.O-7JvQWK8pqXWgSiwIN8tQ'
@@ -175,8 +175,7 @@ class Map extends Component {
     const {viewport, searchResultLayer} = this.state
 
     return this.state.loading ? (
-      // <Loader type="Grid" color="#00BFFF" height="100" width="100" />
-      <h6>Loading...</h6>
+      <Loader type="Grid" color="#00BFFF" height="100" width="100" />
     ) : (
       <MapGL
         ref={this.mapRef}
