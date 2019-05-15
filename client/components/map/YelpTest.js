@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+ import Loader from 'react-loader-spinner'
 
 class Yelp extends React.Component {
   constructor(props) {
@@ -72,12 +73,21 @@ class Yelp extends React.Component {
 
   render() {
     return (
+
+      this.state.imageUrl ? 
       <div>
         <h1>{this.props.info.text}</h1>
-        <p>{this.props.info.address}</p>
-        {this.state.rating && <p>Rating:{this.state.rating}</p>}
+        <p>
+        <b>Address:</b>   {this.props.info.address}</p>
+        {this.state.rating && <p><b>Yelp Rating:</b>  {this.state.rating}</p>}
         {this.state.imageUrl && <img src={this.state.imageUrl} height="200" />}
       </div>
+      :<Loader 
+         type="Puff"
+         color="#00BFFF"
+         height="50"	
+         width="50"
+      />   
     )
   }
 }

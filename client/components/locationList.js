@@ -32,12 +32,7 @@ class LocationList extends React.Component {
     this.setState({loading: false})
   }
 
-  async renderHeart(num) {
-    while (num > 0) {
-      num--
-      return '❤'
-    }
-  }
+
 
   async addVote(location) {
     // this needs to increment the votes for that location in the database
@@ -96,7 +91,7 @@ class LocationList extends React.Component {
           {sortedLocations.map(location => {
             let votes = this.state.votes[location]
             let hearts = '❤️'
-            while (votes > 0) {
+            while (votes > 1) {
               hearts += '❤️'
               votes--
             }
