@@ -1,18 +1,17 @@
 .navBody {
-  background: url(https://media.boingboing.net/wp-content/uploads/2018/03/Ossi-Saarinen-01.jpg);
-  border: thick solid purple;
+  background: #4a4848;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  /* bottom: 0; */
   min-width: 100%;
-  max-height: 14.4%;
+  max-height: 15.3%;
+  z-index: 10;
 }
 
 .header {
-  border: thin solid purple;
   font-family: monospace;
   text-align: center;
   font-size: 33px;
+  color: whitesmoke;
 }
