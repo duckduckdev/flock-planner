@@ -61,7 +61,7 @@ class Visual extends React.Component {
             tripId={tripId}
           />
           <h2>Options for Dates:</h2>
-          <DateList arrayPrefs={this.state.arrayPrefs} />
+          <DateList tripId={tripId} arrayPrefs={this.state.arrayPrefs} />
           <h2>Group Budget Preference Breakdown:</h2>
           <BudgetChart arrayPrefs={this.state.arrayPrefs} />
           <p>

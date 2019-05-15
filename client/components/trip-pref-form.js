@@ -184,15 +184,13 @@ class TripPrefForm extends Component {
                 />
               </label>
             </div>
-            <h2>Select Dates:</h2>
-            {/* {Object.keys(dateRanges).map(range => {
+            {/* <h2>Select Dates:</h2>
+            {Object.keys(dateRanges).map(range => {
             return (<div key={range}>
             <DisplayCalendar range={dateRanges[range]}/>
-            <button type="button">I'm Available</button> */}
-            {/* what does the I'm available button do?
-            it pushes your information into the voted array for that date range
-            I guess it should be a radio button */}
-            {/* </div>
+            <button type="button">I'm Available</button>
+
+            </div>
             )
           })} */}
 
