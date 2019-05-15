@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   min-height: 100vh;
-  /* background-image: url('https://cdn.dribbble.com/users/2234174/screenshots/5499433/tropical-birds-dribbble.gif'); */
+  background-image: url('https://cdn.dribbble.com/users/2234174/screenshots/5499433/tropical-birds-dribbble.gif');
 }
 
 a {
@@ -19,4 +19,17 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#app {
+  background-color: #ffffffe0;
+  width: 75%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#title {
+  font-family: monospace;
+  text-align: center;
 }
