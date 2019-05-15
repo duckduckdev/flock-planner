@@ -19,18 +19,30 @@ class LocationList extends React.Component {
     const updateVotes = newVotes => {
       this.setState({votes: newVotes})
     }
+    // await firebaseDB
+    //   .collection('locationPrefs')
+    //   .doc(tripId)
+    //   .get()
+    //   .then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //       let data = doc.data().prefs
+
+    //       updateVotes(data)
+    //     })
+    //   })
+
+    const updateVotesFirstTime = newVotes => {
+      this.setState({votes: newVotes})
+    }
+
     await firebaseDB
       .collection('locationPrefs')
       .doc(tripId)
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          let data = doc.data().prefs
-          console.log('HII', data)
-          updateVotes(data)
-        })
-      })
+      .onSnapshot(function(doc) {
+        const newVotes = doc.data().prefs
 
+        updateVotesFirstTime(newVotes)
+      })
     this.setState({loading: false})
   }
 
@@ -71,7 +83,6 @@ class LocationList extends React.Component {
       .doc(tripId)
       .onSnapshot(function(doc) {
         const newVotes = doc.data().prefs
-        // const pinArr = Object.keys(fbPins).map(key => fbPins[key])
 
         updateVotes(newVotes)
       })
