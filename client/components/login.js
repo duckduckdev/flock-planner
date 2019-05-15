@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
-import {withRouter, Redirect} from 'react-router'
-import {firebaseApp} from '../firebase'
+import React, { Component } from 'react'
+import { withRouter, Redirect } from 'react-router'
+import { firebaseApp } from '../firebase'
 import FirebaseAuthForm from './firebaseAuthForm'
+import '../style/login.css'
 
 class LoginView extends Component {
   handleLogin = async event => {
     event.preventDefault()
-    const {email, password} = event.target.elements
+    const { email, password } = event.target.elements
     try {
       const user = await firebaseApp
         .auth()
@@ -19,7 +20,7 @@ class LoginView extends Component {
 
   render() {
     return !this.user ? (
-      <div>
+      <div className="loginBody">
         <h1>Login</h1>
         <form onSubmit={this.handleLogin}>
           <label>
@@ -35,8 +36,8 @@ class LoginView extends Component {
         <FirebaseAuthForm user={this.user} />
       </div>
     ) : (
-      <Redirect to="/" />
-    )
+        <Redirect to="/" />
+      )
   }
 }
 

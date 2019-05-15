@@ -1,0 +1,35 @@
+/* body {
+  border: thick solid green;
+} */
+
+.homeBody {
+  border: thick solid green;
+  background: url('https://cdn.dribbble.com/users/2234174/screenshots/5499433/tropical-birds-dribbble.gif');
+  position: fixed;
+  /* top: 0; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 83%;
+  text-align: center;
+}
+
+.welcomeHeader {
+  border: thin solid purple;
+  font-size: 20px;
+  color: orangered;
+}
+
+.yourTrips {
+  color: cadetblue;
+}
+
+.tripList {
+  border: thin solid purple;
+  list-style: none;
+}
+
+.newTripButton {
+  border: thin solid purple
+}

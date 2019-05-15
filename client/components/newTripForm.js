@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import Calendar from './Calendar'
+import '../style/newTripForm.css'
 
 class NewTripForm extends React.Component {
   constructor(props) {
@@ -12,10 +13,10 @@ class NewTripForm extends React.Component {
     }
     this.updateInput = this.updateInput.bind(this)
     this.addTrip = this.addTrip.bind(this)
-  } 
+  }
 
   updateInput = event => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   addTrip = async event => {
@@ -40,7 +41,7 @@ class NewTripForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="newTripBody">
         <form onSubmit={this.addTrip}>
           <div>
             <label htmlFor="tripName">

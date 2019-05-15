@@ -1,6 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import firebase, {firebaseApp} from '../firebase'
+import { Link } from 'react-router-dom'
+import firebase, { firebaseApp } from '../firebase'
+import '../style/navbar.css'
 
 class Navbar extends React.Component {
   constructor() {
@@ -15,8 +16,8 @@ class Navbar extends React.Component {
     firebase
       .auth()
       .signOut()
-      .then(function() {})
-      .catch(function(error) {
+      .then(function () { })
+      .catch(function (error) {
         console.log(error)
       })
   }
@@ -38,16 +39,16 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const {loading} = this.state
+    const { loading } = this.state
 
     if (loading) {
       return <p>Loading...</p>
     }
 
     return (
-      <div>
-        <h1>Flock</h1>
-        <nav>
+      <div className="navBody">
+        <h1 className="header">Flock</h1>
+        <nav className="nav">
           {this.state.currentUser ? (
             <div>
               <Link to="/">Home</Link>
@@ -56,11 +57,11 @@ class Navbar extends React.Component {
               </button>
             </div>
           ) : (
-            <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-          )}
+              <div>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            )}
         </nav>
         <hr />
       </div>

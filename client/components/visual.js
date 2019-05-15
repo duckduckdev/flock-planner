@@ -4,6 +4,7 @@ import React from 'react'
 import BudgetChart from './budgetChart'
 import LocationList from './locationList'
 import DateList from './datesList'
+import '../style/visual.css'
 
 class Visual extends React.Component {
   constructor() {
@@ -20,12 +21,12 @@ class Visual extends React.Component {
       .collection('preferences')
       .where('tripId', '==', this.props.trip)
       .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
           data.push(doc.data())
         })
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('Error getting documents: ', error)
       })
 
@@ -51,7 +52,7 @@ class Visual extends React.Component {
       return <div>Loading...</div>
     } else {
       return (
-        <div>
+        <div className="visualBody">
           <h1>Trip Preferences:</h1>
           <h2>Options for Destinations:</h2>
           <LocationList

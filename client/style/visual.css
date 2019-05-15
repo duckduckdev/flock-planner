@@ -1,0 +1,10 @@
+.visualBody {
+  border: thick solid green;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* grid-template-rows: repeat(12.5%, 8);
+  grid-row-start: 5; */
+  min-width: 100%;
+  min-height: 80%;
+}

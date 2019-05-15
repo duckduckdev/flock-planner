@@ -1,7 +1,8 @@
 import React from 'react'
 import NewTripForm from './newTripForm'
-import firebase, {firebaseApp} from '../firebase'
+import firebase, { firebaseApp } from '../firebase'
 import MapVisualTabs from './mapVisualTabs'
+import '../style/user-home.css'
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -22,12 +23,12 @@ export class UserHome extends React.Component {
     await tripPref
       .where('user', '==', user.email)
       .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
           data.push(doc.data())
         })
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('Error getting documents: ', error)
       })
 
@@ -41,30 +42,32 @@ export class UserHome extends React.Component {
     return this.state.loading ? (
       'this is still loading'
     ) : (
-      <div>
-        <h3>Welcome</h3>
-        <ul>
-          {this.state.trips.length ? (
-            this.state.trips.map(tripObj => (
-              <li key={tripObj.trip.tripName}>
-                <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
-              </li>
-            ))
-          ) : (
-            <p>
-              You are not curently part of any trips. Why not create a new one?
+        <div className="homeBody">
+          <h3 className="welcomeHeader">Welcome!</h3>
+          <h4 className="yourTrips">These your trips:</h4>
+          <ul className="tripList">
+            {this.state.trips.length ? (
+              this.state.trips.map(tripObj => (
+                <li key={tripObj.trip.tripName}>
+                  <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
+                </li>
+              ))
+            ) : (
+                <p>
+                  You are not curently part of any trips. Why not create a new one?
             </p>
-          )}
-        </ul>
+              )}
+          </ul>
 
-        <button
-          type="button"
-          onClick={() => this.props.history.push('/createTrip')}
-        >
-          Create New Trip
+          <button
+            type="button"
+            className="newTripButton"
+            onClick={() => this.props.history.push('/createTrip')}
+          >
+            Create New Trip
         </button>
-      </div>
-    )
+        </div>
+      )
   }
 }
 

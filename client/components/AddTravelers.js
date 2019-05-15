@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import axios from 'axios'
+import '../style/addTravellers.css'
 
 class AddTravelers extends React.Component {
   constructor() {
@@ -60,7 +61,7 @@ class AddTravelers extends React.Component {
     // REDUX
 
     const user = firebase.auth().currentUser
-    const userName = user.displayName? user.displayName : user.email
+    const userName = user.displayName ? user.displayName : user.email
     console.log(userName)
 
     // const firebaseDB = await firebase.firestore()
@@ -89,7 +90,7 @@ class AddTravelers extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="addTravellersBody">
         <h3>Add Your Friends!</h3>
         <form onSubmit={this.addFriend}>
           {Object.keys(this.state.emails).map(key => {
