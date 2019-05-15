@@ -32,8 +32,6 @@ class LocationList extends React.Component {
     this.setState({loading: false})
   }
 
-
-
   async addVote(location) {
     // this needs to increment the votes for that location in the database
     // shit how do you do that
@@ -50,11 +48,8 @@ class LocationList extends React.Component {
       .get()
 
     let prefs = doc.data().prefs
-    console.log('prefs is', prefs)
 
     prefs[location]++
-
-    console.log('prefs is now', prefs)
 
     //this works but now we need to reset the firestore
     await firebaseDB
@@ -95,7 +90,6 @@ class LocationList extends React.Component {
               hearts += '❤️'
               votes--
             }
-            console.log(hearts, 'hearts')
 
             return (
               <tr key={location}>
