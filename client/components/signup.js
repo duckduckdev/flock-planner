@@ -3,6 +3,11 @@ import {withRouter, Redirect} from 'react-router'
 import firebase, {firebaseApp} from '../firebase'
 import FirebaseAuthForm from './firebaseAuthForm'
 
+// signup needs to be a connected component
+import {connect} from 'react-redux'
+
+const mapStateToProps = (state) => ({tripId: state.currentTrip})
+
 class SignUp extends Component {
   handleSignUp = async event => {
     event.preventDefault()
@@ -14,7 +19,7 @@ class SignUp extends Component {
 
       const firebaseDB = firebase.firestore()
 
-      const userRef = firebaseDB
+      const userRef = await firebaseDB
         .collection('users')
         .doc(email.value)
         .set({})
@@ -24,13 +29,23 @@ class SignUp extends Component {
         .catch(function(error) {
           console.error('Error writing document: ', error)
         })
-
-      this.props.history.push('/')
+      
+        if (this.props.tripId) {
+          console.log('redirecting')
+          console.log('history', this.props.history)
+          this.props.history.push(`${this.props.tripId}`)
+        }
+        else {
+          this.props.history.push('/')
+        }
     } catch (error) {
       alert(error)
     }
   }
   render() {
+    console.log('trip Id on state', this.props.tripId)
+    const tripId = this.props.tripId
+
     return !this.user ? (
       <div>
         <h1>Sign up</h1>
@@ -45,7 +60,7 @@ class SignUp extends Component {
           </label>
           <button type="submit">Sign Up</button>
         </form>
-        <FirebaseAuthForm user={this.user} />
+        <FirebaseAuthForm user={this.user} tripId={tripId}/>
       </div>
     ) : (
       <Redirect to="/" />
@@ -53,4 +68,4 @@ class SignUp extends Component {
   }
 }
 
-export default withRouter(SignUp)
+export default withRouter(connect(mapStateToProps, null)(SignUp))
