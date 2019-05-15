@@ -10,18 +10,34 @@ const providers = {
 
 class FirbaseAuthForm extends React.Component {
   render() {
+    console.log('tripId in fb auth form', this.props.tripId)
+
     const {user, signInWithGoogle} = this.props
-    return (
-      <div>
-        {user ? (
-          <Redirect to="/" />
-        ) : (
-          <button type="button" onClick={signInWithGoogle}>
+
+    if (!user) {
+      return (
+        <button type="button" onClick={signInWithGoogle}>
             Sign in with Google
           </button>
-        )}
-      </div>
+      )
+    } 
+
+    else return (
+      this.props.tripId? <Redirect to={`${this.props.tripId}`} /> : 
+      <Redirect to="/" />
     )
+
+    // return (
+    //   <div>
+    //     {user ? (
+    //       <Redirect to="/" />
+    //     ) : (
+    //       <button type="button" onClick={signInWithGoogle}>
+    //         Sign in with Google
+    //       </button>
+    //     )}
+    //   </div>
+    // )
   }
 }
 
