@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import Calendar from './CalendarTest'
+// import Calendar from './CalendarTest'
+import DisplayCalendar from './DisplayCalendar'
 import firebase, {firebaseApp} from '../firebase'
 import {TripsLayer} from 'deck.gl'
 
@@ -14,11 +15,33 @@ class TripPrefForm extends Component {
       secondDates: '',
       thirdDates: '',
       budget: '',
-      tripName: ''
+      tripName: '',
+      datePrefs: {}
     }
     this.handleOptionChange = this.handleOptionChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.addPreferences = this.addPreferences.bind(this)
+  }
+
+  componentDidMount() {
+    // when component mounts, I need to get the date prefs from firestore to populate the calendars
+    // set them on state
+    // the state is crowded
+
+    const tripId = this.props.match.params.tripId
+    
+    const firebaseDB = firebase.firestore()
+
+    firebaseDB
+      .collection('datePrefs')
+      .doc(tripId)
+      .get()
+      .then(doc => {this.setState({datePrefs: doc.data()})
+      console.log('state is now', this.state)
+    })
+      .catch(function(error) {
+        console.log('Error getting documents: ', error)
+      })
   }
 
   handleChange = event => {
@@ -121,6 +144,19 @@ class TripPrefForm extends Component {
   }
 
   render() {
+    // if the data is still loading
+    // or if for some reason some nut has managed to get to this component without adding date preferences
+    // show loading
+    if (!this.state.datePrefs.ranges) {
+      return (
+        <div>Loading...</div>
+      )
+    }
+
+    else {
+      const dateRanges = this.state.datePrefs.ranges
+      console.log('date ranges', dateRanges)
+
     return (
       <div className="container">
         <form onSubmit={this.addPreferences}>
@@ -154,9 +190,19 @@ class TripPrefForm extends Component {
               />
             </label>
           </div>
-          <Calendar />
-          <h2>Which dates do you prefer?</h2>
-          <div className="answer">
+          <h2>Select Dates:</h2>
+          {Object.keys(dateRanges).map(range => {
+            return (<div key={range}>
+            <DisplayCalendar range={dateRanges[range]}/>
+            <button type="button">I'm Available</button>
+            {/* what does the I'm available button do?
+            it pushes your information into the voted array for that date range 
+            I guess it should be a radio button */}
+            </div>
+            )
+          })}
+          
+          {/* <div className="answer">
             <label>
               First Choice:
               <input
@@ -184,7 +230,7 @@ class TripPrefForm extends Component {
                 onChange={this.handleChange}
               />
             </label>
-          </div>
+          </div> */}
           <h2>How much do you want to spend overall on the trip?</h2>
           <div className="radio">
             <label>
@@ -251,6 +297,7 @@ class TripPrefForm extends Component {
         </form>
       </div>
     )
+  }
   }
 }
 

@@ -1,61 +1,33 @@
-// I'm going to try to make it automatically pick a range
+// given a date, render a calendar that shows that date selected
+// ummm
+// ok so you CAN pass a string to be highlighted on the calendar
+// given some dates, let's try to select a RANGE
 
-import React, {Component} from 'react'
-import DayPicker, {DateUtils} from 'react-day-picker'
-import 'react-day-picker/lib/style.css'
+import React from 'react';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
+let date1 = new Date('Wed May 15 2019 12:00:00 GMT-0400 (Eastern Daylight Time)')
+let date2 = new Date('Mon May 20 2019 12:00:00 GMT-0400 (Eastern Daylight Time)')
 
-export default class Calendar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            selectedDays: []
-        }
+export default function Example() {
+  const modifiers = { start: date1, end: date2 }
 
-        this.handleDayClick = this.handleDayClick.bind(this);
-        
-    }
+  return (
+    <DayPicker
+      modifiers={modifiers}
+      // initialMonth={new Date(2017, 3)}
+      
+      selectedDays={[
+        // new Date('Wed May 29 2019 12:00:00 GMT-0400 (Eastern Daylight Time)'),
 
-    handleDayClick(day, { selected }) {
-        const selectedDays = this.state.selectedDays
-
-        // this is the day that's being selected
-        console.log('day is', day)
-        console.log(typeof day)
-        // this property tells you whether the day is already selected or not 
-        console.log('selected is', selected)
-
-        // if the day is already selected then clicking it again 
-        // will toggle the selected day on state to undefined
-        if (selected) {
-            // if selected, remove that day from the array on state
-            const selectedIndex = selectedDays.findIndex(selectedDay =>
-              DateUtils.isSameDay(selectedDay, day)
-            )
-            selectedDays.splice(selectedIndex, 1);
-
-            // else add the day to the state
-        } else {
-            selectedDays.push(day);
-        }
-
-        this.setState({ 
-            selectedDays: selectedDays
-        })
-
-        console.log('selected days', this.state.selectedDays)
-
-        // the days have now been set on state and we can do something with them
-    }
-
-    render() {
-        return (
-          <div>
-            <DayPicker
-              selectedDays={this.state.selectedDays}
-              onDayClick={this.handleDayClick}
-            />
-          </div>
-        );
-    }
+        {from: date1, to: date2}
+        // new Date(2017, 3, 2),
+        // {
+        //   after: new Date(2017, 3, 20),
+        //   before: new Date(2017, 3, 25),
+        // },
+      ]}
+    />
+  );
 }
