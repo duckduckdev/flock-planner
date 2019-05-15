@@ -81,7 +81,7 @@ class DateList extends React.Component {
 
     let ranges = doc.data().ranges
 
-    ranges[range][numVotes]++
+    ranges[range].numVotes++
 
     //this works but now we need to reset the firestore
     await firebaseDB
@@ -119,11 +119,14 @@ class DateList extends React.Component {
             return (
               <div key={range}>
                 <DisplayCalendar range={dateRanges[range]} />
-                <button type="button" onClick={() => this.addVote(range)}>I'm Available</button>
-                <div>{this.state.votes[range].numVotes}</div>
-                
+                <button type="button" onClick={() => this.addVote(range)}>
+                  I'm Available
+                </button>
+                <div>
+                  {this.state.votes[range].numVotes} of your friends are
+                  available!
+                </div>
               </div>
-              
             )
           })}
         </div>
