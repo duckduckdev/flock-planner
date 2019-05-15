@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 // import Calendar from './CalendarTest'
 import DisplayCalendar from './DisplayCalendar'
-import firebase, {firebaseApp} from '../firebase'
-import {TripsLayer} from 'deck.gl'
+import firebase, { firebaseApp } from '../firebase'
+import '../style/tripPref.css'
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -29,27 +29,28 @@ class TripPrefForm extends Component {
     // the state is crowded
 
     const tripId = this.props.match.params.tripId
-    
+
     const firebaseDB = firebase.firestore()
 
     firebaseDB
       .collection('datePrefs')
       .doc(tripId)
       .get()
-      .then(doc => {this.setState({datePrefs: doc.data()})
-      console.log('state is now', this.state)
-    })
-      .catch(function(error) {
+      .then(doc => {
+        this.setState({ datePrefs: doc.data() })
+        console.log('state is now', this.state)
+      })
+      .catch(function (error) {
         console.log('Error getting documents: ', error)
       })
   }
 
   handleChange = event => {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   handleOptionChange(event) {
-    this.setState({budget: event.target.value})
+    this.setState({ budget: event.target.value })
   }
 
   async addPreferences(event) {
@@ -63,7 +64,7 @@ class TripPrefForm extends Component {
       .doc(tripId)
       .get()
       .then(doc => (trip = doc.data()))
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('Error getting documents: ', error)
       })
 
@@ -154,52 +155,52 @@ class TripPrefForm extends Component {
       const dateRanges = this.state.datePrefs.ranges
       console.log('date ranges', dateRanges)
 
-    return (
-      <div className="container">
-        <form onSubmit={this.addPreferences}>
-          <h2>Where do you want to go?</h2>
-          <div className="answer">
-            <label>
-              First Choice:
+      return (
+        <div className="container">
+          <form onSubmit={this.addPreferences}>
+            <h2>Where do you want to go?</h2>
+            <div className="answer">
+              <label>
+                First Choice:
               <input
-                type="text"
-                name="firstLocation"
-                value={this.state.firstLocation}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Second Choice:
+                  type="text"
+                  name="firstLocation"
+                  value={this.state.firstLocation}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Second Choice:
               <input
-                type="text"
-                name="secondLocation"
-                value={this.state.secondLocation}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Third Choice:
+                  type="text"
+                  name="secondLocation"
+                  value={this.state.secondLocation}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Third Choice:
               <input
-                type="text"
-                name="thirdLocation"
-                value={this.state.thirdLocation}
-                onChange={this.handleChange}
-              />
-            </label>
-          </div>
-          <h2>Select Dates:</h2>
-          {Object.keys(dateRanges).map(range => {
-            return (<div key={range}>
-            <DisplayCalendar range={dateRanges[range]}/>
-            <button type="button">I'm Available</button>
-            {/* what does the I'm available button do?
-            it pushes your information into the voted array for that date range 
-            I guess it should be a radio button */}
+                  type="text"
+                  name="thirdLocation"
+                  value={this.state.thirdLocation}
+                  onChange={this.handleChange}
+                />
+              </label>
             </div>
-            )
-          })}
-          
-          {/* <div className="answer">
+            <h2>Select Dates:</h2>
+            {Object.keys(dateRanges).map(range => {
+              return (<div key={range}>
+                <DisplayCalendar range={dateRanges[range]} />
+                <button type="button">I'm Available</button>
+                {/* what does the I'm available button do?
+            it pushes your information into the voted array for that date range
+            I guess it should be a radio button */}
+              </div>
+              )
+            })}
+
+            {/* <div className="answer">
             <label>
               First Choice:
               <input
@@ -228,73 +229,73 @@ class TripPrefForm extends Component {
               />
             </label>
           </div> */}
-          <h2>How much do you want to spend overall on the trip?</h2>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="< $150"
-                checked={this.state.budget === '< $150'}
-                onChange={this.handleOptionChange}
-              />
-              Less Than $150
+            <h2>How much do you want to spend overall on the trip?</h2>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="budget"
+                  value="< $150"
+                  checked={this.state.budget === '< $150'}
+                  onChange={this.handleOptionChange}
+                />
+                Less Than $150
             </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$150-$500"
-                checked={this.state.budget === '$150-$500'}
-                onChange={this.handleOptionChange}
-              />
-              $150 - $500
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="budget"
+                  value="$150-$500"
+                  checked={this.state.budget === '$150-$500'}
+                  onChange={this.handleOptionChange}
+                />
+                $150 - $500
             </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$500-$1000"
-                checked={this.state.budget === '$500-$1000'}
-                onChange={this.handleOptionChange}
-              />
-              $500 - $1000
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="budget"
+                  value="$500-$1000"
+                  checked={this.state.budget === '$500-$1000'}
+                  onChange={this.handleOptionChange}
+                />
+                $500 - $1000
             </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$1000-$1500"
-                checked={this.state.budget === '$1000-$1500'}
-                onChange={this.handleOptionChange}
-              />
-              $1000-$1500
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="budget"
+                  value="$1000-$1500"
+                  checked={this.state.budget === '$1000-$1500'}
+                  onChange={this.handleOptionChange}
+                />
+                $1000-$1500
             </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$1500+"
-                checked={this.state.budget === '$1500+'}
-                onChange={this.handleOptionChange}
-              />
-              $1500+
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="budget"
+                  value="$1500+"
+                  checked={this.state.budget === '$1500+'}
+                  onChange={this.handleOptionChange}
+                />
+                $1500+
             </label>
-          </div>
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    )
-  }
+            </div>
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      )
+    }
   }
 }
 
