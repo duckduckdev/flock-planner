@@ -23,7 +23,7 @@ class Map extends Component {
         height: 2000,
         latitude: 40.7793195,
         longitude: -73.96354299999999,
-        zoom: 15
+        zoom: 12
       },
       searchResultLayer: null,
       popupInfo: null,
@@ -141,7 +141,7 @@ class Map extends Component {
         latitude={place.coordinates[1]}
       >
         <Pin
-          size={20}
+          size={30}
           onClick={() =>
             this.setState({
               popupInfo: place
