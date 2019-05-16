@@ -1,7 +1,9 @@
 body {
   font-family: sans-serif;
   min-height: 100vh;
-  background-image: url('https://cdn.dribbble.com/users/2234174/screenshots/5499433/tropical-birds-dribbble.gif');
+  /* background-image: url('https://images.unsplash.com/photo-1455485191723-69fcf9a48802?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-repeat: no-repeat;
+  background-size: 100%; */
 }
 
 a {
@@ -21,7 +23,7 @@ form div {
   display: inline-block;
 }
 
-#app {
+/* #app {
   background-color: #ffffffe0;
   width: 75%;
   margin: 0 auto;
@@ -32,4 +34,4 @@ form div {
 #title {
   font-family: monospace;
   text-align: center;
-}
+} */

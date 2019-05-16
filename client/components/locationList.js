@@ -13,6 +13,8 @@ class LocationList extends React.Component {
   }
 
   async componentDidMount() {
+    // upon component mount, get data about locations and votes from firestore
+
     const tripId = this.props.tripId
     const firebaseDB = await firebase.firestore()
 
@@ -34,10 +36,8 @@ class LocationList extends React.Component {
 
   async addVote(location) {
     // this needs to increment the votes for that location in the database
-    // shit how do you do that
 
     let tripId = this.props.tripId
-    // console.log('trip id is', tripId)
 
     const firebaseDB = await firebase.firestore()
 
@@ -57,29 +57,37 @@ class LocationList extends React.Component {
       .doc(tripId)
       .set({prefs: prefs}, {merge: true})
 
+
     const updateVotes = newVotes => {
       this.setState({votes: newVotes})
     }
 
+    // listen to the firestore for new changes
     await firebaseDB
       .collection('locationPrefs')
       .doc(tripId)
       .onSnapshot(function(doc) {
         const newVotes = doc.data().prefs
 
+        console.log('new votes is', newVotes)
+
         updateVotes(newVotes)
       })
   }
 
   render() {
-    let locations = this.props.locationPrefs.prefs
+    let locations = this.state.votes
+
+    const user = firebase.auth().currentUser
+    // console.log('current user', user.email)
 
     // ok we want to sort the location prefs by whichever one is most popular
     let sortedLocations = Object.keys(locations).sort(
       (a, b) => locations[b] - locations[a]
     )
 
-    if (this.state.loading) return 'Loadinggg'
+    if (this.state.loading) return (<div>Loading...</div>)
+
     return (
       <table>
         <div>

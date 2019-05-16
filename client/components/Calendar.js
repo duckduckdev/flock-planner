@@ -8,9 +8,9 @@ import 'react-day-picker/lib/style.css'
 
 
 export default class Calendar extends Component {
-//   static defaultProps = {
-//     numberOfMonths: 2,
-//   };
+  static defaultProps = {
+    numberOfMonths: 2,
+  };
 
   constructor(props) {
     super(props)
