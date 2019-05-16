@@ -104,14 +104,13 @@ class DateList extends React.Component {
   }
 
   render() {
-    console.log('state votes', this.state.votes)
 
     if (this.state.loading) return 'Loadinggg'
     if (!this.state.datePrefs.ranges) {
       return <div>Loading...</div>
     } else {
       const dateRanges = this.state.datePrefs.ranges
-      console.log('date ranges', dateRanges)
+      // console.log('date ranges', dateRanges)
       return (
         <div>
           <h2>Select Dates:</h2>

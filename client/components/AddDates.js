@@ -102,11 +102,14 @@ class AddDates extends React.Component {
       <div>
         <h2>Choose Some Potential Dates for Your Trip!</h2>
         <form onSubmit={this.addDates}>
+          <p>Date Range 1</p>
           <Calendar getDates={this.getDates1} />
+          <p>Date Range 2</p>
           <Calendar getDates={this.getDates2} />
+          <p>Date Range 3</p>
           <Calendar getDates={this.getDates3} />
           <div>
-            <button type="submit">Add Dates</button>
+            <button type="submit">Next</button>
           </div>
         </form>
       </div>

@@ -13,9 +13,6 @@ import {
   Map,
   Login,
   Signup,
-  CalendarTest,
-  CalendarTest2,
-  CalendarTest3,
   FinalizeTripForm,
   MapVisualTabs,
   AddDates
@@ -70,9 +67,6 @@ class App extends React.Component {
           />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/calendar" component={CalendarTest} />
-          <Route exact path="/calendar2" component={CalendarTest2} />
-          <Route exact path="/calendar3" component={CalendarTest3} />
           <PrivateRoute2
             exact
             path="/preference/:tripId"
