@@ -109,6 +109,7 @@ class TripPrefForm extends Component {
     ]
 
     locationArray.forEach(location => {
+      
       if (locationPrefs.hasOwnProperty(location)) {
         locationPrefs[location]++
       } else {

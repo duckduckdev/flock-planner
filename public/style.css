@@ -22,7 +22,7 @@ form div {
 }
 
 #app {
-  background-color: #ffffffe0;
+  /* background-color: #ffffffe0; */
   width: 75%;
   margin: 0 auto;
   padding: 20px;
@@ -32,4 +32,29 @@ form div {
 #title {
   font-family: monospace;
   text-align: center;
+}
+
+#mainPage {
+  background-color: transparent;
+}
+
+#mainTitle {
+  font-family: monospace;
+  color: #ffffffe0;
+  text-align: center;
+  font-size: 15em
+}
+
+#mainDescription {
+  text-align: center;
+  color: #ffffffe0;
+  font-size: 1.5em;
+  padding: .5em
+}
+
+#lowerDescription {
+  text-align: center;
+  color: #ffffffe0;
+  font-size: 1.25em;
+  padding: .5em
 }

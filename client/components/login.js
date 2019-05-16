@@ -29,7 +29,7 @@ class LoginView extends Component {
         this.props.history.push(`${this.props.tripId}`)
       }
       else {
-        this.props.history.push('/')
+        this.props.history.push('/userHome')
       }
     } catch (error) {
       alert(error)
