@@ -123,8 +123,8 @@ class DateList extends React.Component {
                   I'm Available
                 </button>
                 <div>
-                  {this.state.votes[range].numVotes} of your friends are
-                  available!
+                  Number of Friends Available:{' '}
+                  {this.state.votes[range].numVotes}
                 </div>
               </div>
             )
