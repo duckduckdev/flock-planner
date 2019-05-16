@@ -21,7 +21,7 @@ export default class Calendar extends Component {
   }
   
   render() {
-    console.log('range', this.props.range)
+    // console.log('range', this.props.range)
 
     // we've got to add .toDate because firebase always turns date objects to timestamps, apparently
     const from = this.props.range.dates.from.toDate()
