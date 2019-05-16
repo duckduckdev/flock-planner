@@ -74,6 +74,9 @@ class LocationList extends React.Component {
   render() {
     let locations = this.props.locationPrefs.prefs
 
+    const user = firebase.auth().currentUser
+    console.log('current user', user.email)
+
     // ok we want to sort the location prefs by whichever one is most popular
     let sortedLocations = Object.keys(locations).sort(
       (a, b) => locations[b] - locations[a]

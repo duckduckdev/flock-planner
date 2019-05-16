@@ -10,9 +10,9 @@ import 'react-day-picker/lib/style.css'
 
 
 export default class Calendar extends Component {
-//   static defaultProps = {
-//     numberOfMonths: 2,
-//   };
+  static defaultProps = {
+    numberOfMonths: 2,
+  };
 
   constructor(props) {
     super(props)
@@ -26,8 +26,8 @@ export default class Calendar extends Component {
     // we've got to add .toDate because firebase always turns date objects to timestamps, apparently
     const from = this.props.range.dates.from.toDate()
     const to = this.props.range.dates.to.toDate()
-    console.log('from is', from)
-    console.log('to is', to)
+    // console.log('from is', from)
+    // console.log('to is', to)
     const modifiers = { start: from, end: to }
 
     

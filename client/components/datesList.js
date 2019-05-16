@@ -120,7 +120,7 @@ class DateList extends React.Component {
               <div key={range}>
                 <DisplayCalendar range={dateRanges[range]} />
                 <button type="button" onClick={() => this.addVote(range)}>I'm Available</button>
-                <div>{this.state.votes[range].numVotes}</div>
+                {/* <div>{this.state.votes[range].numVotes}</div> */}
                 
               </div>
               
