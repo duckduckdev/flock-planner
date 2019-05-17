@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 // import login from './login'
 // import signup from './signup'
 
@@ -11,9 +13,11 @@ class MainPage extends React.Component {
           Flock is a revolutionary new way to collaborate with your friends on
           planning travel.
         </div>
-        <div id="lowerDescription">
-          <button type="button">Come Fly With Us!</button>
-        </div>
+        <ButtonToolbar>
+          <div id="lowerDescription">
+            <Button variant="outline-light">Come Fly With Us!</Button>
+          </div>
+        </ButtonToolbar>
       </div>
     )
   }
