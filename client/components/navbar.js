@@ -50,7 +50,7 @@ class Navbar extends React.Component {
         <nav>
           {this.state.currentUser ? (
             <div>
-              <Link to="/">Home</Link>
+              <Link to="/userHome">Home</Link>
               <button type="button" onClick={this.handleClick}>
                 Logout
               </button>

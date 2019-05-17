@@ -24,7 +24,7 @@ class FirbaseAuthForm extends React.Component {
 
     else return (
       this.props.tripId? <Redirect to={`${this.props.tripId}`} /> : 
-      <Redirect to="/" />
+      <Redirect to="/userHome" />
     )
 
     // return (
