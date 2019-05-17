@@ -48,7 +48,7 @@ class SignUp extends Component {
 
     return !this.user ? (
       <div>
-        <h1>Sign up</h1>
+        <h2>Sign up to start planning trips with Flock!</h2>
         <form onSubmit={this.handleSignUp}>
           <label>
             Email:

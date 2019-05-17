@@ -51,7 +51,7 @@ class LoginView extends Component {
 
     return (
       <div>
-        <h1>Login</h1>
+        <h2>Login</h2>
         <form onSubmit={this.handleLogin}>
           <label>
             Email:
