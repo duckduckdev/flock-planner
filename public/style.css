@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   min-height: 100vh;
+
   background-image: url(https://images.unsplash.com/photo-1482706917367-8e3a5d55a791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
 
   background-size: 100%;
@@ -36,11 +37,12 @@ form div {
   font-family: monospace;
   text-align: center;
 }
-*/ .layoutContainer {
+
+.layoutContainer {
   display: flex;
   flex-direction: row;
   /* flex: 50%; */
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
 }
 
 .trips {
@@ -51,10 +53,15 @@ form div {
   min-height: 100vh;
 }
 
-/* .layoutContainer h3 {
+.layoutContainer h3 {
   font-size: 150px;
+  padding-left: 30px;
+  padding-top: 20px;
+}
 
-} */
+h3 {
+  font-size: 150px;
+}
 
 .layoutContainer p {
   font-size: 50px;
