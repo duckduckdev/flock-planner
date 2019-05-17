@@ -12,7 +12,7 @@ class NewTripForm extends React.Component {
     }
     this.updateInput = this.updateInput.bind(this)
     this.addTrip = this.addTrip.bind(this)
-  } 
+  }
 
   updateInput = event => {
     this.setState({[event.target.name]: event.target.value})
@@ -43,10 +43,13 @@ class NewTripForm extends React.Component {
       <div>
         <form onSubmit={this.addTrip}>
           <div>
-            <label htmlFor="tripName">
-              <h2>Name Your Trip!</h2>
-            </label>
-            <p>Make it nice and descriptive, like "Nancy's Bachelorette Party or "Ski Trip 2K19".</p>
+            {/* <label htmlFor="tripName"> */}
+            <h3>Name Your Trip!</h3>
+            {/* </label> */}
+            <p>
+              Make it nice and descriptive, like "Nancy's Bachelorette Party or
+              "Ski Trip 2K19".
+            </p>
             <input
               name="tripName"
               type="text"
