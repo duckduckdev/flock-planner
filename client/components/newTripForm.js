@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import Calendar from './Calendar'
+import OutlinedTextFields from '../styling/inputBox'
 
 class NewTripForm extends React.Component {
   constructor(props) {
@@ -40,27 +41,28 @@ class NewTripForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.addTrip}>
+      <div className="newTripContainer">
+        <OutlinedTextFields />
+        {/* <form onSubmit={this.addTrip}>
           <div>
-            {/* <label htmlFor="tripName"> */}
-            <h3>Name Your Trip!</h3>
-            {/* </label> */}
+            <label htmlFor="tripName">
+              <h3>Name Your Trip!</h3>
+            </label>
             <p>
-              Make it nice and descriptive, like "Nancy's Bachelorette Party or
-              "Ski Trip 2K19".
+              Make it nice and descriptive, like "Nancy's Bachelorette Party"
             </p>
-            <input
+
+            <OutlinedTextFields
               name="tripName"
               type="text"
               onChange={this.updateInput}
               value={this.state.tripName}
             />
+            <div>
+              <button type="submit">Add Trip</button>
+            </div>
           </div>
-          <div>
-            <button type="submit">Add Trip</button>
-          </div>
-        </form>
+        </form> */}
       </div>
     )
   }

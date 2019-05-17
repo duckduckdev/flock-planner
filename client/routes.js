@@ -18,7 +18,8 @@ import {
   AddDates,
   MainPage
 } from './components'
-import Yelp from './components/map/YelpTest'
+
+import BootstrapNavBar from './styling/bootstrapNavBar'
 
 class App extends React.Component {
   constructor() {
@@ -58,6 +59,8 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         {/* <Navbar /> */}
+        <BootstrapNavBar />
+
         <Switch>
           <Route exact path="/" component={MainPage} />
           {/* <PrivateRoute

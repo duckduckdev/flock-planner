@@ -70,7 +70,7 @@ export class UserHome extends React.Component {
                     ))}
                   </div>
                 ) : (
-                  <p>
+                  <p className="description">
                     You are not curently part of any trips. Why not create a new
                     one?
                   </p>
