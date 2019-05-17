@@ -8,8 +8,11 @@ class DateList extends React.Component {
     this.state = {
       datePrefs: {},
       votes: {},
-      loading: true
+      loading: true,
+      available: false
     }
+
+    this.addVote = this.addVote.bind(this)  
   }
 
   async componentDidMount() {
@@ -38,38 +41,20 @@ class DateList extends React.Component {
       .get()
       .then(doc => {
         this.setState({datePrefs: doc.data()})
-        console.log('state is now', this.state)
+        // console.log('state is now', this.state)
       })
       .catch(function(error) {
         console.log('Error getting documents: ', error)
       })
   }
 
-  // async addPreferences(event) {
-  //   event.preventDefault()
-  //   const firebaseDB = firebase.firestore()
-  //   let tripId = this.props.tripId
-
-  //   const tripRef = await firebaseDB.collection('trips')
-  //   let trip = {}
-  //   await tripRef
-  //     .doc(tripId)
-  //     .get()
-  //     .then(doc => (trip = doc.data()))
-  //     .catch(function(error) {
-  //       console.log('Error getting documents: ', error)
-  //     })
-
-  //   const user = firebaseApp.auth().currentUser
-
-  //   let userId = user.email
-  // }
-
   async addVote(range) {
     // this needs to increment the votes for that date range in the database
 
     let tripId = this.props.tripId
-    // console.log('trip id is', tripId)
+
+    // is checkbox checked?
+    let checked = document.getElementById(`availableBox_${range}`).checked
 
     const firebaseDB = await firebase.firestore()
 
@@ -80,6 +65,11 @@ class DateList extends React.Component {
       .get()
 
     let ranges = doc.data().ranges
+    // console.log('ranges is', ranges)
+
+
+    if (checked) {
+    // console.log('box is checked, adding new vote')
 
     ranges[range].numVotes++
 
@@ -88,6 +78,21 @@ class DateList extends React.Component {
       .collection('datePrefs')
       .doc(tripId)
       .set({ranges: ranges}, {merge: true})
+  }
+
+  else {
+    // console.log('box is not checked, need to remove vote')
+
+    //how would you take out a vote?
+    ranges[range].numVotes--
+
+    //this works but now we need to reset the firestore
+    await firebaseDB
+      .collection('datePrefs')
+      .doc(tripId)
+      .set({ranges: ranges}, {merge: true})
+
+  }
 
     const updateVotes = newVotes => {
       this.setState({votes: newVotes})
@@ -104,13 +109,12 @@ class DateList extends React.Component {
   }
 
   render() {
-
     if (this.state.loading) return 'Loadinggg'
     if (!this.state.datePrefs.ranges) {
       return <div>Loading...</div>
     } else {
       const dateRanges = this.state.datePrefs.ranges
-      // console.log('date ranges', dateRanges)
+
       return (
         <div>
           <h2>Select Dates:</h2>
@@ -118,9 +122,12 @@ class DateList extends React.Component {
             return (
               <div key={range}>
                 <DisplayCalendar range={dateRanges[range]} />
-                <button type="button" onClick={() => this.addVote(range)}>
-                  I'm Available
-                </button>
+                <form> <input type="checkbox" 
+                name="availability" 
+                id={`availableBox_${range}`} 
+                onChange={() => this.addVote(range)}/>
+                <label htmlFor="availability">I'm available</label> 
+                </form>
                 <div>
                   Number of Friends Available:{' '}
                   {this.state.votes[range].numVotes}
