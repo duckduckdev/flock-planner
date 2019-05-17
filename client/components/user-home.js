@@ -1,5 +1,8 @@
 import React from 'react'
 import firebase, {firebaseApp} from '../firebase'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import FloatingActionButtons from '../styling/addButton'
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -36,32 +39,47 @@ export class UserHome extends React.Component {
   }
 
   render() {
+    return (
+      <div className="layoutContainer">
+        <img src="https://images.unsplash.com/photo-1501721857084-6b993d35774a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
 
-    return this.state.loading ? (
-      'this is still loading'
-    ) : (
-      <div>
-        <h3>Welcome</h3>
-        <ul>
-          {this.state.trips.length ? (
-            this.state.trips.map(tripObj => (
-              <li key={tripObj.tripId}>
-                <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
-              </li>
-            ))
-          ) : (
-            <p>
-              You are not curently part of any trips. Why not create a new one?
-            </p>
-          )}
-        </ul>
-
-        <button
-          type="button"
-          onClick={() => this.props.history.push('/createTrip')}
-        >
-          Create New Trip
-        </button>
+        {this.state.loading ? (
+          'this is still loading'
+        ) : (
+          <div className="trips">
+            <h3>Welcome</h3>
+            <ButtonToolbar>
+              <ul>
+                <h1>Your Trips:</h1>
+                {this.state.trips.length ? (
+                  this.state.trips.map(tripObj => (
+                    <li key={tripObj.tripId}>
+                      <Button
+                        variant="outline-info"
+                        size="lg"
+                        block
+                        onClick={() =>
+                          this.props.history.push(`/trip/${tripObj.tripId}`)
+                        }
+                      >
+                        {tripObj.trip.tripName}
+                      </Button>
+                      <br />
+                    </li>
+                  ))
+                ) : (
+                  <p>
+                    You are not curently part of any trips. Why not create a new
+                    one?
+                  </p>
+                )}
+                <FloatingActionButtons
+                  onClick={() => this.props.history.push('/createTrip')}
+                />
+              </ul>
+            </ButtonToolbar>
+          </div>
+        )}
       </div>
     )
   }

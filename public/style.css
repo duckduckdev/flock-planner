@@ -35,3 +35,30 @@ form div {
   font-family: monospace;
   text-align: center;
 } */
+
+.layoutContainer {
+  display: flex;
+  flex-direction: row;
+  /* flex: 50%; */
+  background-color: #f8f9fa;
+}
+
+.trips {
+  padding-left: 200px;
+}
+
+.layoutContainer img {
+  min-height: 100vh;
+}
+
+.layoutContainer h3 {
+  font-size: 150px;
+}
+
+.layoutContainer p {
+  font-size: 50px;
+}
+
+li {
+  list-style-type: none;
+}
