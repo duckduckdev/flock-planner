@@ -41,8 +41,6 @@ export class UserHome extends React.Component {
   render() {
     return (
       <div className="layoutContainer">
-        <img src="https://images.unsplash.com/photo-1501721857084-6b993d35774a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
-
         {this.state.loading ? (
           'this is still loading'
         ) : (

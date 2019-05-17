@@ -36,7 +36,7 @@ class SignUp extends Component {
           this.props.history.push(`${this.props.tripId}`)
         }
         else {
-          this.props.history.push('/')
+          this.props.history.push('/userHome')
         }
     } catch (error) {
       alert(error)
@@ -63,7 +63,7 @@ class SignUp extends Component {
         <FirebaseAuthForm user={this.user} tripId={tripId}/>
       </div>
     ) : (
-      <Redirect to="/" />
+      <Redirect to="/userHome" />
     )
   }
 }
