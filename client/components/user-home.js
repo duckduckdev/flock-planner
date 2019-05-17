@@ -50,29 +50,33 @@ export class UserHome extends React.Component {
             <h3>Welcome</h3>
             <ButtonToolbar>
               <ul>
-                <h1>Your Trips:</h1>
                 {this.state.trips.length ? (
-                  this.state.trips.map(tripObj => (
-                    <li key={tripObj.tripId}>
-                      <Button
-                        variant="outline-info"
-                        size="lg"
-                        block
-                        onClick={() =>
-                          this.props.history.push(`/trip/${tripObj.tripId}`)
-                        }
-                      >
-                        {tripObj.trip.tripName}
-                      </Button>
-                      <br />
-                    </li>
-                  ))
+                  <div>
+                    <h1>Your Trips</h1>
+                    <br />
+                    {this.state.trips.map(tripObj => (
+                      <li key={tripObj.tripId}>
+                        <Button
+                          variant="outline-dark"
+                          size="lg"
+                          block
+                          onClick={() =>
+                            this.props.history.push(`/trip/${tripObj.tripId}`)
+                          }
+                        >
+                          {tripObj.trip.tripName}
+                        </Button>
+                        <br />
+                      </li>
+                    ))}
+                  </div>
                 ) : (
                   <p>
                     You are not curently part of any trips. Why not create a new
                     one?
                   </p>
                 )}
+
                 <FloatingActionButtons
                   onClick={() => this.props.history.push('/createTrip')}
                 />
