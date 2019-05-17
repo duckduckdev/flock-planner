@@ -15,7 +15,8 @@ import {
   Signup,
   FinalizeTripForm,
   MapVisualTabs,
-  AddDates
+  AddDates,
+  MainPage
 } from './components'
 import Yelp from './components/map/YelpTest'
 
@@ -58,9 +59,17 @@ class App extends React.Component {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <PrivateRoute
+          <Route exact path="/" component={MainPage} />
+          {/* <PrivateRoute
             exact
             path="/"
+            component={UserHome}
+            authenticated={authenticated}
+            currentUser={currentUser}
+          /> */}
+          <PrivateRoute
+            exact
+            path="/userHome"
             component={UserHome}
             authenticated={authenticated}
             currentUser={currentUser}
