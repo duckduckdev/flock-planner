@@ -1,5 +1,8 @@
 import React from 'react'
 import firebase, {firebaseApp} from '../firebase'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import FloatingActionButtons from '../styling/addButton'
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -36,32 +39,48 @@ export class UserHome extends React.Component {
   }
 
   render() {
+    return (
+      <div className="layoutContainer">
+        {this.state.loading ? (
+          'this is still loading'
+        ) : (
+          <div className="trips">
+            <h3>Welcome</h3>
+            <ButtonToolbar>
+              <ul>
+                {this.state.trips.length ? (
+                  <div>
+                    <h1>Your Trips</h1>
+                    <br />
+                    {this.state.trips.map(tripObj => (
+                      <li key={tripObj.tripId}>
+                        l
+                        <Button
+                          variant="outline-dark"
+                          size="lg"
+                          block
+                          onClick={() =>
+                            this.props.history.push(`/trip/${tripObj.tripId}`)
+                          }
+                        >
+                          {tripObj.trip.tripName}
+                        </Button>
+                        <br />
+                      </li>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="description">
+                    You are not curently part of any trips. Why not create a new
+                    one?
+                  </p>
+                )}
 
-    return this.state.loading ? (
-      'this is still loading'
-    ) : (
-      <div>
-        <h3>Welcome</h3>
-        <ul>
-          {this.state.trips.length ? (
-            this.state.trips.map(tripObj => (
-              <li key={tripObj.tripId}>
-                <a href={`/trip/${tripObj.tripId}`}>{tripObj.trip.tripName}</a>
-              </li>
-            ))
-          ) : (
-            <p>
-              You are not curently part of any trips. Why not create a new one?
-            </p>
-          )}
-        </ul>
-
-        <button
-          type="button"
-          onClick={() => this.props.history.push('/createTrip')}
-        >
-          Create New Trip
-        </button>
+                <FloatingActionButtons history={this.props.history} />
+              </ul>
+            </ButtonToolbar>
+          </div>
+        )}
       </div>
     )
   }

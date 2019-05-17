@@ -1,7 +1,11 @@
 body {
   font-family: sans-serif;
   min-height: 100vh;
-  background-image: url('https://cdn.dribbble.com/users/2234174/screenshots/5499433/tropical-birds-dribbble.gif');
+
+  background-image: url(https://images.unsplash.com/photo-1482706917367-8e3a5d55a791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 a {
@@ -34,6 +38,54 @@ form div {
   text-align: center;
 }
 
+.layoutContainer {
+  display: flex;
+  flex-direction: row;
+  padding-top: 40px;
+  /* flex: 50%; */
+  /* background-color: #f8f9fa; */
+}
+
+.trips {
+  padding-left: 50px;
+}
+
+.layoutContainer img {
+  min-height: 100vh;
+}
+
+.layoutContainer h3 {
+  font-size: 120px;
+  padding-left: 30px;
+  padding-top: 50px;
+}
+
+h3 {
+  font-size: 120px;
+}
+
+.layoutContainer p {
+  font-size: 40px;
+  color: #343a40d4;
+}
+
+.newTripContainer {
+  padding-top: 60px;
+}
+
+.newTripContainer h3 {
+  font-size: 100px;
+}
+
+.newTripContainer p {
+  font-size: 40px;
+  color: #343a40d4;
+}
+
+li {
+  list-style-type: none;
+}
+
 #mainPage {
   background-color: transparent;
 }
@@ -42,19 +94,19 @@ form div {
   font-family: monospace;
   color: #ffffffe0;
   text-align: center;
-  font-size: 15em
+  font-size: 15em;
 }
 
 #mainDescription {
   text-align: center;
   color: #ffffffe0;
   font-size: 1.5em;
-  padding: .5em
+  padding: 0.5em;
 }
 
 #lowerDescription {
   text-align: center;
   color: #ffffffe0;
   font-size: 1.25em;
-  padding: .5em
+  padding: 0.5em;
 }
