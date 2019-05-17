@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import {withStyles} from '@material-ui/core/styles'
-import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
 import firebase from '../firebase'
 
@@ -61,26 +59,34 @@ class OutlinedTextFields extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log(this.props)
+
     return (
       <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-          id="outlined-full-width"
-          label="Trip Nsme"
-          style={{margin: 8}}
-          placeholder="i.e. Ski Trip 2K19"
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          onChange={this.updateInput}
-          InputLabelProps={{
-            shrink: true
-          }}
-        />
         <div>
-          <button type="submit" onClick={this.addTrip}>
-            Add Trip
-          </button>
+          <label htmlFor="tripName">
+            <h3>Name Your Trip!</h3>
+          </label>
+          <p>Make it nice and descriptive, like "Nancy's Bachelorette Party"</p>
+          <TextField
+            id="outlined-full-width"
+            label="Trip Name"
+            name="tripName"
+            value={this.state.tripName}
+            style={{margin: 8}}
+            placeholder="i.e. Ski Trip 2K19"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            onChange={this.updateInput}
+            InputLabelProps={{
+              shrink: true
+            }}
+          />
+          <div>
+            <button type="submit" onClick={this.addTrip}>
+              Add Trip
+            </button>
+          </div>
         </div>
       </form>
     )
