@@ -1,9 +1,10 @@
 body {
   font-family: sans-serif;
   min-height: 100vh;
-  background-image: url('https://images.unsplash.com/photo-1455485191723-69fcf9a48802?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-  background-repeat: no-repeat;
+  background-image: url(https://images.unsplash.com/photo-1482706917367-8e3a5d55a791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+
   background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 a {
