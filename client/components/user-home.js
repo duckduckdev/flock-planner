@@ -54,6 +54,7 @@ export class UserHome extends React.Component {
                     <br />
                     {this.state.trips.map(tripObj => (
                       <li key={tripObj.tripId}>
+                        l
                         <Button
                           variant="outline-dark"
                           size="lg"
@@ -75,9 +76,7 @@ export class UserHome extends React.Component {
                   </p>
                 )}
 
-                <FloatingActionButtons
-                  onClick={() => this.props.history.push('/createTrip')}
-                />
+                <FloatingActionButtons history={this.props.history} />
               </ul>
             </ButtonToolbar>
           </div>
