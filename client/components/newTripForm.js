@@ -40,15 +40,14 @@ class NewTripForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="newTripContainer">
         <form onSubmit={this.addTrip}>
           <div>
             {/* <label htmlFor="tripName"> */}
             <h3>Name Your Trip!</h3>
             {/* </label> */}
             <p>
-              Make it nice and descriptive, like "Nancy's Bachelorette Party or
-              "Ski Trip 2K19".
+              Make it nice and descriptive, like "Nancy's Bachelorette Party"
             </p>
             <input
               name="tripName"

@@ -41,6 +41,7 @@ form div {
 .layoutContainer {
   display: flex;
   flex-direction: row;
+  padding-top: 40px;
   /* flex: 50%; */
   /* background-color: #f8f9fa; */
 }
@@ -54,17 +55,31 @@ form div {
 }
 
 .layoutContainer h3 {
-  font-size: 150px;
+  font-size: 120px;
   padding-left: 30px;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 
 h3 {
-  font-size: 150px;
+  font-size: 120px;
 }
 
 .layoutContainer p {
-  font-size: 50px;
+  font-size: 40px;
+  color: #343a40d4;
+}
+
+.newTripContainer {
+  padding-top: 60px;
+}
+
+.newTripContainer h3 {
+  font-size: 100px;
+}
+
+.newTripContainer p {
+  font-size: 40px;
+  color: #343a40d4;
 }
 
 li {
