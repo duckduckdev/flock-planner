@@ -61,12 +61,14 @@ class OutlinedTextFields extends React.Component {
 
   render() {
     const {classes} = this.props
-    console.log(this.props)
+
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="outlined-full-width"
-          label="Trip Nsme"
+          label="Trip Name"
+          name="tripName"
+          value={this.state.tripName}
           style={{margin: 8}}
           placeholder="i.e. Ski Trip 2K19"
           fullWidth
