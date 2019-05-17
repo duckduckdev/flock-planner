@@ -57,7 +57,7 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={MainPage} />
           {/* <PrivateRoute
