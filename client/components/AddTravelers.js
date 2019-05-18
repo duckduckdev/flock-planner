@@ -2,13 +2,26 @@ import React from 'react'
 import firebase from '../firebase'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import CleanAddButtons from '../styling/cleanAddButton'
-import SendButton from '../styling/sendButton'
-
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Icon from '@material-ui/core/Icon'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 
 const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap'
@@ -34,6 +47,7 @@ class AddTravelers extends React.Component {
       },
       numEmails: 1
     }
+    this.addFriend = this.addFriend.bind(this)
     this.addEmailField = this.addEmailField.bind(this)
     this.updateEmail = this.updateEmail.bind(this)
   }
@@ -63,6 +77,30 @@ class AddTravelers extends React.Component {
     })
   }
 
+  addFriend = async event => {
+    event.preventDefault()
+
+    const user = firebase.auth().currentUser
+    const userName = user.displayName ? user.displayName : user.email
+    console.log(userName)
+
+    let data = {
+      emails: this.state.emails,
+      url: `http://localhost:8080/preference/${this.props.match.params.tripId}`,
+      userName: userName
+    }
+
+    await axios.post('/send', data)
+
+    this.setState({
+      emails: {
+        email1: ''
+      }
+    })
+
+    this.props.history.push(`/preference/${this.props.match.params.tripId}`)
+  }
+
   render() {
     const {classes} = this.props
 
@@ -88,19 +126,29 @@ class AddTravelers extends React.Component {
           {/* <button type="button" id="addEmail" onClick={this.addEmailField}>
             +
           </button> */}
-
-          <CleanAddButtons
+          <Fab
+            color="primary"
+            aria-label="Add"
+            className={classes.fab}
             type="button"
             id="addEmail"
             value={this.state.emails}
             onClick={this.addEmailField}
-          />
-          <div id="sendButton">
-            <SendButton
-              onClick={this.state.emails}
-              history={this.props.history}
-              tripId={this.props.match.params.tripId}
-            />
+          >
+            <AddIcon />
+          </Fab>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={this.addFriend}
+            >
+              Send
+              {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+              <Icon className={classes.rightIcon}>send</Icon>
+            </Button>
           </div>
         </form>
       </div>
