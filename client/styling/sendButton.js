@@ -36,29 +36,6 @@ class IconLabelButtons extends React.Component {
     this.addFriend = this.addFriend.bind(this)
   }
 
-  addFriend = async event => {
-    event.preventDefault()
-
-    const user = firebase.auth().currentUser
-    const userName = user.displayName ? user.displayName : user.email
-
-    let data = {
-      emails: this.state.emails,
-      url: `http://localhost:8080/preference/${this.props.preferenceTripId}`,
-      userName: userName
-    }
-
-    await axios.post('/send', data)
-
-    this.setState({
-      emails: {
-        email1: ''
-      }
-    })
-
-    this.props.history.push(`/preference/${this.props.tripId}`)
-  }
-
   render() {
     const {classes} = this.props
     return (

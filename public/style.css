@@ -8,6 +8,12 @@ body {
   background-repeat: no-repeat;
 }
 
+body,
+html {
+  overflow-x: hidden;
+  height: auto;
+}
+
 a {
   text-decoration: none;
 }
@@ -70,6 +76,16 @@ form div {
   color: #343a40;
 }
 
+.prefContainer {
+  padding-top: 80px;
+}
+
+.prefContainer h3 {
+  font-size: 60px;
+  padding-left: 30px;
+  color: #343a40;
+}
+
 #sendButton {
   padding-left: 20px;
 }
@@ -93,8 +109,55 @@ form div {
   color: #343a40d4;
 }
 
+.visualContainer {
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 50px;
+  left: 20px;
+  position: initial;
+  color: #e6e6e6;
+  background-color: #2f2d3466;
+  width: max-content;
+}
+
+.visualContainer h2 {
+  font-size: 40px;
+}
+
+.react-tabs__tab-list {
+  margin: 0 0 0px !important;
+}
+
+.react-tabs__tab--selected {
+  background-color: #2f2d3466 !important;
+  color: aliceblue !important;
+}
+
+#location-budget {
+  padding-right: 80px;
+}
+
+/* .radio span {
+  padding-right: 20px;
+} */
+
+.radio {
+  padding-left: 25px;
+}
+
+.btn-toolbar {
+  padding-left: 30px;
+}
+
 li {
   list-style-type: none;
+}
+
+#root {
+  top: 100px;
 }
 
 #mainPage {

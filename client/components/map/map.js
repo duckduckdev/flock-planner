@@ -19,7 +19,7 @@ class Map extends Component {
 
     this.state = {
       viewport: {
-        width: 1000,
+        width: 1500,
         height: 1000,
         latitude: 40.7793195,
         longitude: -73.96354299999999,
@@ -67,7 +67,7 @@ class Map extends Component {
     this.handleViewportChange({
       // width: window.innerWidth,
       // height: window.innerHeight
-      width: 1000,
+      width: 1500,
       height: 1000
     })
   }

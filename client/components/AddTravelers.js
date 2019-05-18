@@ -69,26 +69,25 @@ class AddTravelers extends React.Component {
     return (
       <div className="inviteContainer">
         <form className={classes.container} noValidate autoComplete="off">
-          <h3>Invite people to your trip</h3>
-
-          {Object.keys(this.state.emails).map(key => {
-            return (
-              <TextField
-                key={key}
-                id="outlined-full-width"
-                name={key}
-                value={this.state.emails[key]}
-                style={{margin: 8}}
-                placeholder="i.e. meow@cat.com"
-                margin="normal"
-                variant="outlined"
-                onChange={this.updateEmail}
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-            )
-          })}
+          {Object.keys(this.state.emails).map(key => (
+            <TextField
+              key={key}
+              id="outlined-full-width"
+              name={key}
+              value={this.state.tripName}
+              style={{margin: 8}}
+              placeholder="i.e. cat@meow.com"
+              margin="normal"
+              variant="outlined"
+              onChange={this.updateEmail}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          ))}
+          {/* <button type="button" id="addEmail" onClick={this.addEmailField}>
+            +
+          </button> */}
 
           <CleanAddButtons
             type="button"
