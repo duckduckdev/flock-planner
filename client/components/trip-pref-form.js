@@ -175,104 +175,104 @@ class TripPrefForm extends Component {
     } else {
       return (
         <div className="prefContainer">
-          <ButtonToolbar className="form-sumbit">
-            {/* <form onSubmit={this.addPreferences}> */}
-            <form className={classes.container} noValidate autoComplete="off">
-              <h3> Pick Your Top Three Destinations</h3>
-              <div className="answer">
-                <TextField
-                  id="outlined-full-width"
-                  label="First Choice"
-                  name="firstLocation"
-                  value={this.state.firstLocation}
-                  style={{margin: 8}}
-                  placeholder="i.e. Bali, Indonesia"
-                  margin="normal"
-                  variant="outlined"
-                  onChange={this.handleChange}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-
-                <TextField
-                  id="outlined-full-width"
-                  label="Second Choice"
-                  name="secondLocation"
-                  value={this.state.secondLocation}
-                  style={{margin: 8}}
-                  placeholder="i.e. Santorini, Greece"
-                  margin="normal"
-                  variant="outlined"
-                  onChange={this.handleChange}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-
-                <TextField
-                  id="outlined-full-width"
-                  label="Third Choice"
-                  name="thirdLocation"
-                  value={this.state.thirdLocation}
-                  style={{margin: 8}}
-                  placeholder="i.e. San José, Costa Rica"
-                  margin="normal"
-                  variant="outlined"
-                  onChange={this.handleChange}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                />
-              </div>
-            </form>
-
-            <h3>What's Your Budget?</h3>
-            <div className="radio">
-              <Radio
-                color="primary"
-                checked={this.state.budget === '< $150'}
-                onChange={this.handleOptionChange}
-                value="< $150"
-                name="budget"
+          {/* <form onSubmit={this.addPreferences}> */}
+          <form className={classes.container} noValidate autoComplete="off">
+            <h3> Pick Your Top Three Destinations</h3>
+            <div className="answer">
+              <TextField
+                id="outlined-full-width"
+                label="First Choice"
+                name="firstLocation"
+                value={this.state.firstLocation}
+                style={{margin: 8}}
+                placeholder="i.e. Bali, Indonesia"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
               />
 
-              <span>{`< $150`}</span>
-              <span />
-              <Radio
-                color="primary"
-                checked={this.state.budget === '$150 to $500'}
-                onChange={this.handleOptionChange}
-                value="$150 to $500"
-                name="budget"
+              <TextField
+                id="outlined-full-width"
+                label="Second Choice"
+                name="secondLocation"
+                value={this.state.secondLocation}
+                style={{margin: 8}}
+                placeholder="i.e. Santorini, Greece"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
               />
-              <span>$150 to $500</span>
-              <Radio
-                color="primary"
-                checked={this.state.budget === '$500 to $1,000'}
-                onChange={this.handleOptionChange}
-                value="$500 to $1,000"
-                name="budget"
+
+              <TextField
+                id="outlined-full-width"
+                label="Third Choice"
+                name="thirdLocation"
+                value={this.state.thirdLocation}
+                style={{margin: 8}}
+                placeholder="i.e. San José, Costa Rica"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
               />
-              <span>$500 to $1,000</span>
-              <Radio
-                color="primary"
-                checked={this.state.budget === '$1,000 to $1,500'}
-                onChange={this.handleOptionChange}
-                value="$1,000 to $1,500"
-                name="budget"
-              />
-              <span>> $1,000 to $1,500</span>
-              <Radio
-                color="primary"
-                checked={this.state.budget === '> $1,500'}
-                onChange={this.handleOptionChange}
-                value="> $1,500"
-                name="budget"
-              />
-              <span>{`> $1,500`}</span>
             </div>
-            <br />
+          </form>
+
+          <h3>What's Your Budget?</h3>
+          <div className="radio">
+            <Radio
+              color="primary"
+              checked={this.state.budget === '< $150'}
+              onChange={this.handleOptionChange}
+              value="< $150"
+              name="budget"
+            />
+
+            <span>{`< $150`}</span>
+            <span />
+            <Radio
+              color="primary"
+              checked={this.state.budget === '$150 to $500'}
+              onChange={this.handleOptionChange}
+              value="$150 to $500"
+              name="budget"
+            />
+            <span>$150 to $500</span>
+            <Radio
+              color="primary"
+              checked={this.state.budget === '$500 to $1,000'}
+              onChange={this.handleOptionChange}
+              value="$500 to $1,000"
+              name="budget"
+            />
+            <span>$500 to $1,000</span>
+            <Radio
+              color="primary"
+              checked={this.state.budget === '$1,000 to $1,500'}
+              onChange={this.handleOptionChange}
+              value="$1,000 to $1,500"
+              name="budget"
+            />
+            <span>> $1,000 to $1,500</span>
+            <Radio
+              color="primary"
+              checked={this.state.budget === '> $1,500'}
+              onChange={this.handleOptionChange}
+              value="> $1,500"
+              name="budget"
+            />
+            <span>{`> $1,500`}</span>
+          </div>
+          <br />
+          <ButtonToolbar className="form-sumbit">
             <Button variant="dark" size="lg" onClick={this.addPreferences}>
               Submit
             </Button>
