@@ -123,9 +123,6 @@ class AddTravelers extends React.Component {
               }}
             />
           ))}
-          {/* <button type="button" id="addEmail" onClick={this.addEmailField}>
-            +
-          </button> */}
           <Fab
             color="primary"
             aria-label="Add"

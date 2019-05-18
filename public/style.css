@@ -184,3 +184,7 @@ li {
   font-size: 1.25em;
   padding: 0.5em;
 }
+
+#addEmail {
+  margin-top: 20px;
+}
