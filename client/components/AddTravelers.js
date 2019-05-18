@@ -2,15 +2,26 @@ import React from 'react'
 import firebase from '../firebase'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import CleanAddButtons from '../styling/cleanAddButton'
-import SendButton from '../styling/sendButton'
-
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Icon from '@material-ui/core/Icon'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 
 const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap'
@@ -28,15 +39,14 @@ const styles = theme => ({
 })
 
 class AddTravelers extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       emails: {
         email1: ''
       },
       numEmails: 1
     }
-    // this.updateInput = this.updateInput.bind(this)
     this.addFriend = this.addFriend.bind(this)
     this.addEmailField = this.addEmailField.bind(this)
     this.updateEmail = this.updateEmail.bind(this)
@@ -93,32 +103,9 @@ class AddTravelers extends React.Component {
 
   render() {
     const {classes} = this.props
+
     return (
       <div className="inviteContainer">
-        <h3>Invite people to your trip</h3>
-        {/* <form onSubmit={this.addFriend}>
-          {Object.keys(this.state.emails).map(key => {
-            return (
-              <div key={key}>
-                <input
-                  name={key}
-                  type="text"
-                  onChange={this.updateEmail}
-                  value={this.state.emails[key]}
-                />
-              </div>
-            )
-          })}
-          <div>
-            <button type="button" id="addEmail" onClick={this.addEmailField}>
-              +
-            </button>
-          </div>
-          <div>
-            <button type="submit">Send Invites</button>
-          </div>
-        </form> */}
-
         <form className={classes.container} noValidate autoComplete="off">
           {Object.keys(this.state.emails).map(key => (
             <TextField
@@ -136,23 +123,31 @@ class AddTravelers extends React.Component {
               }}
             />
           ))}
-          {/* <button type="button" id="addEmail" onClick={this.addEmailField}>
-            +
-          </button> */}
-          <CleanAddButtons
+          <Fab
+            color="primary"
+            aria-label="Add"
+            className={classes.fab}
             type="button"
             id="addEmail"
+            value={this.state.emails}
             onClick={this.addEmailField}
-          />
+          >
+            <AddIcon />
+          </Fab>
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={this.addFriend}
+            >
+              Send
+              {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+              <Icon className={classes.rightIcon}>send</Icon>
+            </Button>
+          </div>
         </form>
-        <div id="sendButton">
-          <SendButton onClick={this.addFriend} />
-        </div>
-        {/* <div>
-          <button type="submit" onClick={this.addFriend}>
-            Send Invites
-          </button>
-        </div> */}
       </div>
     )
   }
