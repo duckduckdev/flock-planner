@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from '../firebase'
-
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 class LocationList extends React.Component {
   constructor(props) {
     super(props)
@@ -103,9 +103,19 @@ class LocationList extends React.Component {
                 <td>{location}</td>
                 <td> {this.state.votes[location]}</td>
                 <td>
-                  <button type="button" onClick={() => this.addVote(location)}>
-                    ❤️
-                  </button>
+                  {/* <button type="button" onClick={() => this.addVote(location)}> */}
+                  <FavoriteBorder onClick={() => this.addVote(location)} />
+                  {/* </button> */}
+                  {/* <FormControlLabel
+                    control={
+                      <Checkbox
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />} 
+                        value="checkedH"
+                      />
+                    }
+                    label="Custom icon"
+                  /> */}
                 </td>
 
                 <td>{hearts}</td>
