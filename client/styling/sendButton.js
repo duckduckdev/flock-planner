@@ -8,6 +8,8 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice'
 import Icon from '@material-ui/core/Icon'
 import SaveIcon from '@material-ui/icons/Save'
+import firebase from '../firebase'
+import axios from 'axios'
 
 const styles = theme => ({
   button: {
@@ -24,22 +26,57 @@ const styles = theme => ({
   }
 })
 
-function IconLabelButtons(props) {
-  const {classes} = props
-  return (
-    <div>
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        className={classes.button}
-      >
-        Send
-        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-        <Icon className={classes.rightIcon}>send</Icon>
-      </Button>
-    </div>
-  )
+class IconLabelButtons extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      emails: props.onClick,
+      numEmails: 1
+    }
+    this.addFriend = this.addFriend.bind(this)
+  }
+
+  addFriend = async event => {
+    event.preventDefault()
+
+    const user = firebase.auth().currentUser
+    const userName = user.displayName ? user.displayName : user.email
+
+    let data = {
+      emails: this.state.emails,
+      url: `http://localhost:8080/preference/${this.props.preferenceTripId}`,
+      userName: userName
+    }
+
+    await axios.post('/send', data)
+
+    this.setState({
+      emails: {
+        email1: ''
+      }
+    })
+
+    this.props.history.push(`/preference/${this.props.tripId}`)
+  }
+
+  render() {
+    const {classes} = this.props
+    return (
+      <div>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          onClick={this.addFriend}
+        >
+          Send
+          {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+          <Icon className={classes.rightIcon}>send</Icon>
+        </Button>
+      </div>
+    )
+  }
 }
 
 IconLabelButtons.propTypes = {

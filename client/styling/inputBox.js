@@ -91,7 +91,7 @@ class OutlinedTextFields extends React.Component {
                 variant="dark"
                 size="lg"
                 type="submit"
-                onClick={this.addTrip}
+                preferenceTripId={this.props.match.params.tripId}
               >
                 Create Trip
               </Button>

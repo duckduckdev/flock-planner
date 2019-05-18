@@ -34,7 +34,6 @@ class AddTravelers extends React.Component {
       },
       numEmails: 1
     }
-    this.addFriend = this.addFriend.bind(this)
     this.addEmailField = this.addEmailField.bind(this)
     this.updateEmail = this.updateEmail.bind(this)
   }
@@ -62,29 +61,6 @@ class AddTravelers extends React.Component {
         }
       }
     })
-  }
-
-  addFriend = async event => {
-    event.preventDefault()
-
-    const user = firebase.auth().currentUser
-    const userName = user.displayName ? user.displayName : user.email
-
-    let data = {
-      emails: this.state.emails,
-      url: `http://localhost:8080/preference/${this.props.match.params.tripId}`,
-      userName: userName
-    }
-
-    await axios.post('/send', data)
-
-    this.setState({
-      emails: {
-        email1: ''
-      }
-    })
-
-    this.props.history.push(`/preference/${this.props.match.params.tripId}`)
   }
 
   render() {
@@ -117,10 +93,15 @@ class AddTravelers extends React.Component {
           <CleanAddButtons
             type="button"
             id="addEmail"
+            value={this.state.emails}
             onClick={this.addEmailField}
           />
           <div id="sendButton">
-            <SendButton onSubmit={this.addFriend} />
+            <SendButton
+              onClick={this.state.emails}
+              history={this.props.history}
+              tripId={this.props.match.params.tripId}
+            />
           </div>
         </form>
       </div>
