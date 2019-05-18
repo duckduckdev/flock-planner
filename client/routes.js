@@ -72,8 +72,8 @@ class App extends React.Component {
             currentUser={currentUser}
           />
           <Route exact path="/new" component={LoginSignupTabs} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
+          {/* <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} /> */}
           <PrivateRoute2
             exact
             path="/preference/:tripId"
