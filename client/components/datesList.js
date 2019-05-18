@@ -12,7 +12,7 @@ class DateList extends React.Component {
       available: false
     }
 
-    this.addVote = this.addVote.bind(this)  
+    this.addVote = this.addVote.bind(this)
   }
 
   async componentDidMount() {
@@ -67,32 +67,28 @@ class DateList extends React.Component {
     let ranges = doc.data().ranges
     // console.log('ranges is', ranges)
 
-
     if (checked) {
-    // console.log('box is checked, adding new vote')
+      // console.log('box is checked, adding new vote')
 
-    ranges[range].numVotes++
+      ranges[range].numVotes++
 
-    //this works but now we need to reset the firestore
-    await firebaseDB
-      .collection('datePrefs')
-      .doc(tripId)
-      .set({ranges: ranges}, {merge: true})
-  }
+      //this works but now we need to reset the firestore
+      await firebaseDB
+        .collection('datePrefs')
+        .doc(tripId)
+        .set({ranges: ranges}, {merge: true})
+    } else {
+      // console.log('box is not checked, need to remove vote')
 
-  else {
-    // console.log('box is not checked, need to remove vote')
+      //how would you take out a vote?
+      ranges[range].numVotes--
 
-    //how would you take out a vote?
-    ranges[range].numVotes--
-
-    //this works but now we need to reset the firestore
-    await firebaseDB
-      .collection('datePrefs')
-      .doc(tripId)
-      .set({ranges: ranges}, {merge: true})
-
-  }
+      //this works but now we need to reset the firestore
+      await firebaseDB
+        .collection('datePrefs')
+        .doc(tripId)
+        .set({ranges: ranges}, {merge: true})
+    }
 
     const updateVotes = newVotes => {
       this.setState({votes: newVotes})
@@ -117,19 +113,23 @@ class DateList extends React.Component {
 
       return (
         <div>
-          <h2>Select Dates:</h2>
+          <h2>Select Dates</h2>
           {Object.keys(dateRanges).map(range => {
             return (
               <div key={range}>
                 <DisplayCalendar range={dateRanges[range]} />
-                <form> <input type="checkbox" 
-                name="availability" 
-                id={`availableBox_${range}`} 
-                onChange={() => this.addVote(range)}/>
-                <label htmlFor="availability">I'm available</label> 
+                <form>
+                  {' '}
+                  <input
+                    type="checkbox"
+                    name="availability"
+                    id={`availableBox_${range}`}
+                    onChange={() => this.addVote(range)}
+                  />
+                  <label htmlFor="availability"> I'm available</label>
                 </form>
-                <div>
-                  Number of Friends Available:{' '}
+                <div className="available">
+                  <bold>Number of Friends Available: </bold>
                   {this.state.votes[range].numVotes}
                 </div>
               </div>

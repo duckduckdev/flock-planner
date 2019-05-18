@@ -88,26 +88,41 @@ export default class BudgetChart extends PureComponent {
           ))}
         </Pie>
         <Legend verticalAlign="top" height={36} />
-        <Line name="< $150" type="monotone" dataKey="value" stroke="#8884d8" />
+        <Line
+          name="< $150"
+          type="monotone"
+          dataKey="value"
+          stroke="#8884d8"
+          className="legend"
+        />
         <Line
           name="$150-$500"
           type="monotone"
           dataKey="value"
           stroke="#82ca9d"
+          className="legend"
         />
         <Line
           name="$500-$1000"
           type="monotone"
           dataKey="value"
           stroke="#82ca9d"
+          className="legend"
         />
         <Line
           name="$1000-$1500"
           type="monotone"
           dataKey="value"
           stroke="#82ca9d"
+          className="legend"
         />
-        <Line name="$1500+" type="monotone" dataKey="value" stroke="#82ca9d" />
+        <Line
+          name="$1500+"
+          type="monotone"
+          dataKey="value"
+          stroke="#82ca9d"
+          className="legend"
+        />
       </PieChart>
     )
   }

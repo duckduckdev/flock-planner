@@ -6,13 +6,14 @@ body {
 
   background-size: 100%;
   background-repeat: no-repeat;
+  margin: 60px;
 }
 
-body,
+/* body,
 html {
   overflow-x: hidden;
   height: auto;
-}
+} */
 
 a {
   text-decoration: none;
@@ -30,6 +31,17 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+/* .legend {
+  font-size: 14pt;
+} */
+
+dl,
+ol,
+ul {
+  /* margin-top: 0;
+  margin-bottom: 1rem; */
+  font-size: 15pt;
+}
 
 #app {
   /* background-color: #ffffffe0; */
@@ -42,6 +54,11 @@ form div {
 #title {
   font-family: monospace;
   text-align: center;
+}
+
+.tabContainer {
+  margin-top: 60px;
+  margin-left: 0;
 }
 
 .layoutContainer {
@@ -109,18 +126,38 @@ form div {
   color: #343a40d4;
 }
 
+/* .mapBackground {
+  background-color: #2f2d3466;
+} */
+
+.available {
+  text-align: center;
+
+  background-color: #4990e2;
+  color: aliceblue;
+  padding: 5;
+}
+
+.heart div {
+  padding-left: 10px;
+}
+
 .visualContainer {
   display: flex;
   flex-direction: row;
   flex-basis: auto;
   justify-content: space-evenly;
-  background-color: white;
-  padding: 50px;
+
+  position: absolute;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 20px;
   left: 20px;
-  position: initial;
+
   color: #e6e6e6;
   background-color: #2f2d3466;
-  width: max-content;
+  font-size: 16pt;
+  margin-left: 120px;
 }
 
 .visualContainer h2 {
@@ -129,6 +166,9 @@ form div {
 
 .react-tabs__tab-list {
   margin: 0 0 0px !important;
+  padding: 0;
+
+  text-align: start;
 }
 
 .react-tabs__tab--selected {
@@ -137,7 +177,10 @@ form div {
 }
 
 #location-budget {
-  padding-right: 80px;
+  padding: 0;
+  margin-left: 0;
+  text-align: start;
+  padding-right: 180px;
 }
 
 /* .radio span {
@@ -183,4 +226,8 @@ li {
   color: #ffffffe0;
   font-size: 1.25em;
   padding: 0.5em;
+}
+
+#addEmail {
+  margin-top: 20px;
 }
