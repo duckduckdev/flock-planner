@@ -2,8 +2,6 @@ import React from 'react'
 import firebase from '../firebase'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import CleanAddButtons from '../styling/cleanAddButton'
 import SendButton from '../styling/sendButton'
 
@@ -28,15 +26,14 @@ const styles = theme => ({
 })
 
 class AddTravelers extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       emails: {
         email1: ''
       },
       numEmails: 1
     }
-    // this.updateInput = this.updateInput.bind(this)
     this.addFriend = this.addFriend.bind(this)
     this.addEmailField = this.addEmailField.bind(this)
     this.updateEmail = this.updateEmail.bind(this)
@@ -72,7 +69,6 @@ class AddTravelers extends React.Component {
 
     const user = firebase.auth().currentUser
     const userName = user.displayName ? user.displayName : user.email
-    console.log(userName)
 
     let data = {
       emails: this.state.emails,
@@ -93,61 +89,40 @@ class AddTravelers extends React.Component {
 
   render() {
     const {classes} = this.props
+
     return (
       <div className="inviteContainer">
-        <h3>Invite people to your trip</h3>
-        {/* <form onSubmit={this.addFriend}>
+        <form className={classes.container} noValidate autoComplete="off">
+          <h3>Invite people to your trip</h3>
+
           {Object.keys(this.state.emails).map(key => {
             return (
-              <div key={key}>
-                <input
-                  name={key}
-                  type="text"
-                  onChange={this.updateEmail}
-                  value={this.state.emails[key]}
-                />
-              </div>
+              <TextField
+                key={key}
+                id="outlined-full-width"
+                name={key}
+                value={this.state.emails[key]}
+                style={{margin: 8}}
+                placeholder="i.e. meow@cat.com"
+                margin="normal"
+                variant="outlined"
+                onChange={this.updateEmail}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
             )
           })}
-          <div>
-            <button type="button" id="addEmail" onClick={this.addEmailField}>
-              +
-            </button>
-          </div>
-          <div>
-            <button type="submit">Send Invites</button>
-          </div>
-        </form> */}
 
-        <form className={classes.container} noValidate autoComplete="off">
-          {Object.keys(this.state.emails).map(key => (
-            <TextField
-              key={key}
-              id="outlined-full-width"
-              name={key}
-              value={this.state.tripName}
-              style={{margin: 8}}
-              placeholder="i.e. meow@cat.com"
-              margin="normal"
-              variant="outlined"
-              onChange={this.updateEmail}
-              InputLabelProps={{
-                shrink: true
-              }}
-            />
-          ))}
-          {/* <button type="button" id="addEmail" onClick={this.addEmailField}>
-            +
-          </button> */}
           <CleanAddButtons
             type="button"
             id="addEmail"
             onClick={this.addEmailField}
           />
+          <div id="sendButton">
+            <SendButton onSubmit={this.addFriend} />
+          </div>
         </form>
-        <div id="sendButton">
-          <SendButton onClick={this.addFriend} />
-        </div>
       </div>
     )
   }
