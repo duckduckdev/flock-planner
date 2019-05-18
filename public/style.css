@@ -31,8 +31,16 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-#legend {
+/* .legend {
   font-size: 14pt;
+} */
+
+dl,
+ol,
+ul {
+  /* margin-top: 0;
+  margin-bottom: 1rem; */
+  font-size: 15pt;
 }
 
 #app {
