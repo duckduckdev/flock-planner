@@ -105,11 +105,8 @@ class LocationList extends React.Component {
             return (
               <tr key={location}>
                 <td>{location}</td>
-                <td> {this.state.votes[location]}</td>
+                {/* <td> {this.state.votes[location]}</td> */}
                 <td>
-                  {/* <button type="button" onClick={() => this.addVote(location)}> */}
-                  {/* <FavoriteBorder onClick={() => this.addVote(location)} /> */}
-                  {/* </button> */}
                   <div onClick={() => this.addVote(location)}>
                     <FormControlLabel
                       control={
@@ -119,7 +116,6 @@ class LocationList extends React.Component {
                           value="checkedH"
                         />
                       }
-                      label="Custom icon"
                     />
                   </div>
                 </td>
