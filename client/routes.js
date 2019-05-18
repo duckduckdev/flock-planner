@@ -3,6 +3,7 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 import PrivateRoute2 from './components/PrivateRoute2'
 import {firebaseApp} from './firebase'
+import FloatingTabs from './styling/floatingTabs'
 import {
   Navbar,
   NewTripForm,
@@ -132,6 +133,13 @@ class App extends React.Component {
             exact
             path="/trip/:tripId"
             component={MapVisualTabs}
+            authenticated={authenticated}
+            currentUser={currentUser}
+          />
+          <PrivateRoute
+            exact
+            path="/test"
+            component={FloatingTabs}
             authenticated={authenticated}
             currentUser={currentUser}
           />

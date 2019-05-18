@@ -119,6 +119,11 @@ li {
   list-style-type: none;
 }
 
+#root {
+  position: fixed;
+  top: 100px;
+}
+
 #mainPage {
   background-color: transparent;
 }
