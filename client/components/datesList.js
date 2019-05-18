@@ -126,10 +126,10 @@ class DateList extends React.Component {
                     id={`availableBox_${range}`}
                     onChange={() => this.addVote(range)}
                   />
-                  <label htmlFor="availability">I'm available</label>
+                  <label htmlFor="availability"> I'm available</label>
                 </form>
-                <div>
-                  Number of Friends Available:{' '}
+                <div className="available">
+                  <bold>Number of Friends Available: </bold>
                   {this.state.votes[range].numVotes}
                 </div>
               </div>

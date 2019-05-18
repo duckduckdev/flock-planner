@@ -119,6 +119,14 @@ form div {
   background-color: #2f2d3466;
 } */
 
+.available {
+  text-align: center;
+
+  background-color: #4990e2;
+  color: aliceblue;
+  padding: 5;
+}
+
 .visualContainer {
   display: flex;
   flex-direction: row;
