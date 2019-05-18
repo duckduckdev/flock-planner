@@ -127,13 +127,17 @@ form div {
   padding: 5;
 }
 
+.heart div {
+  padding-left: 10px;
+}
+
 .visualContainer {
   display: flex;
   flex-direction: row;
   flex-basis: auto;
   justify-content: space-evenly;
-  /* background-color: white; */
-  position: fixed;
+
+  position: absolute;
   padding-left: 80px;
   padding-right: 80px;
   padding-top: 20px;
@@ -141,7 +145,7 @@ form div {
 
   color: #e6e6e6;
   background-color: #2f2d3466;
-  /* width: max-content; */
+  font-size: 16pt;
   margin-left: 120px;
 }
 

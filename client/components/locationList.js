@@ -105,8 +105,7 @@ class LocationList extends React.Component {
             return (
               <tr key={location}>
                 <td>{location}</td>
-                {/* <td> {this.state.votes[location]}</td> */}
-                <td>
+                <td className="heart">
                   <div onClick={() => this.addVote(location)}>
                     <FormControlLabel
                       control={

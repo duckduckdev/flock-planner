@@ -336,12 +336,12 @@ class TripPrefForm extends Component {
             </label>
           </div> */}
           <br />
-          {/* <ButtonToolbar className="form-sumbit">
+          <ButtonToolbar className="form-sumbit">
             <Button variant="dark" size="lg">
               Submit
             </Button>
-          </ButtonToolbar> */}
-          <button onClick={this.addPreferences}>Submit</button>
+          </ButtonToolbar>
+          {/* <button onClick={this.addPreferences}>Submit</button> */}
         </div>
       )
     }
