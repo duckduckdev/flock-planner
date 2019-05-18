@@ -1,7 +1,9 @@
 import React from 'react'
 import firebase from '../firebase'
 import axios from 'axios'
-
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import FloatingActionButtons from '../styling/addButton'
 
 class AddTravelers extends React.Component {
   constructor() {

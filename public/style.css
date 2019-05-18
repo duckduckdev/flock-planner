@@ -58,6 +58,7 @@ form div {
   font-size: 120px;
   padding-left: 30px;
   padding-top: 50px;
+  color: #343a40;
 }
 
 h3 {
@@ -75,6 +76,7 @@ h3 {
 
 .newTripContainer h3 {
   font-size: 100px;
+  color: #343a40;
 }
 
 .newTripContainer p {
