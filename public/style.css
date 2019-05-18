@@ -115,12 +115,16 @@ form div {
   color: #343a40d4;
 }
 
+/* .mapBackground {
+  background-color: #2f2d3466;
+} */
+
 .visualContainer {
   display: flex;
   flex-direction: row;
   flex-basis: auto;
   justify-content: space-evenly;
-  background-color: white;
+  /* background-color: white; */
   position: fixed;
   padding-left: 80px;
   padding-right: 80px;
@@ -129,8 +133,8 @@ form div {
 
   color: #e6e6e6;
   background-color: #2f2d3466;
-  width: max-content;
-  margin-left: 80px;
+  /* width: max-content; */
+  margin-left: 120px;
 }
 
 .visualContainer h2 {
@@ -139,6 +143,9 @@ form div {
 
 .react-tabs__tab-list {
   margin: 0 0 0px !important;
+  padding: 0;
+
+  text-align: start;
 }
 
 .react-tabs__tab--selected {
@@ -147,7 +154,10 @@ form div {
 }
 
 #location-budget {
-  padding-right: 100px;
+  padding: 0;
+  margin-left: 0;
+  text-align: start;
+  padding-right: 180px;
 }
 
 /* .radio span {
