@@ -57,7 +57,6 @@ class LocationList extends React.Component {
       .doc(tripId)
       .set({prefs: prefs}, {merge: true})
 
-
     const updateVotes = newVotes => {
       this.setState({votes: newVotes})
     }
@@ -86,7 +85,7 @@ class LocationList extends React.Component {
       (a, b) => locations[b] - locations[a]
     )
 
-    if (this.state.loading) return (<div>Loading...</div>)
+    if (this.state.loading) return <div>Loading...</div>
 
     return (
       <table>

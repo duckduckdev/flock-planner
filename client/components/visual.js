@@ -18,7 +18,7 @@ class Visual extends React.Component {
     const firebaseDB = await firebase.firestore()
     await firebaseDB
       .collection('preferences')
-      .where('tripId', '==', this.props.match.params.tripId)
+      .where('tripId', '==', this.props.trip)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -31,7 +31,7 @@ class Visual extends React.Component {
 
     const doc = await firebaseDB
       .collection('locationPrefs')
-      .doc(this.props.match.params.tripId)
+      .doc(this.props.trip)
       .get()
 
     let locationPrefs = doc.data()
@@ -46,7 +46,7 @@ class Visual extends React.Component {
     this.getData()
   }
   render() {
-    const tripId = this.props.match.params.tripId
+    const tripId = this.props.trip
 
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>

@@ -8,6 +8,12 @@ body {
   background-repeat: no-repeat;
 }
 
+body,
+html {
+  overflow-x: hidden;
+  height: auto;
+}
+
 a {
   text-decoration: none;
 }
@@ -119,6 +125,15 @@ form div {
 
 .visualContainer h2 {
   font-size: 40px;
+}
+
+.react-tabs__tab-list {
+  margin: 0 0 0px !important;
+}
+
+.react-tabs__tab--selected {
+  background-color: #2f2d3466 !important;
+  color: aliceblue !important;
 }
 
 #location-budget {
