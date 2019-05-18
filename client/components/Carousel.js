@@ -16,10 +16,10 @@ const Carousel = () => {
         <div>PANE 2</div>
         <div>PANE 3</div>
       </ReactSwipe>
-      <button onClick={() => reactSwipeEl.next()}>Next</button>
-      <button onClick={() => reactSwipeEl.prev()}>Previous</button>
+      <button type="button" onClick={() => reactSwipeEl.next()}>Next</button>
+      <button type="button" onClick={() => reactSwipeEl.prev()}>Previous</button>
     </div>
   );
 };
- 
-ReactDOM.render(<Carousel />, document.getElementById('app'));
+
+export default Carousel

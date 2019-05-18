@@ -46,6 +46,8 @@ export default class Calendar extends Component {
     // console.log('to is', to)
     const modifiers = { start: from, end: to }
 
+    // console.log('props in calendar is', this.props)
+
     return (
       <div className="RangeExample">
         {/* <p>
