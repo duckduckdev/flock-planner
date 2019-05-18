@@ -6,7 +6,7 @@ import FirebaseAuthForm from './firebaseAuthForm'
 // signup needs to be a connected component
 import {connect} from 'react-redux'
 
-const mapStateToProps = (state) => ({tripId: state.currentTrip})
+const mapStateToProps = state => ({tripId: state.currentTrip})
 
 class SignUp extends Component {
   handleSignUp = async event => {
@@ -29,15 +29,14 @@ class SignUp extends Component {
         .catch(function(error) {
           console.error('Error writing document: ', error)
         })
-      
-        if (this.props.tripId) {
-          console.log('redirecting')
-          console.log('history', this.props.history)
-          this.props.history.push(`${this.props.tripId}`)
-        }
-        else {
-          this.props.history.push('/userHome')
-        }
+
+      if (this.props.tripId) {
+        console.log('redirecting')
+        console.log('history', this.props.history)
+        this.props.history.push(`${this.props.tripId}`)
+      } else {
+        this.props.history.push('/userHome')
+      }
     } catch (error) {
       alert(error)
     }
@@ -47,20 +46,33 @@ class SignUp extends Component {
     const tripId = this.props.tripId
 
     return !this.user ? (
-      <div>
-        <h2>Sign up to start planning trips with Flock!</h2>
+      <div className="visualContainer">
         <form onSubmit={this.handleSignUp}>
-          <label>
-            Email:
-            <input name="email" type="email" />
-          </label>
-          <label>
-            Password:
-            <input name="password" type="password" />
-          </label>
-          <button type="submit">Sign Up</button>
+          <div>
+            <h2>Start planning trips with Flock!</h2>
+          </div>
+          <br />
+          <div>
+            <label>
+              Email
+              <input name="email" type="email" />
+            </label>
+          </div>
+          <br />
+          <div>
+            <label>
+              Password
+              <input name="password" type="password" />
+            </label>
+          </div>
+          <br />
+          <div>
+            <button type="submit">Sign Up</button>
+          </div>
+          <div>
+            <FirebaseAuthForm user={this.user} tripId={tripId} />
+          </div>
         </form>
-        <FirebaseAuthForm user={this.user} tripId={tripId}/>
       </div>
     ) : (
       <Redirect to="/userHome" />

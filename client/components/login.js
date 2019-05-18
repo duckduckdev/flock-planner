@@ -8,10 +8,10 @@ import {connect} from 'react-redux'
 import {setTrip} from '../store'
 
 // get the trip being edited from state (if there is one)
-const mapStateToProps = (state) => ({tripId: state.currentTrip})
+const mapStateToProps = state => ({tripId: state.currentTrip})
 
-const mapDispatchToProps = (dispatch) => () => ({
-  setTrip: (id) => dispatch(setTrip(id))
+const mapDispatchToProps = dispatch => () => ({
+  setTrip: id => dispatch(setTrip(id))
 })
 
 class LoginView extends Component {
@@ -27,22 +27,15 @@ class LoginView extends Component {
         console.log('redirecting')
         console.log('history', this.props.history)
         this.props.history.push(`${this.props.tripId}`)
-      }
-      else {
+      } else {
         this.props.history.push('/userHome')
       }
     } catch (error) {
       alert(error)
     }
   }
- 
+
   render() {
-    // console.log('is there a url here', this.props.location.state)
-    // console.log('url', this.props.location.state.url)
-    // console.log('props', this.props)
-
-    // console.log('trip Id on state', this.props.tripId)
-
     if (this.props.location.state) {
       const tripId = this.props.location.state.url
       this.props.setTrip(tripId)
@@ -50,23 +43,34 @@ class LoginView extends Component {
     }
 
     return (
-      <div>
-        <h2>Login</h2>
+      <div className="visualContainer">
         <form onSubmit={this.handleLogin}>
-          <label>
-            Email:
-            <input name="email" type="email" />
-          </label>
-          <label>
-            Password:
-            <input name="password" type="password" />
-          </label>
-          <button type="submit">Login</button>
+          <div>
+            <label>
+              Email
+              <input name="email" type="email" />
+            </label>
+          </div>
+          <br />
+          <div>
+            <label>
+              Password
+              <input name="password" type="password" />
+            </label>
+          </div>
+          <br />
+          <div>
+            <button type="submit">Login</button>
+          </div>
+          <div>
+            <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
+          </div>
         </form>
-        <FirebaseAuthForm user={this.user} tripId={this.props.tripId}/>
       </div>
     )
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginView))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(LoginView)
+)
