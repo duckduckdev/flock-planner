@@ -106,6 +106,7 @@ class AddTravelers extends React.Component {
 
     return (
       <div className="inviteContainer">
+        <h3>Invite Others to Collaborate</h3>
         <form className={classes.container} noValidate autoComplete="off">
           {Object.keys(this.state.emails).map(key => (
             <TextField
