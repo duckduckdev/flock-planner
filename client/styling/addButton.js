@@ -20,8 +20,13 @@ function FloatingActionButtons(props) {
   const {classes} = props
   return (
     <div>
-      <Fab color="primary" aria-label="Add" className={classes.fab}>
-        <AddIcon onClick={() => props.history.push('/createTrip')} />
+      <Fab
+        color="primary"
+        aria-label="Add"
+        className={classes.fab}
+        onClick={() => props.history.push('/createTrip')}
+      >
+        <AddIcon />
       </Fab>
       {/* <Fab color="secondary" aria-label="Edit" className={classes.fab}>
         <Icon>edit_icon</Icon>

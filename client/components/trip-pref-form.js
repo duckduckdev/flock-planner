@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-// import Calendar from './CalendarTest'
-// import DisplayCalendar from './DisplayCalendar'
 import firebase, {firebaseApp} from '../firebase'
 // import {TripsLayer} from 'deck.gl'
 import PropTypes from 'prop-types'
@@ -8,8 +6,6 @@ import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import green from '@material-ui/core/colors/green'
 import Radio from '@material-ui/core/Radio'
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
@@ -204,7 +200,7 @@ class TripPrefForm extends Component {
                 name="secondLocation"
                 value={this.state.secondLocation}
                 style={{margin: 8}}
-                placeholder="i.e. Bali, Indonesia"
+                placeholder="i.e. Santorini, Greece"
                 margin="normal"
                 variant="outlined"
                 onChange={this.handleChange}
@@ -219,7 +215,7 @@ class TripPrefForm extends Component {
                 name="thirdLocation"
                 value={this.state.thirdLocation}
                 style={{margin: 8}}
-                placeholder="i.e. Bali, Indonesia"
+                placeholder="i.e. San José, Costa Rica"
                 margin="normal"
                 variant="outlined"
                 onChange={this.handleChange}
@@ -275,73 +271,12 @@ class TripPrefForm extends Component {
             />
             <span>{`> $1,500`}</span>
           </div>
-          {/* <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="< $150"
-                checked={this.state.budget === '< $150'}
-                onChange={this.handleOptionChange}
-              />
-              Less Than $150
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$150-$500"
-                checked={this.state.budget === '$150-$500'}
-                onChange={this.handleOptionChange}
-              />
-              $150 - $500
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$500-$1000"
-                checked={this.state.budget === '$500-$1000'}
-                onChange={this.handleOptionChange}
-              />
-              $500 - $1000
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$1000-$1500"
-                checked={this.state.budget === '$1000-$1500'}
-                onChange={this.handleOptionChange}
-              />
-              $1000-$1500
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input
-                type="radio"
-                name="budget"
-                value="$1500+"
-                checked={this.state.budget === '$1500+'}
-                onChange={this.handleOptionChange}
-              />
-              $1500+
-            </label>
-          </div> */}
           <br />
           <ButtonToolbar className="form-sumbit">
-            <Button variant="dark" size="lg">
+            <Button variant="dark" size="lg" onClick={this.addPreferences}>
               Submit
             </Button>
           </ButtonToolbar>
-          {/* <button onClick={this.addPreferences}>Submit</button> */}
         </div>
       )
     }
