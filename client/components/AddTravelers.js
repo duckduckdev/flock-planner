@@ -1,9 +1,31 @@
 import React from 'react'
 import firebase from '../firebase'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import FloatingActionButtons from '../styling/addButton'
+import CleanAddButtons from '../styling/cleanAddButton'
+import SendButton from '../styling/sendButton'
+
+import {withStyles} from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  dense: {
+    marginTop: 16
+  },
+  menu: {
+    width: 200
+  }
+})
 
 class AddTravelers extends React.Component {
   constructor() {
@@ -20,10 +42,6 @@ class AddTravelers extends React.Component {
     this.updateEmail = this.updateEmail.bind(this)
   }
 
-  // updateInput = event => {
-  //   this.setState({[event.target.name]: event.target.value})
-  // }
-
   updateEmail = event => {
     event.persist()
     this.setState(prevState => {
@@ -37,12 +55,6 @@ class AddTravelers extends React.Component {
   }
 
   addEmailField = async () => {
-    // when this number increments, the state will change
-    // we want it to trigger the render of a new line on the form
-    //I guess the emails could be an array
-    //or an object
-    //and then we can iterate over it to create the component
-
     await this.setState((prevState, props) => {
       let newNum = prevState.numEmails + 1
       return {
@@ -58,19 +70,9 @@ class AddTravelers extends React.Component {
   addFriend = async event => {
     event.preventDefault()
 
-    // I also want to know the trip id so I can include it in the link that I send in the body of the email
-    // how can I do this?
-    // REDUX
-
     const user = firebase.auth().currentUser
     const userName = user.displayName ? user.displayName : user.email
     console.log(userName)
-
-    // const firebaseDB = await firebase.firestore()
-    // const userObj = await firebaseDB
-    // .collection('users')
-    // .where('trip', '==', this.props.currentUser)
-    // .get()
 
     let data = {
       emails: this.state.emails,
@@ -80,7 +82,6 @@ class AddTravelers extends React.Component {
 
     await axios.post('/send', data)
 
-    //resets the form after adding the data
     this.setState({
       emails: {
         email1: ''
@@ -91,10 +92,11 @@ class AddTravelers extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     return (
-      <div>
-        <h3>Add Your Friends!</h3>
-        <form onSubmit={this.addFriend}>
+      <div className="inviteContainer">
+        <h3>Invite people to your trip</h3>
+        {/* <form onSubmit={this.addFriend}>
           {Object.keys(this.state.emails).map(key => {
             return (
               <div key={key}>
@@ -115,10 +117,44 @@ class AddTravelers extends React.Component {
           <div>
             <button type="submit">Send Invites</button>
           </div>
+        </form> */}
+
+        <form className={classes.container} noValidate autoComplete="off">
+          {Object.keys(this.state.emails).map(key => (
+            <TextField
+              key={key}
+              id="outlined-full-width"
+              name={key}
+              value={this.state.tripName}
+              style={{margin: 8}}
+              placeholder="i.e. meow@cat.com"
+              margin="normal"
+              variant="outlined"
+              onChange={this.updateEmail}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          ))}
+          {/* <button type="button" id="addEmail" onClick={this.addEmailField}>
+            +
+          </button> */}
+          <CleanAddButtons
+            type="button"
+            id="addEmail"
+            onClick={this.addEmailField}
+          />
         </form>
+        <div id="sendButton">
+          <SendButton onClick={this.addFriend} />
+        </div>
       </div>
     )
   }
 }
 
-export default AddTravelers
+AddTravelers.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(AddTravelers)

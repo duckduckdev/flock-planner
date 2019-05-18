@@ -61,8 +61,17 @@ form div {
   color: #343a40;
 }
 
-h3 {
-  font-size: 120px;
+.inviteContainer {
+  padding-top: 100px;
+}
+.inviteContainer h3 {
+  font-size: 100px;
+  padding-left: 30px;
+  color: #343a40;
+}
+
+#sendButton {
+  padding-left: 20px;
 }
 
 .layoutContainer p {
