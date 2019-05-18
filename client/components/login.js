@@ -2,6 +2,11 @@ import React, {Component} from 'react'
 import {withRouter, Redirect} from 'react-router'
 import {firebaseApp} from '../firebase'
 import FirebaseAuthForm from './firebaseAuthForm'
+import TextField from '@material-ui/core/TextField'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 // login needs to be a connected component
 import {connect} from 'react-redux'
@@ -14,7 +19,37 @@ const mapDispatchToProps = dispatch => () => ({
   setTrip: id => dispatch(setTrip(id))
 })
 
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  dense: {
+    marginTop: 16
+  },
+  menu: {
+    width: 200
+  }
+})
+
 class LoginView extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: ''
+    }
+    this.updateInput = this.updateInput.bind(this)
+  }
+
+  updateInput = event => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
   handleLogin = async event => {
     event.preventDefault()
     const {email, password} = event.target.elements
@@ -36,6 +71,7 @@ class LoginView extends Component {
   }
 
   render() {
+    const {classes} = this.props
     if (this.props.location.state) {
       const tripId = this.props.location.state.url
       this.props.setTrip(tripId)
@@ -46,22 +82,61 @@ class LoginView extends Component {
       <div className="visualContainer">
         <form onSubmit={this.handleLogin}>
           <div>
-            <label>
+            <TextField
+              id="outlined-full-width"
+              label="Email"
+              name="email"
+              value={this.state.email}
+              style={{margin: 8}}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              onChange={this.updateInput}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            {/* <label>
               Email
               <input name="email" type="email" />
-            </label>
+            </label> */}
           </div>
           <br />
           <div>
-            <label>
+            <TextField
+              type="password"
+              id="outlined-full-width"
+              label="Password"
+              name="password"
+              value={this.state.password}
+              style={{margin: 8}}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              onChange={this.updateInput}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            {/* <label>
               Password
               <input name="password" type="password" />
-            </label>
+            </label> */}
           </div>
           <br />
-          <div>
+          <ButtonToolbar>
+            <Button
+              variant="dark"
+              size="lg"
+              type="submit"
+              onClick={this.handleLogin}
+            >
+              Login
+            </Button>
+          </ButtonToolbar>
+          {/* <div>
             <button type="submit">Login</button>
-          </div>
+          </div> */}
           <div>
             <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
           </div>
@@ -71,6 +146,10 @@ class LoginView extends Component {
   }
 }
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LoginView)
+LoginView.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginView))
 )
