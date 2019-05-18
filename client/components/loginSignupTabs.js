@@ -7,7 +7,7 @@ import Signup from './signup'
 class LoginSignupTabs extends React.Component {
   render() {
     return (
-      <Tabs className="tabContainer" defaultTab="login">
+      <Tabs className="tabContainer">
         <TabList>
           <Tab tabfor="login">Login</Tab>
           <Tab tabfor="signup">Signup</Tab>

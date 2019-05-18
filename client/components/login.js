@@ -37,18 +37,18 @@ const styles = theme => ({
 })
 
 class LoginView extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: ''
-    }
-    this.updateInput = this.updateInput.bind(this)
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     email: '',
+  //     password: ''
+  //   }
+  //   this.updateInput = this.updateInput.bind(this)
+  // }
 
-  updateInput = event => {
-    this.setState({[event.target.name]: event.target.value})
-  }
+  // updateInput = event => {
+  //   this.setState({[event.target.name]: event.target.value})
+  // }
 
   handleLogin = async event => {
     event.preventDefault()
@@ -83,15 +83,13 @@ class LoginView extends Component {
         <form onSubmit={this.handleLogin}>
           <div>
             <TextField
-              id="outlined-full-width"
               label="Email"
               name="email"
-              value={this.state.email}
               style={{margin: 8}}
               fullWidth
               margin="normal"
               variant="outlined"
-              onChange={this.updateInput}
+              // onChange={this.updateInput}
               InputLabelProps={{
                 shrink: true
               }}
@@ -105,15 +103,13 @@ class LoginView extends Component {
           <div>
             <TextField
               type="password"
-              id="outlined-full-width"
               label="Password"
               name="password"
-              value={this.state.password}
               style={{margin: 8}}
               fullWidth
               margin="normal"
               variant="outlined"
-              onChange={this.updateInput}
+              // onChange={this.updateInput}
               InputLabelProps={{
                 shrink: true
               }}
