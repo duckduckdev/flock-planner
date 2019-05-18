@@ -2,6 +2,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import firebase from '../firebase'
 import React from 'react'
+// import NavDropdown from 'react-bootstrap/Nav'
 
 function NavBar(props) {
   return (

@@ -18,7 +18,7 @@ class Visual extends React.Component {
     const firebaseDB = await firebase.firestore()
     await firebaseDB
       .collection('preferences')
-      .where('tripId', '==', this.props.trip)
+      .where('tripId', '==', this.props.match.params.tripId)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -31,7 +31,7 @@ class Visual extends React.Component {
 
     const doc = await firebaseDB
       .collection('locationPrefs')
-      .doc(this.props.trip)
+      .doc(this.props.match.params.tripId)
       .get()
 
     let locationPrefs = doc.data()
@@ -46,25 +46,32 @@ class Visual extends React.Component {
     this.getData()
   }
   render() {
-    const tripId = this.props.trip
+    const tripId = this.props.match.params.tripId
 
     if (this.state.arrayPrefs.length < 1) {
       return <div>Loading...</div>
     } else {
       return (
-        <div>
-          <h1>Trip Preferences:</h1>
-          <h2>Options for Destinations:</h2>
-          <LocationList
-            arrayPrefs={this.state.arrayPrefs}
-            locationPrefs={this.state.locationPrefs}
-            tripId={tripId}
-          />
-          <h2>Options for Dates:</h2>
-          <DateList tripId={tripId} arrayPrefs={this.state.arrayPrefs} />
-          <h2>Group Budget Preference Breakdown:</h2>
-          <BudgetChart arrayPrefs={this.state.arrayPrefs} />
-          <p>
+        <div className="visualContainer">
+          {/* <h1>Trip Preferences:</h1> */}
+          <div id="location-budget">
+            <h2>Options for Destinations</h2>
+            <LocationList
+              arrayPrefs={this.state.arrayPrefs}
+              locationPrefs={this.state.locationPrefs}
+              tripId={tripId}
+            />
+            <br />
+            <br />
+
+            <h2>Group Budget Preference Breakdown</h2>
+            <BudgetChart arrayPrefs={this.state.arrayPrefs} />
+          </div>
+          {/* <h2>Options for Dates:</h2> */}
+          <div id="datelist">
+            <DateList tripId={tripId} arrayPrefs={this.state.arrayPrefs} />
+          </div>
+          {/* <p>
             Once your group has made a decision as to where to go and for which
             dates:
           </p>
@@ -73,7 +80,7 @@ class Visual extends React.Component {
             onClick={() => this.props.history.push(`/finalizeTrip/${tripId}`)}
           >
             Finalize Trip Destination and Dates
-          </button>
+          </button> */}
         </div>
       )
     }
