@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import FloatingActionButtons from '../styling/addButton'
 import firebase from '../firebase'
 
 const styles = theme => ({
@@ -83,9 +86,16 @@ class OutlinedTextFields extends React.Component {
             }}
           />
           <div>
-            <button type="submit" onClick={this.addTrip}>
-              Add Trip
-            </button>
+            <ButtonToolbar>
+              <Button
+                variant="dark"
+                size="lg"
+                type="submit"
+                onClick={this.addTrip}
+              >
+                Create Trip
+              </Button>
+            </ButtonToolbar>
           </div>
         </div>
       </form>
