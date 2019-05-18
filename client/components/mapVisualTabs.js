@@ -9,8 +9,8 @@ class MapVisualTabs extends React.Component {
     return (
       <Tabs defaultTab="preferences">
         <TabList>
-          <Tab tabFor="preferences">Preference Breakdown</Tab>
-          <Tab tabFor="map">Interactive Map</Tab>
+          <Tab tabfor="preferences">Preference Breakdown</Tab>
+          <Tab tabfor="map">Interactive Map</Tab>
         </TabList>
 
         <TabPanel tabId="preferences">

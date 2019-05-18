@@ -54,7 +54,6 @@ export class UserHome extends React.Component {
                     <br />
                     {this.state.trips.map(tripObj => (
                       <li key={tripObj.tripId}>
-                        l
                         <Button
                           variant="outline-dark"
                           size="lg"

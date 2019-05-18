@@ -3,8 +3,8 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 import PrivateRoute2 from './components/PrivateRoute2'
 import {firebaseApp} from './firebase'
+
 import {
-  Navbar,
   NewTripForm,
   AddTravelers,
   TripPrefForm,
@@ -58,18 +58,11 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
-        {/* <Navbar /> */}
         <BootstrapNavBar />
 
         <Switch>
           <Route exact path="/" component={MainPage} />
-          {/* <PrivateRoute
-            exact
-            path="/"
-            component={UserHome}
-            authenticated={authenticated}
-            currentUser={currentUser}
-          /> */}
+
           <PrivateRoute
             exact
             path="/userHome"

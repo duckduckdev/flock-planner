@@ -1,6 +1,10 @@
 import React from 'react'
 import firebase from '../firebase'
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
 
+import Favorite from '@material-ui/icons/Favorite'
 class LocationList extends React.Component {
   constructor(props) {
     super(props)
@@ -57,7 +61,6 @@ class LocationList extends React.Component {
       .doc(tripId)
       .set({prefs: prefs}, {merge: true})
 
-
     const updateVotes = newVotes => {
       this.setState({votes: newVotes})
     }
@@ -86,7 +89,7 @@ class LocationList extends React.Component {
       (a, b) => locations[b] - locations[a]
     )
 
-    if (this.state.loading) return (<div>Loading...</div>)
+    if (this.state.loading) return <div>Loading...</div>
 
     return (
       <table>
@@ -104,9 +107,21 @@ class LocationList extends React.Component {
                 <td>{location}</td>
                 <td> {this.state.votes[location]}</td>
                 <td>
-                  <button type="button" onClick={() => this.addVote(location)}>
-                    ❤️
-                  </button>
+                  {/* <button type="button" onClick={() => this.addVote(location)}> */}
+                  {/* <FavoriteBorder onClick={() => this.addVote(location)} /> */}
+                  {/* </button> */}
+                  <div onClick={() => this.addVote(location)}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          icon={<FavoriteBorder />}
+                          checkedIcon={<Favorite />}
+                          value="checkedH"
+                        />
+                      }
+                      label="Custom icon"
+                    />
+                  </div>
                 </td>
 
                 <td>{hearts}</td>
