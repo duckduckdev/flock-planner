@@ -7,7 +7,7 @@ import Map from './map/map'
 class MapVisualTabs extends React.Component {
   render() {
     return (
-      <Tabs defaultTab="preferences">
+      <Tabs className="tabContainer" defaultTab="preferences">
         <TabList>
           <Tab tabfor="preferences">Preference Breakdown</Tab>
           <Tab tabfor="map">Interactive Map</Tab>
