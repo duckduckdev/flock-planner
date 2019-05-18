@@ -87,7 +87,7 @@ export default class BudgetChart extends PureComponent {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Legend verticalAlign="top" height={36} />
+        <Legend id="legend" verticalAlign="top" height={36} />
         <Line name="< $150" type="monotone" dataKey="value" stroke="#8884d8" />
         <Line
           name="$150-$500"

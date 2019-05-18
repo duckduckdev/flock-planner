@@ -31,6 +31,9 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+#legend {
+  font-size: 14pt;
+}
 
 #app {
   /* background-color: #ffffffe0; */
