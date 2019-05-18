@@ -1,8 +1,41 @@
 import React, {Component} from 'react'
 // import Calendar from './CalendarTest'
-import DisplayCalendar from './DisplayCalendar'
+// import DisplayCalendar from './DisplayCalendar'
 import firebase, {firebaseApp} from '../firebase'
-import {TripsLayer} from 'deck.gl'
+// import {TripsLayer} from 'deck.gl'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import green from '@material-ui/core/colors/green'
+import Radio from '@material-ui/core/Radio'
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked'
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  dense: {
+    marginTop: 16
+  },
+  menu: {
+    width: 200
+  },
+  root: {
+    color: green[600],
+    '&$checked': {
+      color: green[500]
+    }
+  },
+  checked: {}
+})
 
 class TripPrefForm extends Component {
   constructor(props) {
@@ -24,10 +57,6 @@ class TripPrefForm extends Component {
   }
 
   componentDidMount() {
-    // when component mounts, I need to get the date prefs from firestore to populate the calendars
-    // set them on state
-    // the state is crowded
-
     const tripId = this.props.match.params.tripId
 
     const firebaseDB = firebase.firestore()
@@ -38,7 +67,6 @@ class TripPrefForm extends Component {
       .get()
       .then(doc => {
         this.setState({datePrefs: doc.data()})
-        console.log('state is now', this.state)
       })
       .catch(function(error) {
         console.log('Error getting documents: ', error)
@@ -109,7 +137,6 @@ class TripPrefForm extends Component {
     ]
 
     locationArray.forEach(location => {
-      
       if (locationPrefs.hasOwnProperty(location)) {
         locationPrefs[location]++
       } else {
@@ -146,152 +173,182 @@ class TripPrefForm extends Component {
     // if the data is still loading
     // or if for some reason some nut has managed to get to this component without adding date preferences
     // show loading
+    const {classes} = this.props
     if (!this.state.datePrefs.ranges) {
       return <div>Loading...</div>
     } else {
-      const dateRanges = this.state.datePrefs.ranges
-      console.log('date ranges', dateRanges)
-
       return (
-        <div className="container">
-          <form onSubmit={this.addPreferences}>
-            <h2>Where do you want to go?</h2>
+        <div className="prefContainer">
+          {/* <form onSubmit={this.addPreferences}> */}
+          <form className={classes.container} noValidate autoComplete="off">
+            <h3> Pick Your Top Three Destinations</h3>
             <div className="answer">
-              <label>
-                First Choice:
-                <input
-                  type="text"
-                  name="firstLocation"
-                  value={this.state.firstLocation}
-                  onChange={this.handleChange}
-                />
-              </label>
-              <label>
-                Second Choice:
-                <input
-                  type="text"
-                  name="secondLocation"
-                  value={this.state.secondLocation}
-                  onChange={this.handleChange}
-                />
-              </label>
-              <label>
-                Third Choice:
-                <input
-                  type="text"
-                  name="thirdLocation"
-                  value={this.state.thirdLocation}
-                  onChange={this.handleChange}
-                />
-              </label>
-            </div>
-            {/* <h2>Select Dates:</h2>
-            {Object.keys(dateRanges).map(range => {
-            return (<div key={range}>
-            <DisplayCalendar range={dateRanges[range]}/>
-            <button type="button">I'm Available</button>
+              <TextField
+                id="outlined-full-width"
+                label="First Choice"
+                name="firstLocation"
+                value={this.state.firstLocation}
+                style={{margin: 8}}
+                placeholder="i.e. Bali, Indonesia"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
 
-            </div>
-            )
-          })} */}
+              <TextField
+                id="outlined-full-width"
+                label="Second Choice"
+                name="secondLocation"
+                value={this.state.secondLocation}
+                style={{margin: 8}}
+                placeholder="i.e. Bali, Indonesia"
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
 
-            {/* <div className="answer">
-            <label>
-              First Choice:
-              <input
-                type="text"
-                name="firstDates"
-                value={this.state.firstDates}
+              <TextField
+                id="outlined-full-width"
+                label="Third Choice"
+                name="thirdLocation"
+                value={this.state.thirdLocation}
+                style={{margin: 8}}
+                placeholder="i.e. Bali, Indonesia"
+                margin="normal"
+                variant="outlined"
                 onChange={this.handleChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
               />
+            </div>
+          </form>
+
+          <h3>What's Your Budget?</h3>
+          <div className="radio">
+            <Radio
+              color="primary"
+              checked={this.state.budget === '< $150'}
+              onChange={this.handleOptionChange}
+              value="< $150"
+              name="budget"
+            />
+
+            <span>{`< $150`}</span>
+            <span />
+            <Radio
+              color="primary"
+              checked={this.state.budget === '$150 to $500'}
+              onChange={this.handleOptionChange}
+              value="$150 to $500"
+              name="budget"
+            />
+            <span>$150 to $500</span>
+            <Radio
+              color="primary"
+              checked={this.state.budget === '$500 to $1,000'}
+              onChange={this.handleOptionChange}
+              value="$500 to $1,000"
+              name="budget"
+            />
+            <span>$500 to $1,000</span>
+            <Radio
+              color="primary"
+              checked={this.state.budget === '$1,000 to $1,500'}
+              onChange={this.handleOptionChange}
+              value="$1,000 to $1,500"
+              name="budget"
+            />
+            <span>> $1,000 to $1,500</span>
+            <Radio
+              color="primary"
+              checked={this.state.budget === '> $1,500'}
+              onChange={this.handleOptionChange}
+              value="> $1,500"
+              name="budget"
+            />
+            <span>{`> $1,500`}</span>
+          </div>
+          {/* <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="budget"
+                value="< $150"
+                checked={this.state.budget === '< $150'}
+                onChange={this.handleOptionChange}
+              />
+              Less Than $150
             </label>
+          </div>
+          <div className="radio">
             <label>
-              Second Choice:
               <input
-                type="text"
-                name="secondDates"
-                value={this.state.secondDates}
-                onChange={this.handleChange}
+                type="radio"
+                name="budget"
+                value="$150-$500"
+                checked={this.state.budget === '$150-$500'}
+                onChange={this.handleOptionChange}
               />
+              $150 - $500
             </label>
+          </div>
+          <div className="radio">
             <label>
-              Third Choice:
               <input
-                type="text"
-                name="thirdDates"
-                value={this.state.thirdDates}
-                onChange={this.handleChange}
+                type="radio"
+                name="budget"
+                value="$500-$1000"
+                checked={this.state.budget === '$500-$1000'}
+                onChange={this.handleOptionChange}
               />
+              $500 - $1000
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="budget"
+                value="$1000-$1500"
+                checked={this.state.budget === '$1000-$1500'}
+                onChange={this.handleOptionChange}
+              />
+              $1000-$1500
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="budget"
+                value="$1500+"
+                checked={this.state.budget === '$1500+'}
+                onChange={this.handleOptionChange}
+              />
+              $1500+
             </label>
           </div> */}
-            <h2>How much do you want to spend overall on the trip?</h2>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="budget"
-                  value="< $150"
-                  checked={this.state.budget === '< $150'}
-                  onChange={this.handleOptionChange}
-                />
-                Less Than $150
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="budget"
-                  value="$150-$500"
-                  checked={this.state.budget === '$150-$500'}
-                  onChange={this.handleOptionChange}
-                />
-                $150 - $500
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="budget"
-                  value="$500-$1000"
-                  checked={this.state.budget === '$500-$1000'}
-                  onChange={this.handleOptionChange}
-                />
-                $500 - $1000
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="budget"
-                  value="$1000-$1500"
-                  checked={this.state.budget === '$1000-$1500'}
-                  onChange={this.handleOptionChange}
-                />
-                $1000-$1500
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="budget"
-                  value="$1500+"
-                  checked={this.state.budget === '$1500+'}
-                  onChange={this.handleOptionChange}
-                />
-                $1500+
-              </label>
-            </div>
-            <br />
-            <button type="submit">Submit</button>
-          </form>
+          <br />
+          <ButtonToolbar className="form-sumbit">
+            <Button variant="dark" size="lg">
+              Submit
+            </Button>
+          </ButtonToolbar>
         </div>
       )
     }
   }
 }
 
-export default TripPrefForm
+TripPrefForm.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(TripPrefForm)

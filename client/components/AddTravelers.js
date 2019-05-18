@@ -127,7 +127,7 @@ class AddTravelers extends React.Component {
               name={key}
               value={this.state.tripName}
               style={{margin: 8}}
-              placeholder="i.e. meow@cat.com"
+              placeholder="i.e. cat@meow.com"
               margin="normal"
               variant="outlined"
               onChange={this.updateEmail}
@@ -148,6 +148,11 @@ class AddTravelers extends React.Component {
         <div id="sendButton">
           <SendButton onClick={this.addFriend} />
         </div>
+        {/* <div>
+          <button type="submit" onClick={this.addFriend}>
+            Send Invites
+          </button>
+        </div> */}
       </div>
     )
   }

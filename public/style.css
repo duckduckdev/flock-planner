@@ -70,6 +70,16 @@ form div {
   color: #343a40;
 }
 
+.prefContainer {
+  padding-top: 80px;
+}
+
+.prefContainer h3 {
+  font-size: 60px;
+  padding-left: 30px;
+  color: #343a40;
+}
+
 #sendButton {
   padding-left: 20px;
 }
@@ -91,6 +101,18 @@ form div {
 .newTripContainer p {
   font-size: 40px;
   color: #343a40d4;
+}
+
+/* .radio span {
+  padding-right: 20px;
+} */
+
+.radio {
+  padding-left: 25px;
+}
+
+.btn-toolbar {
+  padding-left: 30px;
 }
 
 li {
