@@ -79,7 +79,7 @@ ul {
 
 .layoutContainer h3 {
   font-size: 120px;
-  padding-left: 30px;
+  padding-left: 62px;
   padding-top: 50px;
   color: #343a40;
 }
@@ -119,11 +119,13 @@ ul {
 .newTripContainer h3 {
   font-size: 100px;
   color: #343a40;
+  padding-left: 0.1em;
 }
 
 .newTripContainer p {
   font-size: 40px;
   color: #343a40d4;
+  padding-left: 0.4em;
 }
 
 .available {
@@ -187,8 +189,13 @@ ul {
   padding-left: 25px;
 }
 
-.btn-toolbar {
+/* .btn-toolbar {
   padding-left: 30px;
+} */
+
+.MuiFormControl-fullWidth-8 {
+  width: 100%;
+  margin: 0 !important;
 }
 
 li {
