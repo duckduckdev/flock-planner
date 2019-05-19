@@ -2,7 +2,7 @@ import React from 'react'
 import firebase from '../firebase'
 import Calendar from './Calendar'
 import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css"
+import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Button from 'react-bootstrap/Button'
@@ -37,7 +37,7 @@ class AddDates extends React.Component {
   //   this.setState({[event.target.name]: event.target.value})
   // }
 
-  async addDates () {
+  async addDates() {
     // event.preventDefault()
 
     console.log('add dates has been called')
@@ -121,7 +121,7 @@ class AddDates extends React.Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1,
+      slidesToScroll: 1
       // variableWidth: true,
       // nextArrow: <Right/>,
       // prevArrow: <Left/>
@@ -131,32 +131,34 @@ class AddDates extends React.Component {
       <div className="datesContainer">
         <h3>Choose Some Potential Dates for Your Trip!</h3>
         <div className="datesSlider">
-          <center><Slider {...settings} >
-            <div>
-              <h2>Date Range (1/3)</h2>
-              <Calendar getDates={this.getDates1}/>
-            </div>
-            <div>
-              <h2>Date Range (2/3)</h2>
-              <Calendar getDates={this.getDates2}/>
-            </div>
-            <div>
-              <h2>Date Range (3/3)</h2>
-              <Calendar getDates={this.getDates3}/>
-            </div>
-          </Slider></center>
-            </div>
-            {/* <button type="button" onClick={this.addDates}>Next</button> */}
-            <ButtonToolbar>
-              <Button
-                variant="dark"
-                size="lg"
-                type="button"
-                onClick={this.addDates}
-              >
-                Next
-              </Button>
-            </ButtonToolbar>
+          <center>
+            <Slider {...settings}>
+              <div>
+                <h2>Date Range (1 of 3)</h2>
+                <Calendar getDates={this.getDates1} />
+              </div>
+              <div>
+                <h2>Date Range (2 of 3)</h2>
+                <Calendar getDates={this.getDates2} />
+              </div>
+              <div>
+                <h2>Date Range (3 of 3)</h2>
+                <Calendar getDates={this.getDates3} />
+              </div>
+            </Slider>
+          </center>
+        </div>
+        {/* <button type="button" onClick={this.addDates}>Next</button> */}
+        <ButtonToolbar>
+          <Button
+            variant="dark"
+            size="lg"
+            type="button"
+            onClick={this.addDates}
+          >
+            Next
+          </Button>
+        </ButtonToolbar>
       </div>
     )
   }
