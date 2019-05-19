@@ -156,7 +156,7 @@ class AddDates extends React.Component {
             type="button"
             onClick={this.addDates}
           >
-            Next
+            Add Dates
           </Button>
         </ButtonToolbar>
       </div>
