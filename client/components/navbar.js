@@ -42,7 +42,13 @@ class Navbar extends React.Component {
     const {loading} = this.state
 
     if (loading) {
-      return <Loader type="Plane" color="#343840" height={80} width={80} />
+      return (
+        <div className="plane">
+          <center>
+            <Loader type="Plane" color="#343840" height={80} width={80} />
+          </center>
+        </div>
+      )
     }
 
     return (

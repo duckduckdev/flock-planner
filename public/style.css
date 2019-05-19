@@ -16,6 +16,13 @@ html {
   height: auto;
 } */
 
+.plane {
+  margin: 0 auto;
+}
+
+h1 {
+  color: #343a40;
+}
 a {
   text-decoration: none;
 }

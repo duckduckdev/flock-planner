@@ -108,7 +108,13 @@ class DateList extends React.Component {
   render() {
     // if (this.state.loading) return 'Loadinggg'
     if (!this.state.datePrefs.ranges) {
-      return <Loader type="Plane" color="#343840" height={80} width={80} />
+      return (
+        <div className="plane">
+          <center>
+            <Loader type="Plane" color="#343840" height={80} width={80} />
+          </center>
+        </div>
+      )
     } else {
       const dateRanges = this.state.datePrefs.ranges
 

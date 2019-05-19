@@ -49,7 +49,13 @@ class Visual extends React.Component {
     const tripId = this.props.trip
 
     if (this.state.arrayPrefs.length < 1) {
-      return <Loader type="Plane" color="#343840" height={80} width={80} />
+      return (
+        <div className="plane">
+          <center>
+            <Loader type="Plane" color="#343840" height={80} width={80} />
+          </center>
+        </div>
+      )
     } else {
       return (
         <div className="visualContainer">
