@@ -66,10 +66,13 @@ class OutlinedTextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <div>
-          <label htmlFor="tripName">
-            <h3>Name Your Trip!</h3>
-          </label>
-          <p>Make it nice and descriptive, like "Nancy's Bachelorette Party"</p>
+          {/* <label htmlFor="tripName"> */}
+          <h3>Name Your Trip!</h3>
+          {/* </label> */}
+          <p>
+            {' '}
+            Make it nice and descriptive, like "Nancy's Bachelorette Party"
+          </p>
           <TextField
             id="outlined-full-width"
             label="Trip Name"
@@ -85,18 +88,18 @@ class OutlinedTextFields extends React.Component {
               shrink: true
             }}
           />
-          <div>
-            <ButtonToolbar>
-              <Button
-                variant="dark"
-                size="lg"
-                type="submit"
-                onClick={this.addTrip}
-              >
-                Create Trip
-              </Button>
-            </ButtonToolbar>
-          </div>
+          {/* <div> */}
+          <ButtonToolbar>
+            <Button
+              variant="dark"
+              size="lg"
+              type="submit"
+              onClick={this.addTrip}
+            >
+              Create Trip
+            </Button>
+          </ButtonToolbar>
+          {/* </div> */}
         </div>
       </form>
     )

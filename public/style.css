@@ -7,6 +7,7 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   margin: 60px;
+  background-color: #26212c !important;
 }
 
 /* body,
@@ -15,6 +16,13 @@ html {
   height: auto;
 } */
 
+.plane {
+  margin: 0 auto;
+}
+
+h1 {
+  color: #343a40;
+}
 a {
   text-decoration: none;
 }
@@ -31,15 +39,10 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-/* .legend {
-  font-size: 14pt;
-} */
 
 dl,
 ol,
 ul {
-  /* margin-top: 0;
-  margin-bottom: 1rem; */
   font-size: 15pt;
 }
 
@@ -56,9 +59,17 @@ ul {
   text-align: center;
 }
 
+.loader {
+  margin: 0 auto;
+}
+
 .tabContainer {
   margin-top: 60px;
   margin-left: 0;
+}
+
+.tabLoginContainer {
+  margin-top: 60px;
 }
 
 .layoutContainer {
@@ -79,7 +90,7 @@ ul {
 
 .layoutContainer h3 {
   font-size: 120px;
-  padding-left: 30px;
+  padding-left: 62px;
   padding-top: 50px;
   color: #343a40;
 }
@@ -110,13 +121,16 @@ ul {
 .rightArrow {
   text-align: end;
 }
+.send {
+  padding-left: 1em;
+}
 
 .inviteContainer {
   padding-top: 100px;
 }
 .inviteContainer h3 {
   font-size: 100px;
-  padding-left: 30px;
+  padding-left: 0.2em;
   color: #343a40;
 }
 
@@ -146,16 +160,14 @@ ul {
 .newTripContainer h3 {
   font-size: 100px;
   color: #343a40;
+  padding-left: 0.1em;
 }
 
 .newTripContainer p {
   font-size: 40px;
   color: #343a40d4;
+  padding-left: 0.4em;
 }
-
-/* .mapBackground {
-  background-color: #2f2d3466;
-} */
 
 .available {
   text-align: center;
@@ -194,7 +206,7 @@ ul {
 .react-tabs__tab-list {
   margin: 0 0 0px !important;
   padding: 0;
-
+  border-bottom: 0px solid #aaa !important;
   text-align: start;
 }
 
@@ -219,7 +231,12 @@ ul {
 }
 
 .btn-toolbar {
-  padding-left: 30px;
+  padding-left: 2em;
+}
+
+.MuiFormControl-fullWidth-8 {
+  width: 100%;
+  margin: 0 !important;
 }
 
 li {
@@ -257,4 +274,39 @@ li {
 
 #addEmail {
   margin-top: 20px;
+}
+
+#tablist {
+  text-align: center;
+}
+
+.loginsignupContainer {
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  justify-content: space-evenly;
+  width: 50%;
+  padding: 0.05em;
+  text-align: center;
+  color: #e6e6e6;
+  background-color: #2f2d3466;
+  font-size: 16pt;
+  margin: 0 auto;
+}
+
+.loginsignupContainer h2 {
+  font-size: 40px;
+}
+
+.textField {
+  border-color: white;
+}
+
+#lowerDescription .btn-toolbar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
 }

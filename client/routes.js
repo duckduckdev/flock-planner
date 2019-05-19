@@ -3,6 +3,7 @@ import {Route, Switch, BrowserRouter} from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 import PrivateRoute2 from './components/PrivateRoute2'
 import {firebaseApp} from './firebase'
+import Loader from 'react-loader-spinner'
 
 import {
   NewTripForm,
@@ -16,7 +17,8 @@ import {
   FinalizeTripForm,
   MapVisualTabs,
   AddDates,
-  MainPage
+  MainPage,
+  LoginSignupTabs
 } from './components'
 
 import BootstrapNavBar from './styling/bootstrapNavBar'
@@ -53,7 +55,13 @@ class App extends React.Component {
     const {authenticated, loading, currentUser} = this.state
 
     if (loading) {
-      return <p>Loading...</p>
+      return (
+        <div className="plane">
+          <center>
+            <Loader type="Plane" color="#343840" height={80} width={80} />
+          </center>
+        </div>
+      )
     }
 
     return (
@@ -70,8 +78,9 @@ class App extends React.Component {
             authenticated={authenticated}
             currentUser={currentUser}
           />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/new" component={LoginSignupTabs} />
+          {/* <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} /> */}
           <PrivateRoute2
             exact
             path="/preference/:tripId"

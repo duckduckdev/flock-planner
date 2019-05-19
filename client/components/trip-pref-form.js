@@ -8,6 +8,7 @@ import green from '@material-ui/core/colors/green'
 import Radio from '@material-ui/core/Radio'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import Loader from 'react-loader-spinner'
 
 const styles = theme => ({
   container: {
@@ -166,12 +167,15 @@ class TripPrefForm extends Component {
   }
 
   render() {
-    // if the data is still loading
-    // or if for some reason some nut has managed to get to this component without adding date preferences
-    // show loading
     const {classes} = this.props
     if (!this.state.datePrefs.ranges) {
-      return <div>Loading...</div>
+      return (
+        <div className="plane">
+          <center>
+            <Loader type="Plane" color="#343840" height={80} width={80} />
+          </center>
+        </div>
+      )
     } else {
       return (
         <div className="prefContainer">

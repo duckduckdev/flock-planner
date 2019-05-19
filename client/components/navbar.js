@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import firebase, {firebaseApp} from '../firebase'
+import Loader from 'react-loader-spinner'
 
 class Navbar extends React.Component {
   constructor() {
@@ -41,7 +42,13 @@ class Navbar extends React.Component {
     const {loading} = this.state
 
     if (loading) {
-      return <p>Loading...</p>
+      return (
+        <div className="plane">
+          <center>
+            <Loader type="Plane" color="#343840" height={80} width={80} />
+          </center>
+        </div>
+      )
     }
 
     return (
@@ -57,8 +64,8 @@ class Navbar extends React.Component {
             </div>
           ) : (
             <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/new">Login</Link>
+              <Link to="/new">Sign Up</Link>
             </div>
           )}
         </nav>
