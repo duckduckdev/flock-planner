@@ -2,11 +2,33 @@ import React, {Component} from 'react'
 import {withRouter, Redirect} from 'react-router'
 import firebase, {firebaseApp} from '../firebase'
 import FirebaseAuthForm from './firebaseAuthForm'
+import TextField from '@material-ui/core/TextField'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 // signup needs to be a connected component
 import {connect} from 'react-redux'
 
 const mapStateToProps = state => ({tripId: state.currentTrip})
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  dense: {
+    marginTop: 16
+  },
+  menu: {
+    width: 200
+  }
+})
 
 class SignUp extends Component {
   handleSignUp = async event => {
@@ -46,32 +68,65 @@ class SignUp extends Component {
     const tripId = this.props.tripId
 
     return !this.user ? (
-      <div className="visualContainer">
+      <div className="loginsignupContainer">
+        {/* <h2>Start planning trips with Flock!</h2> */}
         <form onSubmit={this.handleSignUp}>
           <div>
-            <h2>Start planning trips with Flock!</h2>
-          </div>
-          <br />
-          <div>
-            <label>
+            <TextField
+              label="Email"
+              name="email"
+              style={{margin: 8}}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              // onChange={this.updateInput}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            {/* <label>
               Email
               <input name="email" type="email" />
-            </label>
+            </label> */}
           </div>
           <br />
           <div>
-            <label>
+            <TextField
+              type="password"
+              label="Password"
+              name="password"
+              style={{margin: 8}}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              // onChange={this.updateInput}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            {/* <label>
               Password
               <input name="password" type="password" />
-            </label>
+            </label> */}
           </div>
           <br />
-          <div>
+          <ButtonToolbar>
+            <Button
+              variant="dark"
+              size="lg"
+              type="submit"
+              onClick={this.handleSignUp}
+            >
+              Signup
+            </Button>
+          </ButtonToolbar>
+          <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
+          {/* <div>
             <button type="submit">Sign Up</button>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <FirebaseAuthForm user={this.user} tripId={tripId} />
-          </div>
+          </div> */}
         </form>
       </div>
     ) : (
@@ -80,4 +135,10 @@ class SignUp extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(SignUp))
+SignUp.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(
+  withRouter(connect(mapStateToProps, null)(SignUp))
+)

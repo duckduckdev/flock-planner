@@ -7,8 +7,8 @@ import Signup from './signup'
 class LoginSignupTabs extends React.Component {
   render() {
     return (
-      <Tabs className="tabContainer">
-        <TabList>
+      <Tabs className="tabLoginContainer">
+        <TabList id="tablist">
           <Tab tabfor="login">Login</Tab>
           <Tab tabfor="signup">Signup</Tab>
         </TabList>

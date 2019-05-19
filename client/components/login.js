@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-
 // login needs to be a connected component
 import {connect} from 'react-redux'
 import {setTrip} from '../store'
@@ -79,7 +78,7 @@ class LoginView extends Component {
     }
 
     return (
-      <div className="visualContainer">
+      <div className="loginsignupContainer">
         <form onSubmit={this.handleLogin}>
           <div>
             <TextField
@@ -90,6 +89,7 @@ class LoginView extends Component {
               margin="normal"
               variant="outlined"
               // onChange={this.updateInput}
+              className="textField"
               InputLabelProps={{
                 shrink: true
               }}
@@ -130,12 +130,13 @@ class LoginView extends Component {
               Login
             </Button>
           </ButtonToolbar>
+          <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
           {/* <div>
             <button type="submit">Login</button>
           </div> */}
-          <div>
+          {/* <div>
             <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
-          </div>
+          </div> */}
         </form>
       </div>
     )
