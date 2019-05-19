@@ -3,6 +3,7 @@ import firebase, {firebaseApp} from '../firebase'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import FloatingActionButtons from '../styling/addButton'
+import Loader from 'react-loader-spinner'
 
 export class UserHome extends React.Component {
   constructor(props) {
@@ -42,7 +43,11 @@ export class UserHome extends React.Component {
     return (
       <div className="layoutContainer">
         {this.state.loading ? (
-          'this is still loading'
+          <div className="plane">
+            <center>
+              <Loader type="Plane" color="#343840" height={80} width={80} />
+            </center>
+          </div>
         ) : (
           <div className="trips">
             <h3>Welcome</h3>

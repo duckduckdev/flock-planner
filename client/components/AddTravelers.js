@@ -135,20 +135,20 @@ class AddTravelers extends React.Component {
           >
             <AddIcon />
           </Fab>
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              className={classes.button}
-              onClick={this.addFriend}
-            >
-              Send
-              {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-              <Icon className={classes.rightIcon}>send</Icon>
-            </Button>
-          </div>
         </form>
+        <div className="send">
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            onClick={this.addFriend}
+          >
+            Send
+            {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
+            <Icon className={classes.rightIcon}>send</Icon>
+          </Button>
+        </div>
       </div>
     )
   }
