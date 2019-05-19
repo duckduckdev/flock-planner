@@ -175,7 +175,7 @@ class Map extends Component {
     const {viewport, searchResultLayer} = this.state
 
     return this.state.loading ? (
-      <Loader type="Grid" color="#00BFFF" height="100" width="100" />
+      <Loader type="Plane" color="#343840" height={80} width={80} />
     ) : (
       <MapGL
         ref={this.mapRef}

@@ -1,6 +1,6 @@
 import firebase from '../firebase'
 import React from 'react'
-
+import Loader from 'react-loader-spinner'
 import BudgetChart from './budgetChart'
 import LocationList from './locationList'
 import DateList from './datesList'
@@ -49,7 +49,7 @@ class Visual extends React.Component {
     const tripId = this.props.trip
 
     if (this.state.arrayPrefs.length < 1) {
-      return <div>Loading...</div>
+      return <Loader type="Plane" color="#343840" height={80} width={80} />
     } else {
       return (
         <div className="visualContainer">

@@ -7,6 +7,7 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   margin: 60px;
+  background-color: #26212c !important;
 }
 
 /* body,
@@ -31,15 +32,10 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-/* .legend {
-  font-size: 14pt;
-} */
 
 dl,
 ol,
 ul {
-  /* margin-top: 0;
-  margin-bottom: 1rem; */
   font-size: 15pt;
 }
 
@@ -54,6 +50,10 @@ ul {
 #title {
   font-family: monospace;
   text-align: center;
+}
+
+.loader {
+  margin: 0 auto;
 }
 
 .tabContainer {
@@ -125,10 +125,6 @@ ul {
   font-size: 40px;
   color: #343a40d4;
 }
-
-/* .mapBackground {
-  background-color: #2f2d3466;
-} */
 
 .available {
   text-align: center;

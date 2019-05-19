@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from '../firebase'
 import DisplayCalendar from './DisplayCalendar'
+import Loader from 'react-loader-spinner'
 
 class DateList extends React.Component {
   constructor(props) {
@@ -105,9 +106,9 @@ class DateList extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return 'Loadinggg'
+    // if (this.state.loading) return 'Loadinggg'
     if (!this.state.datePrefs.ranges) {
-      return <div>Loading...</div>
+      return <Loader type="Plane" color="#343840" height={80} width={80} />
     } else {
       const dateRanges = this.state.datePrefs.ranges
 
