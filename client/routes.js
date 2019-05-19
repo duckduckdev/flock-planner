@@ -17,7 +17,8 @@ import {
   FinalizeTripForm,
   MapVisualTabs,
   AddDates,
-  MainPage
+  MainPage,
+  LoginSignupTabs
 } from './components'
 
 import BootstrapNavBar from './styling/bootstrapNavBar'
@@ -77,8 +78,9 @@ class App extends React.Component {
             authenticated={authenticated}
             currentUser={currentUser}
           />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/new" component={LoginSignupTabs} />
+          {/* <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} /> */}
           <PrivateRoute2
             exact
             path="/preference/:tripId"

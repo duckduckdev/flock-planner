@@ -68,6 +68,10 @@ ul {
   margin-left: 0;
 }
 
+.tabLoginContainer {
+  margin-top: 60px;
+}
+
 .layoutContainer {
   display: flex;
   flex-direction: row;
@@ -176,7 +180,7 @@ ul {
 .react-tabs__tab-list {
   margin: 0 0 0px !important;
   padding: 0;
-
+  border-bottom: 0px solid #aaa !important;
   text-align: start;
 }
 
@@ -244,4 +248,30 @@ li {
 
 #addEmail {
   margin-top: 20px;
+}
+
+#tablist {
+  text-align: center;
+}
+
+.loginsignupContainer {
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  justify-content: space-evenly;
+  width: 50%;
+  padding: 0.05em;
+  text-align: center;
+  color: #e6e6e6;
+  background-color: #2f2d3466;
+  font-size: 16pt;
+  margin: 0 auto;
+}
+
+.loginsignupContainer h2 {
+  font-size: 40px;
+}
+
+.textField {
+  border-color: white;
 }

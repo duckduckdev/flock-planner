@@ -58,7 +58,7 @@ class Visual extends React.Component {
       )
     } else {
       return (
-        <div className="visualContainer">
+        <div className="loginsignupContainer">
           {/* <h1>Trip Preferences:</h1> */}
           <div id="location-budget">
             <h2>Options for Destinations</h2>
