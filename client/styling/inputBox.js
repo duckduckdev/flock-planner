@@ -69,11 +69,9 @@ class OutlinedTextFields extends React.Component {
           {/* <label htmlFor="tripName"> */}
           <h3>Name Your Trip!</h3>
           {/* </label> */}
-          <p>
-            {' '}
-            Make it nice and descriptive, like "Nancy's Bachelorette Party"
-          </p>
+          <p> Make it nice and descriptive, like "Mitchell Family Reunion"</p>
           <TextField
+            className="create-trip"
             id="outlined-full-width"
             label="Trip Name"
             name="tripName"

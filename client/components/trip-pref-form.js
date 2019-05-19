@@ -265,7 +265,7 @@ class TripPrefForm extends Component {
               value="$1,000 to $1,500"
               name="budget"
             />
-            <span>> $1,000 to $1,500</span>
+            <span>$1,000 to $1,500</span>
             <Radio
               color="primary"
               checked={this.state.budget === '> $1,500'}

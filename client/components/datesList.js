@@ -125,7 +125,7 @@ class DateList extends React.Component {
             return (
               <div key={range}>
                 <DisplayCalendar range={dateRanges[range]} />
-                <form>
+                <form className="dateFormAvailability">
                   {' '}
                   <input
                     type="checkbox"

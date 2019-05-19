@@ -43,7 +43,7 @@ form div {
 dl,
 ol,
 ul {
-  font-size: 15pt;
+  font-size: 18px;
 }
 
 #app {
@@ -90,9 +90,9 @@ ul {
 
 .layoutContainer h3 {
   font-size: 120px;
-  padding-left: 62px;
   padding-top: 50px;
   color: #343a40;
+  padding-left: 0.3em;
 }
 
 .datesContainer {
@@ -102,6 +102,7 @@ ul {
 .datesContainer h3 {
   font-size: 4em;
   color: #343a40;
+  text-align: center;
 }
 .datesContainer h2 {
   font-size: 1.5em;
@@ -140,7 +141,6 @@ ul {
 
 .prefContainer h3 {
   font-size: 60px;
-  padding-left: 30px;
   color: #343a40;
 }
 
@@ -258,17 +258,18 @@ li {
 }
 
 #mainTitle {
-  font-family: monospace;
+  font-family: 'Fira Mono', monospace;
   color: #ffffffe0;
   text-align: center;
   font-size: 15em;
+  padding-top: 0.05em;
 }
 
 #mainDescription {
   text-align: center;
   color: #ffffffe0;
   font-size: 1.5em;
-  padding: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 #lowerDescription {
@@ -315,4 +316,22 @@ li {
   flex-wrap: wrap;
   -ms-flex-pack: center !important;
   justify-content: center !important;
+}
+
+.btn-toolbar {
+  padding-left: 0.6em;
+}
+
+.dateFormAvailability label {
+  padding-left: 0.5em !important;
+}
+
+input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.flyButton {
+  padding-left: 0em !important;
 }
