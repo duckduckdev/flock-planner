@@ -1,7 +1,6 @@
 import React from 'react'
 import firebase from '../firebase'
 import Calendar from './Calendar'
-import ReactSwipe from 'react-swipe'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import 'slick-carousel/slick/slick-theme.css'
@@ -10,17 +9,17 @@ import Button from 'react-bootstrap/Button'
 
 // I am trying to make some slider arrows
 
-const Right = props => (
-  <div className="rightArrow">
-    <i className="fas fa-arrow-right fa-2x" id="slick-next" onClick={props.onClick}></i>
-  </div>
-)
+// const Right = props => (
+//   <div className="rightArrow">
+//     <i className="fas fa-arrow-right fa-2x" id="slick-next" onClick={props.onClick}></i>
+//   </div>
+// )
 
-const Left = props => (
-  <div className="leftArrow">
-    <i className="fas fa-arrow-left fa-2x" id="slick-prev" onClick={props.onClick}></i>
-  </div>
-)
+// const Left = props => (
+//   <div className="leftArrow">
+//     <i className="fas fa-arrow-left fa-2x" id="slick-prev" onClick={props.onClick}></i>
+//   </div>
+// )
 
 class AddDates extends React.Component {
   constructor(props) {
@@ -119,13 +118,13 @@ class AddDates extends React.Component {
   render() {
     const settings = {
       dots: true,
-      infinite: false,
+      infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       // variableWidth: true,
-      nextArrow: <Right/>,
-      prevArrow: <Left/>
+      // nextArrow: <Right/>,
+      // prevArrow: <Left/>
     }
 
     return (
