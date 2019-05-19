@@ -275,3 +275,12 @@ li {
 .textField {
   border-color: white;
 }
+
+#lowerDescription .btn-toolbar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
