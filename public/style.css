@@ -90,9 +90,9 @@ ul {
 
 .layoutContainer h3 {
   font-size: 120px;
-  padding-left: 62px;
   padding-top: 50px;
   color: #343a40;
+  padding-left: 0.3em;
 }
 
 .datesContainer {
@@ -102,6 +102,7 @@ ul {
 .datesContainer h3 {
   font-size: 4em;
   color: #343a40;
+  text-align: center;
 }
 .datesContainer h2 {
   font-size: 1.5em;
