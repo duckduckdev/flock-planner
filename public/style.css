@@ -257,17 +257,18 @@ li {
 }
 
 #mainTitle {
-  font-family: monospace;
+  font-family: 'Fira Mono', monospace;
   color: #ffffffe0;
   text-align: center;
   font-size: 15em;
+  padding-top: 0.05em;
 }
 
 #mainDescription {
   text-align: center;
   color: #ffffffe0;
   font-size: 1.5em;
-  padding: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 #lowerDescription {
@@ -328,4 +329,8 @@ input[type='checkbox'] {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.flyButton {
+  padding-left: 0em !important;
 }

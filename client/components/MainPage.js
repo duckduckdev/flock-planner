@@ -25,13 +25,13 @@ class MainPage extends React.Component {
     } else {
       return (
         <div id="mainPage">
-          <div id="mainTitle">Flock.</div>
+          <div id="mainTitle">Flock</div>
           <div id="mainDescription">
             Flock is a revolutionary new way to collaborate with your friends on
             planning travel.
           </div>
           <div id="lowerDescription">
-            <ButtonToolbar>
+            <ButtonToolbar className="flyButton">
               <Button variant="outline-light" onClick={this.setRedirect}>
                 Come Fly With Us!
               </Button>
