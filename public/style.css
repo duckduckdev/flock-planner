@@ -110,8 +110,8 @@ ul {
 
 .datesSlider {
   background-color: #ffffff7a;
-  padding-top: .75em;
-  margin: .75em
+  padding-top: 0.75em;
+  margin: 0.75em;
 }
 
 .leftArrow {
@@ -142,6 +142,12 @@ ul {
   font-size: 60px;
   padding-left: 30px;
   color: #343a40;
+}
+
+.loginsignupForm {
+  border-radius: 1em;
+  border: 3px solid #717182 !important;
+  padding-right: 2em;
 }
 
 #sendButton {
@@ -289,7 +295,7 @@ li {
   padding: 0.05em;
   text-align: center;
   color: #e6e6e6;
-  background-color: #2f2d3466;
+
   font-size: 16pt;
   margin: 0 auto;
 }

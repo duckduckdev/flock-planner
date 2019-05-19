@@ -79,7 +79,7 @@ class LoginView extends Component {
 
     return (
       <div className="loginsignupContainer">
-        <form onSubmit={this.handleLogin}>
+        <form className="loginsignupForm" onSubmit={this.handleLogin}>
           <div>
             <TextField
               label="Email"
@@ -94,10 +94,6 @@ class LoginView extends Component {
                 shrink: true
               }}
             />
-            {/* <label>
-              Email
-              <input name="email" type="email" />
-            </label> */}
           </div>
           <br />
           <div>
