@@ -43,7 +43,7 @@ form div {
 dl,
 ol,
 ul {
-  font-size: 15pt;
+  font-size: 18px;
 }
 
 #app {
@@ -140,7 +140,6 @@ ul {
 
 .prefContainer h3 {
   font-size: 60px;
-  padding-left: 30px;
   color: #343a40;
 }
 
@@ -315,4 +314,8 @@ li {
   flex-wrap: wrap;
   -ms-flex-pack: center !important;
   justify-content: center !important;
+}
+
+.btn-toolbar {
+  padding-left: 0.6em;
 }
