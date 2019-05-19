@@ -84,6 +84,33 @@ ul {
   color: #343a40;
 }
 
+.datesContainer {
+  padding-top: 5em;
+  padding-left: 1em;
+}
+.datesContainer h3 {
+  font-size: 4em;
+  color: #343a40;
+}
+.datesContainer h2 {
+  font-size: 1.5em;
+  color: #343a40;
+}
+
+.datesSlider {
+  background-color: #ffffff7a;
+  padding-top: .75em;
+  margin: .75em
+}
+
+.leftArrow {
+  text-align: start;
+}
+
+.rightArrow {
+  text-align: end;
+}
+
 .inviteContainer {
   padding-top: 100px;
 }

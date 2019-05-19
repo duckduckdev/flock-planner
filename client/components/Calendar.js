@@ -6,6 +6,8 @@ import Helmet from 'react-helmet'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 
+import Button from 'react-bootstrap/Button'
+
 
 export default class Calendar extends Component {
   static defaultProps = {
@@ -49,7 +51,7 @@ export default class Calendar extends Component {
     // console.log('props in calendar is', this.props)
 
     return (
-      <div className="RangeExample">
+      <div className="calendar">
         {/* <p>
           {!from && !to && 'Please select the first day.'}
           {from && !to && 'Please select the last day.'}
@@ -71,9 +73,12 @@ export default class Calendar extends Component {
           modifiers={modifiers}
           onDayClick={this.handleDayClick}
         />
-        <button type="button" className="link" onClick={this.handleResetClick}>
-                Reset
-              </button>
+        <Button
+          variant="dark"
+          size="sm"
+          type="button"
+          onClick={this.handleResetClick}
+        >Reset</Button>
         <Helmet>
           <style>{`
   .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {

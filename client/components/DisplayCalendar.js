@@ -33,7 +33,7 @@ export default class Calendar extends Component {
     
 
     return (
-      <div className="RangeExample">
+      <div className="DisplayCalendar">
         <DayPicker
           className="Selectable"
           numberOfMonths={this.props.numberOfMonths}
