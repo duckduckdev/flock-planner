@@ -7,6 +7,7 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   margin: 60px;
+  background-color: #26212c !important;
 }
 
 /* body,
@@ -15,6 +16,13 @@ html {
   height: auto;
 } */
 
+.plane {
+  margin: 0 auto;
+}
+
+h1 {
+  color: #343a40;
+}
 a {
   text-decoration: none;
 }
@@ -31,15 +39,10 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-/* .legend {
-  font-size: 14pt;
-} */
 
 dl,
 ol,
 ul {
-  /* margin-top: 0;
-  margin-bottom: 1rem; */
   font-size: 15pt;
 }
 
@@ -54,6 +57,10 @@ ul {
 #title {
   font-family: monospace;
   text-align: center;
+}
+
+.loader {
+  margin: 0 auto;
 }
 
 .tabContainer {
@@ -83,9 +90,13 @@ ul {
 
 .layoutContainer h3 {
   font-size: 120px;
-  padding-left: 30px;
+  padding-left: 62px;
   padding-top: 50px;
   color: #343a40;
+}
+
+.send {
+  padding-left: 1em;
 }
 
 .inviteContainer {
@@ -93,7 +104,7 @@ ul {
 }
 .inviteContainer h3 {
   font-size: 100px;
-  padding-left: 30px;
+  padding-left: 0.2em;
   color: #343a40;
 }
 
@@ -123,16 +134,14 @@ ul {
 .newTripContainer h3 {
   font-size: 100px;
   color: #343a40;
+  padding-left: 0.1em;
 }
 
 .newTripContainer p {
   font-size: 40px;
   color: #343a40d4;
+  padding-left: 0.4em;
 }
-
-/* .mapBackground {
-  background-color: #2f2d3466;
-} */
 
 .available {
   text-align: center;
@@ -196,7 +205,12 @@ ul {
 }
 
 .btn-toolbar {
-  padding-left: 30px;
+  padding-left: 2em;
+}
+
+.MuiFormControl-fullWidth-8 {
+  width: 100%;
+  margin: 0 !important;
 }
 
 li {
