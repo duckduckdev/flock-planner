@@ -70,7 +70,7 @@ class SignUp extends Component {
     return !this.user ? (
       <div className="loginsignupContainer">
         {/* <h2>Start planning trips with Flock!</h2> */}
-        <form onSubmit={this.handleSignUp}>
+        <form className="loginsignupForm" onSubmit={this.handleSignUp}>
           <div>
             <TextField
               label="Email"
