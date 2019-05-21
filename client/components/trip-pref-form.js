@@ -244,36 +244,36 @@ class TripPrefForm extends Component {
             <span />
             <Radio
               color="primary"
-              checked={this.state.budget === '$150 to $500'}
+              checked={this.state.budget === '$150-$500'}
               onChange={this.handleOptionChange}
-              value="$150 to $500"
+              value="$150-$500"
               name="budget"
             />
             <span>$150 to $500</span>
             <Radio
               color="primary"
-              checked={this.state.budget === '$500 to $1,000'}
+              checked={this.state.budget === '$500-$1000'}
               onChange={this.handleOptionChange}
-              value="$500 to $1,000"
+              value="$500-$1000"
               name="budget"
             />
             <span>$500 to $1,000</span>
             <Radio
               color="primary"
-              checked={this.state.budget === '$1,000 to $1,500'}
+              checked={this.state.budget === '$1000-$1500'}
               onChange={this.handleOptionChange}
-              value="$1,000 to $1,500"
+              value="$1000-$1500"
               name="budget"
             />
             <span>$1,000 to $1,500</span>
             <Radio
               color="primary"
-              checked={this.state.budget === '> $1,500'}
+              checked={this.state.budget === '$1500+'}
               onChange={this.handleOptionChange}
-              value="> $1,500"
+              value="$1500+"
               name="budget"
             />
-            <span>{`> $1,500`}</span>
+            <span>$1,500+</span>
           </div>
           <br />
           <ButtonToolbar className="form-sumbit">
