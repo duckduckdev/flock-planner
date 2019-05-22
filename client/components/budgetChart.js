@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
-import {PieChart, Pie, Sector, Cell, Legend, Line} from 'recharts'
+import {PieChart, Pie, Cell, Legend, Line} from 'recharts'
+import firebase from '../firebase'
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#00B22E']
 
@@ -10,9 +11,7 @@ const renderCustomizedLabel = ({
   midAngle,
   innerRadius,
   outerRadius,
-  percent,
-  index,
-  name
+  percent
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5
   const x = cx + radius * Math.cos(-midAngle * RADIAN)
