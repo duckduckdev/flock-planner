@@ -7,8 +7,6 @@ import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-
-// signup needs to be a connected component
 import {connect} from 'react-redux'
 
 const mapStateToProps = state => ({tripId: state.currentTrip})
