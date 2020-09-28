@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-// login needs to be a connected component
 import {connect} from 'react-redux'
 import {setTrip} from '../store'
 
@@ -36,19 +35,6 @@ const styles = theme => ({
 })
 
 class LoginView extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     email: '',
-  //     password: ''
-  //   }
-  //   this.updateInput = this.updateInput.bind(this)
-  // }
-
-  // updateInput = event => {
-  //   this.setState({[event.target.name]: event.target.value})
-  // }
-
   handleLogin = async event => {
     event.preventDefault()
     const {email, password} = event.target.elements
@@ -56,10 +42,7 @@ class LoginView extends Component {
       const user = await firebaseApp
         .auth()
         .signInWithEmailAndPassword(email.value, password.value)
-      console.log('trip Id just after sign in', this.props.tripId)
       if (this.props.tripId) {
-        console.log('redirecting')
-        console.log('history', this.props.history)
         this.props.history.push(`${this.props.tripId}`)
       } else {
         this.props.history.push('/userHome')
@@ -74,7 +57,6 @@ class LoginView extends Component {
     if (this.props.location.state) {
       const tripId = this.props.location.state.url
       this.props.setTrip(tripId)
-      console.log('setting tripId on state')
     }
 
     return (
@@ -84,11 +66,11 @@ class LoginView extends Component {
             <TextField
               label="Email"
               name="email"
+              type="email"
               style={{margin: 8}}
               fullWidth
               margin="normal"
               variant="outlined"
-              // onChange={this.updateInput}
               className="textField"
               InputLabelProps={{
                 shrink: true
@@ -105,34 +87,18 @@ class LoginView extends Component {
               fullWidth
               margin="normal"
               variant="outlined"
-              // onChange={this.updateInput}
               InputLabelProps={{
                 shrink: true
               }}
             />
-            {/* <label>
-              Password
-              <input name="password" type="password" />
-            </label> */}
           </div>
           <br />
           <ButtonToolbar>
-            <Button
-              variant="dark"
-              size="lg"
-              type="submit"
-              onClick={this.handleLogin}
-            >
+            <Button variant="dark" size="lg" type="submit">
               Login
             </Button>
           </ButtonToolbar>
           <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
-          {/* <div>
-            <button type="submit">Login</button>
-          </div> */}
-          {/* <div>
-            <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
-          </div> */}
         </form>
       </div>
     )

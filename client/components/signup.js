@@ -7,8 +7,6 @@ import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-
-// signup needs to be a connected component
 import {connect} from 'react-redux'
 
 const mapStateToProps = state => ({tripId: state.currentTrip})
@@ -53,8 +51,6 @@ class SignUp extends Component {
         })
 
       if (this.props.tripId) {
-        console.log('redirecting')
-        console.log('history', this.props.history)
         this.props.history.push(`${this.props.tripId}`)
       } else {
         this.props.history.push('/userHome')
@@ -64,30 +60,22 @@ class SignUp extends Component {
     }
   }
   render() {
-    console.log('trip Id on state', this.props.tripId)
-    const tripId = this.props.tripId
-
     return !this.user ? (
       <div className="loginsignupContainer">
-        {/* <h2>Start planning trips with Flock!</h2> */}
         <form className="loginsignupForm" onSubmit={this.handleSignUp}>
           <div>
             <TextField
               label="Email"
               name="email"
+              type="email"
               style={{margin: 8}}
               fullWidth
               margin="normal"
               variant="outlined"
-              // onChange={this.updateInput}
               InputLabelProps={{
                 shrink: true
               }}
             />
-            {/* <label>
-              Email
-              <input name="email" type="email" />
-            </label> */}
           </div>
           <br />
           <div>
@@ -99,34 +87,18 @@ class SignUp extends Component {
               fullWidth
               margin="normal"
               variant="outlined"
-              // onChange={this.updateInput}
               InputLabelProps={{
                 shrink: true
               }}
             />
-            {/* <label>
-              Password
-              <input name="password" type="password" />
-            </label> */}
           </div>
           <br />
           <ButtonToolbar>
-            <Button
-              variant="dark"
-              size="lg"
-              type="submit"
-              onClick={this.handleSignUp}
-            >
+            <Button variant="dark" size="lg" type="submit">
               Signup
             </Button>
           </ButtonToolbar>
           <FirebaseAuthForm user={this.user} tripId={this.props.tripId} />
-          {/* <div>
-            <button type="submit">Sign Up</button>
-          </div> */}
-          {/* <div>
-            <FirebaseAuthForm user={this.user} tripId={tripId} />
-          </div> */}
         </form>
       </div>
     ) : (
